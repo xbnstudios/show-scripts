@@ -1,0 +1,8 @@
+https://www.foobar2000.org/components/view/foo_input_ffmpeg
+
+1. Install the plugin onto a beta foobar2000
+2. Point it at a ffmpeg install folder
+3. Add M4A to the list of enabled decoders
+4. Bump the MP4 decoder to the bottom so that it's below the ffmpeg decoder.
+
+Warning: seeking and playing specific chapters may be slow with this method.
