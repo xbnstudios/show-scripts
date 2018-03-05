@@ -1,6 +1,6 @@
-[submodule "AudacityToCue"]
-	path = AudacityToCue
-	url = https://github.com/hornc/Label-to-Cue
 [submodule "Label-to-Cue"]
 	path = Label-to-Cue
 	url = https://github.com/hornc/Label-to-Cue
+[submodule "LRC"]
+	path = LRC
+	url = https://github.com/gaiaweylyn/LRC
