@@ -1,4 +1,4 @@
-# XBN Timestamp project
+# XBN Timestamp Project
 
 ## Modules:
 * **Label-to-Cue** - convert Audacity label files to CUE
