@@ -1,0 +1,3 @@
+[submodule "AudacityToCue"]
+	path = AudacityToCue
+	url = https://github.com/hornc/Label-to-Cue
