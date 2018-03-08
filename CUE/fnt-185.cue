@@ -82,7 +82,7 @@ FILE "fnt-185.mp3" MP3
     TITLE "dZihan & Kamien - Bazooka"
     INDEX 01 108:03:00
   TRACK 27 AUDIO
-    TITLE "FunkstÃ¶rung - Laid Out feat. Anothr"
+    TITLE "Funkstörung - Laid Out feat. Anothr"
     INDEX 01 111:08:00
   TRACK 28 AUDIO
     TITLE "Depeche Mode - Dream On"
@@ -124,7 +124,7 @@ FILE "fnt-185.mp3" MP3
     TITLE "talk: deadmau5 - Somewhere Up Here"
     INDEX 01 154:46:00
   TRACK 41 AUDIO
-    TITLE "FÃ©vrier - Empress (3noneTwo Remix)"
+    TITLE "Février - Empress (3noneTwo Remix)"
     INDEX 01 160:24:00
   TRACK 42 AUDIO
     TITLE "Yoshihisa Hirano, Hideki Taniuchi and Various - Sinigami Kai"

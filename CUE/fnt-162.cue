@@ -22,7 +22,7 @@ FILE "fnt-162.mp3" MP3
     TITLE "bignic - Meltdown"
     INDEX 01 18:15:00
   TRACK 07 AUDIO
-    TITLE "RÃ¶yksopp - What Else Is There? (TrentemÃ¸ller Remix)"
+    TITLE "Röyksopp - What Else Is There? (Trentemøller Remix)"
     INDEX 01 20:35:00
   TRACK 08 AUDIO
     TITLE "Bleachers - Rollercoaster"

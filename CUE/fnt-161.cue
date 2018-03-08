@@ -88,7 +88,7 @@ FILE "fnt-161.mp3" MP3
     TITLE "Freeland - Reality 3D"
     INDEX 01 128:58:00
   TRACK 29 AUDIO
-    TITLE "FÃ©vrier - Divine Place"
+    TITLE "Février - Divine Place"
     INDEX 01 133:26:00
   TRACK 30 AUDIO
     TITLE "Air - All I Need"
@@ -100,7 +100,7 @@ FILE "fnt-161.mp3" MP3
     TITLE "Apstract - Glimpse Of Forever feat. Nathan Brumley & Charlotte Amadea"
     INDEX 01 148:43:00
   TRACK 33 AUDIO
-    TITLE "mÃ©moire - La Mer"
+    TITLE "mémoire - La Mer"
     INDEX 01 153:42:00
   TRACK 34 AUDIO
     TITLE "The Avener - Fade Out Lines (Original Mix)"
@@ -112,5 +112,5 @@ FILE "fnt-161.mp3" MP3
     TITLE "Katie Costello - Stranger"
     INDEX 01 163:55:00
   TRACK 37 AUDIO
-    TITLE "BT - Nicht Musik [VerklÃ¤rung] No.2 in D major"
+    TITLE "BT - Nicht Musik [Verklärung] No.2 in D major"
     INDEX 01 168:05:00

@@ -7,119 +7,119 @@ FILE "fnt-177.mp3" MP3
     TITLE "fnt-s7-intro-draft6"
     INDEX 01 00:00:00
   TRACK 02 AUDIO
-    TITLE "The Rapture â€“ No Sex For Ben"
+    TITLE "The Rapture – No Sex For Ben"
     INDEX 01 01:44:16
   TRACK 03 AUDIO
-    TITLE "talk: Torcht â€“ Deeper into the Void"
+    TITLE "talk: Torcht – Deeper into the Void"
     INDEX 01 05:43:52
   TRACK 04 AUDIO
-    TITLE "Fatboy Slim â€“ Right Here, Right Now"
+    TITLE "Fatboy Slim – Right Here, Right Now"
     INDEX 01 10:37:81
   TRACK 05 AUDIO
-    TITLE "Greenskeepers â€“ Vagabond"
+    TITLE "Greenskeepers – Vagabond"
     INDEX 01 14:30:20
   TRACK 06 AUDIO
-    TITLE "The Crystal Method â€“ Roll It Up"
+    TITLE "The Crystal Method – Roll It Up"
     INDEX 01 17:27:21
   TRACK 07 AUDIO
-    TITLE "talk: David Wise â€“ Lobby Theme Tune"
+    TITLE "talk: David Wise – Lobby Theme Tune"
     INDEX 01 23:28:99
   TRACK 08 AUDIO
-    TITLE "Mayhem â€“ 120 Red"
+    TITLE "Mayhem – 120 Red"
     INDEX 01 28:09:55
   TRACK 09 AUDIO
-    TITLE "Arctic Monkeys â€“ One For The Road"
+    TITLE "Arctic Monkeys – One For The Road"
     INDEX 01 31:20:60
   TRACK 10 AUDIO
-    TITLE "The Passion Cast â€“ Love Can Move Mountains"
+    TITLE "The Passion Cast – Love Can Move Mountains"
     INDEX 01 35:30:57
   TRACK 11 AUDIO
-    TITLE "Joe Ford â€“ Time Is Limited (Original Mix)"
+    TITLE "Joe Ford – Time Is Limited (Original Mix)"
     INDEX 01 38:13:26
   TRACK 12 AUDIO
-    TITLE "Max Sedgley â€“ Whatâ€™ve I Got To Do? (Original Mix)"
+    TITLE "Max Sedgley – What’ve I Got To Do? (Original Mix)"
     INDEX 01 43:41:02
   TRACK 13 AUDIO
-    TITLE "Aggresivnes â€“ Put The New Needle (Colombo Remix)"
+    TITLE "Aggresivnes – Put The New Needle (Colombo Remix)"
     INDEX 01 48:55:34
   TRACK 14 AUDIO
-    TITLE "Slyde â€“ Frequency (NAPT Remix)"
+    TITLE "Slyde – Frequency (NAPT Remix)"
     INDEX 01 54:35:04
   TRACK 15 AUDIO
-    TITLE "30Hz â€“ Daddio (Miles Dyson Remix)"
+    TITLE "30Hz – Daddio (Miles Dyson Remix)"
     INDEX 01 61:18:73
   TRACK 16 AUDIO
-    TITLE "Throttle â€“ Money Maker (Club Mix)"
+    TITLE "Throttle – Money Maker (Club Mix)"
     INDEX 01 66:54:76
   TRACK 17 AUDIO
-    TITLE "Yanivi â€“ Remember Me (Woman Of The Ghetto)"
+    TITLE "Yanivi – Remember Me (Woman Of The Ghetto)"
     INDEX 01 70:32:54
   TRACK 18 AUDIO
-    TITLE "Nobody Beats The Drum â€“ Poisson Vert (Original)"
+    TITLE "Nobody Beats The Drum – Poisson Vert (Original)"
     INDEX 01 73:21:50
   TRACK 19 AUDIO
-    TITLE "talk: Paul van Dyk â€“ Nothing But You (Cirrus Mix)"
+    TITLE "talk: Paul van Dyk – Nothing But You (Cirrus Mix)"
     INDEX 01 78:21:40
   TRACK 20 AUDIO
-    TITLE "Netsky â€“ The Whistle Song (feat. Dynamite MC)"
+    TITLE "Netsky – The Whistle Song (feat. Dynamite MC)"
     INDEX 01 86:17:06
   TRACK 21 AUDIO
-    TITLE "Froxic â€“ Shock Therapy (Original Mix)"
+    TITLE "Froxic – Shock Therapy (Original Mix)"
     INDEX 01 90:53:60
   TRACK 22 AUDIO
-    TITLE "J.A.C.K â€“ M a g e l l a n"
+    TITLE "J.A.C.K – M a g e l l a n"
     INDEX 01 94:26:44
   TRACK 23 AUDIO
-    TITLE "Boom Boom Satellites â€“ All In A Day"
+    TITLE "Boom Boom Satellites – All In A Day"
     INDEX 01 99:05:98
   TRACK 24 AUDIO
-    TITLE "London Elektricity â€“ Attack Ships On Fire"
+    TITLE "London Elektricity – Attack Ships On Fire"
     INDEX 01 106:13:09
   TRACK 25 AUDIO
-    TITLE "Trifonic â€“ Emergence"
+    TITLE "Trifonic – Emergence"
     INDEX 01 112:14:38
   TRACK 26 AUDIO
-    TITLE "talk: Medeski Martin & Wood â€“ Mami Gato"
+    TITLE "talk: Medeski Martin & Wood – Mami Gato"
     INDEX 01 118:10:27
   TRACK 27 AUDIO
-    TITLE "Etherwood â€“ We Are Ever Changing"
+    TITLE "Etherwood – We Are Ever Changing"
     INDEX 01 123:02:85
   TRACK 28 AUDIO
-    TITLE "Vaults â€“ Premonitions (Jacques Greene Remix)"
+    TITLE "Vaults – Premonitions (Jacques Greene Remix)"
     INDEX 01 128:43:17
   TRACK 29 AUDIO
-    TITLE "talk: Sega â€“ Sonic Mega Collection Plus Game Selection Menu"
+    TITLE "talk: Sega – Sonic Mega Collection Plus Game Selection Menu"
     INDEX 01 134:53:43
   TRACK 30 AUDIO
-    TITLE "Liquid Soul, Zyce, Solar Kid â€“ We Come In Peace (Talpa Remix)"
+    TITLE "Liquid Soul, Zyce, Solar Kid – We Come In Peace (Talpa Remix)"
     INDEX 01 138:44:71
   TRACK 31 AUDIO
-    TITLE "Mandragora & 4i20 & Jacob â€“ A Handful Of Moments"
+    TITLE "Mandragora & 4i20 & Jacob – A Handful Of Moments"
     INDEX 01 144:36:03
   TRACK 32 AUDIO
     TITLE "The spectrogram of this bit is fascinating!"
     INDEX 01 146:21:19
   TRACK 33 AUDIO
-    TITLE "talk: Kay Starr â€“ Iâ€™ve Got My Love To Keep Me Warm (STUHR Remix)"
+    TITLE "talk: Kay Starr – I’ve Got My Love To Keep Me Warm (STUHR Remix)"
     INDEX 01 149:59:27
   TRACK 34 AUDIO
-    TITLE "El Ten Eleven â€“ Marriage Is The New Going Steady"
+    TITLE "El Ten Eleven – Marriage Is The New Going Steady"
     INDEX 01 153:26:54
   TRACK 35 AUDIO
-    TITLE "Red Hot Chili Peppers â€“ Dark Necessities"
+    TITLE "Red Hot Chili Peppers – Dark Necessities"
     INDEX 01 157:00:94
   TRACK 36 AUDIO
-    TITLE "talk: ZHU x A-Trak x Keznamdi â€“ As Crazy As It Is"
+    TITLE "talk: ZHU x A-Trak x Keznamdi – As Crazy As It Is"
     INDEX 01 162:12:50
   TRACK 37 AUDIO
-    TITLE "Moontricks â€“ Midnight Groove (Original Mix)"
+    TITLE "Moontricks – Midnight Groove (Original Mix)"
     INDEX 01 165:46:12
   TRACK 38 AUDIO
-    TITLE "Shakey Graves â€“ Roll The Bones"
+    TITLE "Shakey Graves – Roll The Bones"
     INDEX 01 171:35:79
   TRACK 39 AUDIO
-    TITLE "UNKLE â€“ The Answer (TrentemÃ¸ller Remix) (feat. Big in Japan (Baltimore))"
+    TITLE "UNKLE – The Answer (Trentemøller Remix) (feat. Big in Japan (Baltimore))"
     INDEX 01 176:33:13
   TRACK 40 AUDIO
-    TITLE "talk: Hybrid â€“ Lights Go Down Knives Come Out"
+    TITLE "talk: Hybrid – Lights Go Down Knives Come Out"
     INDEX 01 182:45:15

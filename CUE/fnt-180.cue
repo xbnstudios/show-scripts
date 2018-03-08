@@ -7,200 +7,200 @@ FILE "fnt-180.mp3" MP3
     TITLE "fnt-s7-intro-draft6"
     INDEX 01 00:00:47
   TRACK 02 AUDIO
-    TITLE "Imperial Leisure â€“ Man On The Street"
+    TITLE "Imperial Leisure – Man On The Street"
     INDEX 01 01:44:89
   TRACK 03 AUDIO
-    TITLE "talk: Ronald Jenkees â€“ Sidetracked"
+    TITLE "talk: Ronald Jenkees – Sidetracked"
     INDEX 01 04:45:14
   TRACK 04 AUDIO
-    TITLE "Zammuto â€“ Need Some Sun"
+    TITLE "Zammuto – Need Some Sun"
     INDEX 01 10:34:25
   TRACK 05 AUDIO
-    TITLE "3typen â€“ Little Pretty Thing (feat. Bryan Kessler)"
+    TITLE "3typen – Little Pretty Thing (feat. Bryan Kessler)"
     INDEX 01 14:37:00
   TRACK 06 AUDIO
-    TITLE "The Darkness â€“ Forbidden Love"
+    TITLE "The Darkness – Forbidden Love"
     INDEX 01 18:49:31
   TRACK 07 AUDIO
-    TITLE "Boom Boom Satellites â€“ What Goes Round Comes Around"
+    TITLE "Boom Boom Satellites – What Goes Round Comes Around"
     INDEX 01 22:41:73
   TRACK 08 AUDIO
-    TITLE "Justice â€“ Safe and Sound"
+    TITLE "Justice – Safe and Sound"
     INDEX 01 27:18:29
   TRACK 09 AUDIO
-    TITLE "talk: David Wise â€“ Lobby Theme Tune"
+    TITLE "talk: David Wise – Lobby Theme Tune"
     INDEX 01 33:03:09
   TRACK 10 AUDIO
-    TITLE "Bel Heir â€“ Kiss the Devil"
+    TITLE "Bel Heir – Kiss the Devil"
     INDEX 01 43:46:15
   TRACK 11 AUDIO
-    TITLE "Shiny Toy Guns â€“ You Are The One"
+    TITLE "Shiny Toy Guns – You Are The One"
     INDEX 01 46:46:69
   TRACK 12 AUDIO
-    TITLE "Big Data â€“ The Business of Emotion (feat. White Sea)"
+    TITLE "Big Data – The Business of Emotion (feat. White Sea)"
     INDEX 01 51:04:15
   TRACK 13 AUDIO
-    TITLE "C2C Feat Derek Martin â€“ Happy"
+    TITLE "C2C Feat Derek Martin – Happy"
     INDEX 01 55:14:07
   TRACK 14 AUDIO
-    TITLE "talk: David Arnold and Michael Price â€“ Opening Title"
+    TITLE "talk: David Arnold and Michael Price – Opening Title"
     INDEX 01 59:10:25
   TRACK 15 AUDIO
-    TITLE "talk: David Arnold and Michael Price â€“ The Game Is On"
+    TITLE "talk: David Arnold and Michael Price – The Game Is On"
     INDEX 01 59:44:88
   TRACK 16 AUDIO
-    TITLE "The Crystal Method â€“ (Canâ€™t You) Trip Like I Do"
+    TITLE "The Crystal Method – (Can’t You) Trip Like I Do"
     INDEX 01 63:45:20
   TRACK 17 AUDIO
-    TITLE "Slynk â€“ Say Yeah (Ft. Dunks)"
+    TITLE "Slynk – Say Yeah (Ft. Dunks)"
     INDEX 01 68:10:00
   TRACK 18 AUDIO
-    TITLE "talk: Haito & Diringer â€“ Perception"
+    TITLE "talk: Haito & Diringer – Perception"
     INDEX 01 73:10:18
   TRACK 19 AUDIO
-    TITLE "London Elektricity â€“ All Hell Is Breaking Loose"
+    TITLE "London Elektricity – All Hell Is Breaking Loose"
     INDEX 01 80:33:92
   TRACK 20 AUDIO
-    TITLE "Matrix & Futurebound â€“ American Beauty VIP"
+    TITLE "Matrix & Futurebound – American Beauty VIP"
     INDEX 01 85:18:14
   TRACK 21 AUDIO
-    TITLE "Wolfgun â€“ Mercury"
+    TITLE "Wolfgun – Mercury"
     INDEX 01 91:08:84
   TRACK 22 AUDIO
-    TITLE "Logistics â€“ Watching The World Go By feat. Alice Smith (Original Mix)"
+    TITLE "Logistics – Watching The World Go By feat. Alice Smith (Original Mix)"
     INDEX 01 96:56:77
   TRACK 23 AUDIO
-    TITLE "Stan SB â€“ The Process"
+    TITLE "Stan SB – The Process"
     INDEX 01 102:37:31
   TRACK 24 AUDIO
-    TITLE "BT â€“ Dreaming"
+    TITLE "BT – Dreaming"
     INDEX 01 109:34:82
   TRACK 25 AUDIO
-    TITLE "Far Too Loud â€“ Ready For The Stomping"
+    TITLE "Far Too Loud – Ready For The Stomping"
     INDEX 01 115:18:08
   TRACK 26 AUDIO
-    TITLE "Ivy Levan â€“ Biscuit (Dave AudÃ© Remix)"
+    TITLE "Ivy Levan – Biscuit (Dave Audé Remix)"
     INDEX 01 119:35:10
   TRACK 27 AUDIO
-    TITLE "Miike Snow â€“ Genghis Khan (Hook N Sling Remix)"
+    TITLE "Miike Snow – Genghis Khan (Hook N Sling Remix)"
     INDEX 01 123:03:75
   TRACK 28 AUDIO
-    TITLE "talk: Yoshihisa Hirano & Hideki Taniuchi â€“ Kyrie for orchestra"
+    TITLE "talk: Yoshihisa Hirano & Hideki Taniuchi – Kyrie for orchestra"
     INDEX 01 127:46:39
   TRACK 29 AUDIO
-    TITLE "Caravan Palace â€“ Lone Digger"
+    TITLE "Caravan Palace – Lone Digger"
     INDEX 01 130:11:18
   TRACK 30 AUDIO
-    TITLE "Lyre le temps â€“ Looking Like This"
+    TITLE "Lyre le temps – Looking Like This"
     INDEX 01 133:53:64
   TRACK 31 AUDIO
-    TITLE "Smokey Joe & The Kid â€“ Trippinâ€™ (feat. Puppetmastaz)"
+    TITLE "Smokey Joe & The Kid – Trippin’ (feat. Puppetmastaz)"
     INDEX 01 137:26:95
   TRACK 32 AUDIO
-    TITLE "The Herbaliser â€“ Just Wonâ€™t Stop"
+    TITLE "The Herbaliser – Just Won’t Stop"
     INDEX 01 141:47:01
   TRACK 33 AUDIO
-    TITLE "talk: Neelix â€“ People (Dragon Edit)"
+    TITLE "talk: Neelix – People (Dragon Edit)"
     INDEX 01 145:07:54
   TRACK 34 AUDIO
-    TITLE "Jackson And His Computerband â€“ Billy"
+    TITLE "Jackson And His Computerband – Billy"
     INDEX 01 155:38:55
   TRACK 35 AUDIO
-    TITLE "Coyote Kisses â€“ Acid Wolfpack (Original Mix)"
+    TITLE "Coyote Kisses – Acid Wolfpack (Original Mix)"
     INDEX 01 163:26:14
   TRACK 36 AUDIO
-    TITLE "talk: Thomas Newman â€“ Dead Already"
+    TITLE "talk: Thomas Newman – Dead Already"
     INDEX 01 168:58:32
   TRACK 37 AUDIO
-    TITLE "Wild Beasts â€“ Big Cat"
+    TITLE "Wild Beasts – Big Cat"
     INDEX 01 172:38:63
   TRACK 38 AUDIO
-    TITLE "Radiohead â€“ Burn The Witch"
+    TITLE "Radiohead – Burn The Witch"
     INDEX 01 175:57:26
   TRACK 39 AUDIO
-    TITLE "Hasbro Interactive â€“ Frogger Sky Level"
+    TITLE "Hasbro Interactive – Frogger Sky Level"
     INDEX 01 179:35:96
   TRACK 40 AUDIO
-    TITLE "From The Airport â€“ Chemical Love"
+    TITLE "From The Airport – Chemical Love"
     INDEX 01 180:59:21
   TRACK 41 AUDIO
-    TITLE "talk: ZHU x A-Trak x Keznamdi â€“ As Crazy As It Is"
+    TITLE "talk: ZHU x A-Trak x Keznamdi – As Crazy As It Is"
     INDEX 01 185:18:90
   TRACK 42 AUDIO
-    TITLE "Moontricks â€“ Midnight Groove (Original Mix)"
+    TITLE "Moontricks – Midnight Groove (Original Mix)"
     INDEX 01 189:26:21
   TRACK 43 AUDIO
-    TITLE "Mac Quayle â€“ 1.3_1-Ichosethis.ogg"
+    TITLE "Mac Quayle – 1.3_1-Ichosethis.ogg"
     INDEX 01 193:48:42
   TRACK 44 AUDIO
     TITLE "talk: (No Talking Bed)"
     INDEX 01 195:20:93
   TRACK 45 AUDIO
-    TITLE "Fall Out Boy â€“ Centuries (Gazzo Remix)"
+    TITLE "Fall Out Boy – Centuries (Gazzo Remix)"
     INDEX 01 198:55:40
   TRACK 46 AUDIO
-    TITLE "Conte â€“ Pedals"
+    TITLE "Conte – Pedals"
     INDEX 01 203:19:28
   TRACK 47 AUDIO
-    TITLE "Conte â€“ Wake Me Up (Remix)"
+    TITLE "Conte – Wake Me Up (Remix)"
     INDEX 01 207:39:19
   TRACK 48 AUDIO
-    TITLE "Infected Mushroom â€“ Riders on the Storm (Infected Mushroom Remix)"
+    TITLE "Infected Mushroom – Riders on the Storm (Infected Mushroom Remix)"
     INDEX 01 210:59:84
   TRACK 49 AUDIO
-    TITLE "Mystical Complex â€“ Kill Them All (Original Mix)"
+    TITLE "Mystical Complex – Kill Them All (Original Mix)"
     INDEX 01 215:28:64
   TRACK 50 AUDIO
-    TITLE "talk: Lincoln Grounds & Randall Breneman â€“ Death Row"
+    TITLE "talk: Lincoln Grounds & Randall Breneman – Death Row"
     INDEX 01 222:20:70
   TRACK 51 AUDIO
-    TITLE "Eskimo â€“ 5 & 1/2 Stars (Original Mix)"
+    TITLE "Eskimo – 5 & 1/2 Stars (Original Mix)"
     INDEX 01 225:12:95
   TRACK 52 AUDIO
-    TITLE "talk: Air â€“ Alone In Kyoto"
+    TITLE "talk: Air – Alone In Kyoto"
     INDEX 01 232:40:84
   TRACK 53 AUDIO
-    TITLE "Starcadian â€“ HE^RT (Album Mix)"
+    TITLE "Starcadian – HE^RT (Album Mix)"
     INDEX 01 241:41:57
   TRACK 54 AUDIO
-    TITLE "Karma Fields â€“ Skyline (Acoustic Mix)"
+    TITLE "Karma Fields – Skyline (Acoustic Mix)"
     INDEX 01 247:02:55
   TRACK 55 AUDIO
-    TITLE "talk: Thomas Newman â€“ Any Other Name"
+    TITLE "talk: Thomas Newman – Any Other Name"
     INDEX 01 250:59:32
   TRACK 56 AUDIO
-    TITLE "deadmau5 & Imogen Heap â€“ Telemiscommunications"
+    TITLE "deadmau5 & Imogen Heap – Telemiscommunications"
     INDEX 01 259:06:00
   TRACK 57 AUDIO
-    TITLE "Major Lazer â€“ Get Free"
+    TITLE "Major Lazer – Get Free"
     INDEX 01 263:09:17
   TRACK 58 AUDIO
-    TITLE "talk: The Dust Brothers â€“ Marla"
+    TITLE "talk: The Dust Brothers – Marla"
     INDEX 01 267:57:90
   TRACK 59 AUDIO
-    TITLE "Elvis Presley â€“ Love Me Tender"
+    TITLE "Elvis Presley – Love Me Tender"
     INDEX 01 276:22:87
   TRACK 60 AUDIO
-    TITLE "Dan Shears & The Velveteen Orkestra â€“ Lily"
+    TITLE "Dan Shears & The Velveteen Orkestra – Lily"
     INDEX 01 279:45:11
   TRACK 61 AUDIO
-    TITLE "Air â€“ Playground Love (With Gordon Tracks)"
+    TITLE "Air – Playground Love (With Gordon Tracks)"
     INDEX 01 285:58:90
   TRACK 62 AUDIO
-    TITLE "talk: Mrs Jynx â€“ Dusty"
+    TITLE "talk: Mrs Jynx – Dusty"
     INDEX 01 289:27:29
   TRACK 63 AUDIO
-    TITLE "B. Dolan â€“ The Skycycle Blues"
+    TITLE "B. Dolan – The Skycycle Blues"
     INDEX 01 293:43:85
   TRACK 64 AUDIO
-    TITLE "Lauren Zuniga â€“ Energy Drinks"
+    TITLE "Lauren Zuniga – Energy Drinks"
     INDEX 01 297:51:79
   TRACK 65 AUDIO
-    TITLE "Shane Koyczan and the Short Story Long â€“ Insider"
+    TITLE "Shane Koyczan and the Short Story Long – Insider"
     INDEX 01 301:08:15
   TRACK 66 AUDIO
-    TITLE "talk: Casey LaLonde â€“ Headjack"
+    TITLE "talk: Casey LaLonde – Headjack"
     INDEX 01 304:03:31
   TRACK 67 AUDIO
-    TITLE "Counting Crows â€“ Mr. Jones"
+    TITLE "Counting Crows – Mr. Jones"
     INDEX 01 309:56:78

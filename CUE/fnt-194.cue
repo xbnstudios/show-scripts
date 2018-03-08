@@ -7,140 +7,140 @@ FILE "fnt-194.mp3" MP3
     TITLE "fnt-s7-intro-draft6"
     INDEX 01 00:00:00
   TRACK 02 AUDIO
-    TITLE "The Correspondents â€“ Inexplicable (Album Version)"
+    TITLE "The Correspondents – Inexplicable (Album Version)"
     INDEX 01 01:41:55
   TRACK 03 AUDIO
-    TITLE "talk: AllttA â€“ AllttA (Instrumental)"
+    TITLE "talk: AllttA – AllttA (Instrumental)"
     INDEX 01 05:47:00
   TRACK 04 AUDIO
-    TITLE "Goldfrapp â€“ Ooh La La"
+    TITLE "Goldfrapp – Ooh La La"
     INDEX 01 09:21:24
   TRACK 05 AUDIO
-    TITLE "Kick The Habit â€“ Insane (Original Mix)"
+    TITLE "Kick The Habit – Insane (Original Mix)"
     INDEX 01 12:17:33
   TRACK 06 AUDIO
-    TITLE "Goose â€“ Bring it on"
+    TITLE "Goose – Bring it on"
     INDEX 01 15:41:32
   TRACK 07 AUDIO
-    TITLE "talk: Else â€“ Pacific 704"
+    TITLE "talk: Else – Pacific 704"
     INDEX 01 19:45:09
   TRACK 08 AUDIO
-    TITLE "C2C Feat Derek Martin â€“ Happy"
+    TITLE "C2C Feat Derek Martin – Happy"
     INDEX 01 27:53:70
   TRACK 09 AUDIO
-    TITLE "Sunny Day Sets Fire â€“ Brainless (Baron Von Luxxury Remix)"
+    TITLE "Sunny Day Sets Fire – Brainless (Baron Von Luxxury Remix)"
     INDEX 01 31:44:83
   TRACK 10 AUDIO
-    TITLE "Infusion â€“ Best In Show"
+    TITLE "Infusion – Best In Show"
     INDEX 01 36:51:75
   TRACK 11 AUDIO
-    TITLE "MGMT â€“ Electric Feel [Justice Remix]"
+    TITLE "MGMT – Electric Feel [Justice Remix]"
     INDEX 01 42:06:46
   TRACK 12 AUDIO
-    TITLE "ilLegal Content â€“ Relationships (Original Mix)"
+    TITLE "ilLegal Content – Relationships (Original Mix)"
     INDEX 01 47:30:45
   TRACK 13 AUDIO
-    TITLE "Fleur â€“ Turn The Lights On (Extended Mix)"
+    TITLE "Fleur – Turn The Lights On (Extended Mix)"
     INDEX 01 52:02:38
   TRACK 14 AUDIO
-    TITLE "LAOS â€“ Beautiful"
+    TITLE "LAOS – Beautiful"
     INDEX 01 56:15:68
   TRACK 15 AUDIO
-    TITLE "talk: Be Svendsen â€“ Andromeda (Original Mix)\"
+    TITLE "talk: Be Svendsen – Andromeda (Original Mix)\"
     INDEX 01 62:53:21
   TRACK 16 AUDIO
-    TITLE "Monsta â€“ Messiah (Feed Me Remix)"
+    TITLE "Monsta – Messiah (Feed Me Remix)"
     INDEX 01 70:38:63
   TRACK 17 AUDIO
-    TITLE "Boogrov â€“ Desert (Original Mix)"
+    TITLE "Boogrov – Desert (Original Mix)"
     INDEX 01 74:34:98
   TRACK 18 AUDIO
-    TITLE "The Noisy Freaks & J.A.C.K â€“ We Are The Ones"
+    TITLE "The Noisy Freaks & J.A.C.K – We Are The Ones"
     INDEX 01 77:30:65
   TRACK 19 AUDIO
-    TITLE "GoldFish, Julia Church â€“ Heart Shaped Box (Original Mix)"
+    TITLE "GoldFish, Julia Church – Heart Shaped Box (Original Mix)"
     INDEX 01 82:03:16
   TRACK 20 AUDIO
-    TITLE "Slamtype â€“ Hit Em Like (Original Mix)"
+    TITLE "Slamtype – Hit Em Like (Original Mix)"
     INDEX 01 88:25:59
   TRACK 21 AUDIO
-    TITLE "Dada Life â€“ Freaks Have More Fun (Original Mix)"
+    TITLE "Dada Life – Freaks Have More Fun (Original Mix)"
     INDEX 01 91:28:63
   TRACK 22 AUDIO
-    TITLE "Oliver â€“ Control (Nom De Strip Remix)"
+    TITLE "Oliver – Control (Nom De Strip Remix)"
     INDEX 01 95:28:85
   TRACK 23 AUDIO
-    TITLE "Feed Me â€“ Silicone Lube"
+    TITLE "Feed Me – Silicone Lube"
     INDEX 01 99:44:00
   TRACK 24 AUDIO
-    TITLE "Bombs Away â€“ Swagger (Rocket Pimp Remix)"
+    TITLE "Bombs Away – Swagger (Rocket Pimp Remix)"
     INDEX 01 104:30:55
   TRACK 25 AUDIO
-    TITLE "Zedd â€“ The Legend of Zelda (Electrixx remix)"
+    TITLE "Zedd – The Legend of Zelda (Electrixx remix)"
     INDEX 01 110:44:10
   TRACK 26 AUDIO
-    TITLE "Tokyo Machine â€“ FIGHT"
+    TITLE "Tokyo Machine – FIGHT"
     INDEX 01 116:04:73
   TRACK 27 AUDIO
-    TITLE "Darren Styles, Dougal & Gammer â€“ Party Donâ€™t Stop"
+    TITLE "Darren Styles, Dougal & Gammer – Party Don’t Stop"
     INDEX 01 119:42:98
   TRACK 28 AUDIO
-    TITLE "talk: Bill Brown â€“ Tour Intro â€“ Windows XP OS"
+    TITLE "talk: Bill Brown – Tour Intro – Windows XP OS"
     INDEX 01 122:57:90
   TRACK 29 AUDIO
-    TITLE "talk: Bill Brown â€“ Tour6bed â€“ Windows XP OS"
+    TITLE "talk: Bill Brown – Tour6bed – Windows XP OS"
     INDEX 01 123:40:66
   TRACK 30 AUDIO
-    TITLE "Snailâ€™s House â€“ Pixel Galaxy"
+    TITLE "Snail’s House – Pixel Galaxy"
     INDEX 01 133:05:10
   TRACK 31 AUDIO
-    TITLE "Lorde â€“ Supercut"
+    TITLE "Lorde – Supercut"
     INDEX 01 136:50:53
   TRACK 32 AUDIO
-    TITLE "Lorde â€“ Royals"
+    TITLE "Lorde – Royals"
     INDEX 01 141:27:86
   TRACK 33 AUDIO
-    TITLE "ATTLAS â€“ Ryat"
+    TITLE "ATTLAS – Ryat"
     INDEX 01 144:35:16
   TRACK 34 AUDIO
-    TITLE "Whethan â€“ Aftertaste (feat. Opia)"
+    TITLE "Whethan – Aftertaste (feat. Opia)"
     INDEX 01 148:34:31
   TRACK 35 AUDIO
-    TITLE "Pedestrian Tactics â€“ Ghost"
+    TITLE "Pedestrian Tactics – Ghost"
     INDEX 01 151:42:30
   TRACK 36 AUDIO
-    TITLE "Corporate â€“ Ice (Original Mix)"
+    TITLE "Corporate – Ice (Original Mix)"
     INDEX 01 155:11:38
   TRACK 37 AUDIO
-    TITLE "Gramatik â€“ War of the Currents"
+    TITLE "Gramatik – War of the Currents"
     INDEX 01 158:31:73
   TRACK 38 AUDIO
-    TITLE "talk: Old Future Fox Gang â€“ Guided Meditation"
+    TITLE "talk: Old Future Fox Gang – Guided Meditation"
     INDEX 01 162:25:38
   TRACK 39 AUDIO
-    TITLE "Calum Graham â€“ Wild Woman"
+    TITLE "Calum Graham – Wild Woman"
     INDEX 01 166:30:16
   TRACK 40 AUDIO
-    TITLE "COLONEL RED â€“ Stand Up"
+    TITLE "COLONEL RED – Stand Up"
     INDEX 01 169:36:00
   TRACK 41 AUDIO
-    TITLE "Kyson â€“ How Long"
+    TITLE "Kyson – How Long"
     INDEX 01 174:41:02
   TRACK 42 AUDIO
-    TITLE "Goldfrapp â€“ Hairy Trees"
+    TITLE "Goldfrapp – Hairy Trees"
     INDEX 01 180:57:05
   TRACK 43 AUDIO
-    TITLE "In Love With A Ghost â€“ weâ€™ve never met but, can we have a coffee or something"
+    TITLE "In Love With A Ghost – we’ve never met but, can we have a coffee or something"
     INDEX 01 185:40:76
   TRACK 44 AUDIO
-    TITLE "M83 â€“ Waves, Waves, Waves"
+    TITLE "M83 – Waves, Waves, Waves"
     INDEX 01 188:58:37
   TRACK 45 AUDIO
-    TITLE "talk: Charles Atlas â€“ Genova"
+    TITLE "talk: Charles Atlas – Genova"
     INDEX 01 191:25:06
   TRACK 46 AUDIO
-    TITLE "Death Cab For Cutie â€“ Black Sun (NPR Tiny Desk Concert Version)"
+    TITLE "Death Cab For Cutie – Black Sun (NPR Tiny Desk Concert Version)"
     INDEX 01 199:59:93
   TRACK 47 AUDIO
-    TITLE "Death Cab For Cutie â€“ No Room In Frame (NPR Tiny Desk Concert Version)"
+    TITLE "Death Cab For Cutie – No Room In Frame (NPR Tiny Desk Concert Version)"
     INDEX 01 205:13:22

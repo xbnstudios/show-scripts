@@ -7,137 +7,137 @@ FILE "fnt-193.mp3" MP3
     TITLE "fnt-s7-intro-draft6"
     INDEX 01 00:00:00
   TRACK 02 AUDIO
-    TITLE "Jeremy Blake â€“ Like the World Is New"
+    TITLE "Jeremy Blake – Like the World Is New"
     INDEX 01 01:39:46
   TRACK 03 AUDIO
-    TITLE "talk: Le Matos â€“ Kiyoko"
+    TITLE "talk: Le Matos – Kiyoko"
     INDEX 01 08:32:05
   TRACK 04 AUDIO
-    TITLE "OK Go â€“ Obsession"
+    TITLE "OK Go – Obsession"
     INDEX 01 13:48:43
   TRACK 05 AUDIO
-    TITLE "The Correspondents â€“ Fear & Delight"
+    TITLE "The Correspondents – Fear & Delight"
     INDEX 01 16:54:60
   TRACK 06 AUDIO
-    TITLE "Boom Boom Satellites â€“ Limbo"
+    TITLE "Boom Boom Satellites – Limbo"
     INDEX 01 20:11:61
   TRACK 07 AUDIO
-    TITLE "Boom Boom Satellites â€“ Intruder"
+    TITLE "Boom Boom Satellites – Intruder"
     INDEX 01 27:17:09
   TRACK 08 AUDIO
-    TITLE "bignic â€“ Meltdown"
+    TITLE "bignic – Meltdown"
     INDEX 01 29:03:28
   TRACK 09 AUDIO
-    TITLE "talk: Else â€“ Pacific 704"
+    TITLE "talk: Else – Pacific 704"
     INDEX 01 31:26:90
   TRACK 10 AUDIO
-    TITLE "Bad Suns â€“ Salt"
+    TITLE "Bad Suns – Salt"
     INDEX 01 35:56:93
   TRACK 11 AUDIO
-    TITLE "Tegan And Sara â€“ Closer"
+    TITLE "Tegan And Sara – Closer"
     INDEX 01 39:31:53
   TRACK 12 AUDIO
-    TITLE "The Pimps â€“ Sumpinâ€™"
+    TITLE "The Pimps – Sumpin’"
     INDEX 01 43:00:23
   TRACK 13 AUDIO
-    TITLE "Pretty Lights â€“ Who Loves Me"
+    TITLE "Pretty Lights – Who Loves Me"
     INDEX 01 46:49:27
   TRACK 14 AUDIO
-    TITLE "talk: Be Svendsen â€“ Andromeda (Original Mix)"
+    TITLE "talk: Be Svendsen – Andromeda (Original Mix)"
     INDEX 01 52:54:69
   TRACK 15 AUDIO
-    TITLE "The Super Mario Players feat.Kate Davis â€“ Jump Up, Super Star!"
+    TITLE "The Super Mario Players feat.Kate Davis – Jump Up, Super Star!"
     INDEX 01 60:11:00
   TRACK 16 AUDIO
-    TITLE "M.I.A. â€“ Paper Planes (DFA Remix)"
+    TITLE "M.I.A. – Paper Planes (DFA Remix)"
     INDEX 01 64:26:08
   TRACK 17 AUDIO
-    TITLE "Thomas Vent, The DropStarz, Mary Tales â€“ Drop-N-Tha House (feat. The DropStarz & Mary Tales) (Original Mix)"
+    TITLE "Thomas Vent, The DropStarz, Mary Tales – Drop-N-Tha House (feat. The DropStarz & Mary Tales) (Original Mix)"
     INDEX 01 70:15:50
   TRACK 18 AUDIO
-    TITLE "GRiZ â€“ A Fine Way to Die feat. Orlando Napier"
+    TITLE "GRiZ – A Fine Way to Die feat. Orlando Napier"
     INDEX 01 75:18:72
   TRACK 19 AUDIO
-    TITLE "talk: Bill Brown â€“ Tour Intro â€“ Windows XP OS"
+    TITLE "talk: Bill Brown – Tour Intro – Windows XP OS"
     INDEX 01 81:59:06
   TRACK 20 AUDIO
-    TITLE "talk: Bill Brown â€“ Tour6bed â€“ Windows XP OS"
+    TITLE "talk: Bill Brown – Tour6bed – Windows XP OS"
     INDEX 01 82:41:93
   TRACK 21 AUDIO
-    TITLE "bignic â€“ Modern Pentathalon"
+    TITLE "bignic – Modern Pentathalon"
     INDEX 01 85:40:95
   TRACK 22 AUDIO
-    TITLE "Monsta â€“ Holdinâ€™ On"
+    TITLE "Monsta – Holdin’ On"
     INDEX 01 88:54:63
   TRACK 23 AUDIO
-    TITLE "Dan Veytia â€“ Relax x2 [Phunk Investigation and Dino Lenny vs. FGTH] (Intro Mix)"
+    TITLE "Dan Veytia – Relax x2 [Phunk Investigation and Dino Lenny vs. FGTH] (Intro Mix)"
     INDEX 01 92:49:15
   TRACK 24 AUDIO
-    TITLE "Lee Coombs â€“ Control (The Rogue Element Remix)"
+    TITLE "Lee Coombs – Control (The Rogue Element Remix)"
     INDEX 01 96:30:94
   TRACK 25 AUDIO
-    TITLE "Starset â€“ Satellite (TRAILS Remix) (soundcloud rip)"
+    TITLE "Starset – Satellite (TRAILS Remix) (soundcloud rip)"
     INDEX 01 102:06:12
   TRACK 26 AUDIO
-    TITLE "Sickick â€“ Intro (Infected)"
+    TITLE "Sickick – Intro (Infected)"
     INDEX 01 105:10:36
   TRACK 27 AUDIO
-    TITLE "talk: Schmid â€“ 140 Part 3"
+    TITLE "talk: Schmid – 140 Part 3"
     INDEX 01 110:01:83
   TRACK 28 AUDIO
-    TITLE "Lamb â€“ Wise Enough"
+    TITLE "Lamb – Wise Enough"
     INDEX 01 114:59:05
   TRACK 29 AUDIO
-    TITLE "Puscifer â€“ Dear Brother"
+    TITLE "Puscifer – Dear Brother"
     INDEX 01 119:43:48
   TRACK 30 AUDIO
-    TITLE "Mind Tree â€“ Close Your Eyes So You Can See"
+    TITLE "Mind Tree – Close Your Eyes So You Can See"
     INDEX 01 123:51:37
   TRACK 31 AUDIO
-    TITLE "Hybrid â€“ Just For Today"
+    TITLE "Hybrid – Just For Today"
     INDEX 01 128:07:81
   TRACK 32 AUDIO
-    TITLE "talk: Aperture Science Psychoacoustics Laboratory â€“ Don't Do It"
+    TITLE "talk: Aperture Science Psychoacoustics Laboratory – Don't Do It"
     INDEX 01 136:07:98
   TRACK 33 AUDIO
-    TITLE "Ben Khan â€“ Eden"
+    TITLE "Ben Khan – Eden"
     INDEX 01 142:38:33
   TRACK 34 AUDIO
-    TITLE "Flamingosis â€“ donâ€™t lose the feeling"
+    TITLE "Flamingosis – don’t lose the feeling"
     INDEX 01 145:09:28
   TRACK 35 AUDIO
-    TITLE "GRiZ â€“ Headspace (Time Is On Our Side)"
+    TITLE "GRiZ – Headspace (Time Is On Our Side)"
     INDEX 01 147:32:35
   TRACK 36 AUDIO
-    TITLE "Infected Mushroom â€“ Spitfire"
+    TITLE "Infected Mushroom – Spitfire"
     INDEX 01 152:24:47
   TRACK 37 AUDIO
-    TITLE "Darth & Vader, Shapeless â€“ Ritual (Original)"
+    TITLE "Darth & Vader, Shapeless – Ritual (Original)"
     INDEX 01 159:53:16
   TRACK 38 AUDIO
-    TITLE "Swanky Tunes, Going Deeper â€“ One Million Dollars (Extended Mix)"
+    TITLE "Swanky Tunes, Going Deeper – One Million Dollars (Extended Mix)"
     INDEX 01 163:55:37
   TRACK 39 AUDIO
-    TITLE "Tripo, Samra â€“ Selfie (Original Mix)"
+    TITLE "Tripo, Samra – Selfie (Original Mix)"
     INDEX 01 167:15:01
   TRACK 40 AUDIO
-    TITLE "talk: The Dead Texan â€“ La Ballade dâ€™Alain Georges"
+    TITLE "talk: The Dead Texan – La Ballade d’Alain Georges"
     INDEX 01 172:51:91
   TRACK 41 AUDIO
-    TITLE "Loud, Emok & Vice â€“ Om (Extended Mix)"
+    TITLE "Loud, Emok & Vice – Om (Extended Mix)"
     INDEX 01 179:34:00
   TRACK 42 AUDIO
-    TITLE "Shiny Toy Guns â€“ It Became A Lie On You"
+    TITLE "Shiny Toy Guns – It Became A Lie On You"
     INDEX 01 190:06:90
   TRACK 43 AUDIO
-    TITLE "BOOM BOOM SATELLITES â€“ Porcupine"
+    TITLE "BOOM BOOM SATELLITES – Porcupine"
     INDEX 01 194:32:51
   TRACK 44 AUDIO
-    TITLE "Bill Withers â€“ I Canâ€™t Write Left Handed (live)"
+    TITLE "Bill Withers – I Can’t Write Left Handed (live)"
     INDEX 01 196:47:28
   TRACK 45 AUDIO
-    TITLE "talk: Module â€“ Beneath A Calm Surface"
+    TITLE "talk: Module – Beneath A Calm Surface"
     INDEX 01 203:30:55
   TRACK 46 AUDIO
-    TITLE "Jon Gomm â€“ Passionflower"
+    TITLE "Jon Gomm – Passionflower"
     INDEX 01 207:12:39

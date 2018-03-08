@@ -7,131 +7,131 @@ FILE "fnt-179.mp3" MP3
     TITLE "fnt-s7-intro-draft6"
     INDEX 01 00:00:00
   TRACK 02 AUDIO
-    TITLE "Royal Blood â€“ Figure It Out"
+    TITLE "Royal Blood – Figure It Out"
     INDEX 01 01:44:14
   TRACK 03 AUDIO
-    TITLE "talk: Lettuce â€“ Get Greasy"
+    TITLE "talk: Lettuce – Get Greasy"
     INDEX 01 04:47:05
   TRACK 04 AUDIO
-    TITLE "Professor Kliq â€“ Vast Veridian (soundcloud rip)"
+    TITLE "Professor Kliq – Vast Veridian (soundcloud rip)"
     INDEX 01 09:12:50
   TRACK 05 AUDIO
-    TITLE "Robert DeLong â€“ Long Way Down"
+    TITLE "Robert DeLong – Long Way Down"
     INDEX 01 12:33:63
   TRACK 06 AUDIO
-    TITLE "Meg Myers â€“ Motel"
+    TITLE "Meg Myers – Motel"
     INDEX 01 16:25:39
   TRACK 07 AUDIO
-    TITLE "The Glitch Mob â€“ Starve The Ego, Feed The Soul"
+    TITLE "The Glitch Mob – Starve The Ego, Feed The Soul"
     INDEX 01 20:56:71
   TRACK 08 AUDIO
-    TITLE "Casey LaLonde â€“ Petrichor"
+    TITLE "Casey LaLonde – Petrichor"
     INDEX 01 26:39:66
   TRACK 09 AUDIO
-    TITLE "Baba Brinkman â€“ Spread It"
+    TITLE "Baba Brinkman – Spread It"
     INDEX 01 30:47:61
   TRACK 10 AUDIO
-    TITLE "Klaypex â€“ Together (Original Mix)"
+    TITLE "Klaypex – Together (Original Mix)"
     INDEX 01 33:40:32
   TRACK 11 AUDIO
-    TITLE "Anna Yvette & Laura Brehm â€“ Summer Never Ends"
+    TITLE "Anna Yvette & Laura Brehm – Summer Never Ends"
     INDEX 01 37:19:87
   TRACK 12 AUDIO
-    TITLE "Pendulum â€“ The Tempest"
+    TITLE "Pendulum – The Tempest"
     INDEX 01 41:08:10
   TRACK 13 AUDIO
-    TITLE "talk: Patrick Carney â€“ BoJackâ€™s Theme (feat. Ralph Carney)"
+    TITLE "talk: Patrick Carney – BoJack’s Theme (feat. Ralph Carney)"
     INDEX 01 48:11:40
   TRACK 14 AUDIO
-    TITLE "Andrew Bayer â€“ Need Your Love (Phonat Remix)"
+    TITLE "Andrew Bayer – Need Your Love (Phonat Remix)"
     INDEX 01 52:31:86
   TRACK 15 AUDIO
-    TITLE "Stephen Walking â€“ Dads In Space"
+    TITLE "Stephen Walking – Dads In Space"
     INDEX 01 56:26:95
   TRACK 16 AUDIO
-    TITLE "Sigala â€“ Give Me Your Love (feat. John Newman & Nile Rodgers)"
+    TITLE "Sigala – Give Me Your Love (feat. John Newman & Nile Rodgers)"
     INDEX 01 59:51:68
   TRACK 17 AUDIO
-    TITLE "fRew â€“ Under The Sun [Lazy Rich Remix]"
+    TITLE "fRew – Under The Sun [Lazy Rich Remix]"
     INDEX 01 63:12:16
   TRACK 18 AUDIO
-    TITLE "K-391 â€“ Earth"
+    TITLE "K-391 – Earth"
     INDEX 01 70:08:35
   TRACK 19 AUDIO
-    TITLE "Fox Stevenson â€“ Trigger (Original Mix)"
+    TITLE "Fox Stevenson – Trigger (Original Mix)"
     INDEX 01 74:00:46
   TRACK 20 AUDIO
-    TITLE "talk: Mac Quayle â€“ 1.0_2-oneincontrol.aiff"
+    TITLE "talk: Mac Quayle – 1.0_2-oneincontrol.aiff"
     INDEX 01 79:09:65
   TRACK 21 AUDIO
-    TITLE "BT â€“ Dreaming"
+    TITLE "BT – Dreaming"
     INDEX 01 83:47:91
   TRACK 22 AUDIO
-    TITLE "Ruelle â€“ Until We Go Down"
+    TITLE "Ruelle – Until We Go Down"
     INDEX 01 89:24:26
   TRACK 23 AUDIO
-    TITLE "deadmau5 â€“ Gula redux"
+    TITLE "deadmau5 – Gula redux"
     INDEX 01 94:13:99
   TRACK 24 AUDIO
-    TITLE "Professor Kliq â€“ Superiority Complex"
+    TITLE "Professor Kliq – Superiority Complex"
     INDEX 01 101:06:70
   TRACK 25 AUDIO
-    TITLE "RJD2 â€“ Chicken-Bone Circuit"
+    TITLE "RJD2 – Chicken-Bone Circuit"
     INDEX 01 105:19:13
   TRACK 26 AUDIO
-    TITLE "Adam Freeland â€“ Big Wednesday"
+    TITLE "Adam Freeland – Big Wednesday"
     INDEX 01 109:10:54
   TRACK 27 AUDIO
-    TITLE "Pendulum â€“ Streamline"
+    TITLE "Pendulum – Streamline"
     INDEX 01 113:59:40
   TRACK 28 AUDIO
-    TITLE "Louis the Child â€“ Itâ€™s Strange (feat. K.Flay)"
+    TITLE "Louis the Child – It’s Strange (feat. K.Flay)"
     INDEX 01 119:55:58
   TRACK 29 AUDIO
-    TITLE "talk: Huma-Huma â€“ Hydra"
+    TITLE "talk: Huma-Huma – Hydra"
     INDEX 01 124:03:20
   TRACK 30 AUDIO
-    TITLE "Boom Boom Satellites â€“ Shine"
+    TITLE "Boom Boom Satellites – Shine"
     INDEX 01 126:19:32
   TRACK 31 AUDIO
-    TITLE "Kiasmos â€“ Drawn"
+    TITLE "Kiasmos – Drawn"
     INDEX 01 131:11:15
   TRACK 32 AUDIO
-    TITLE "Darkside â€“ Paper Trails; Darkside - Heart"
+    TITLE "Darkside – Paper Trails; Darkside - Heart"
     INDEX 01 135:18:30
   TRACK 33 AUDIO
-    TITLE "Bakermat Feat. Marie Plassard â€“ Games"
+    TITLE "Bakermat Feat. Marie Plassard – Games"
     INDEX 01 144:25:61
   TRACK 34 AUDIO
-    TITLE "Tapesh, Dayne S â€“ How I Do (Original Mix)"
+    TITLE "Tapesh, Dayne S – How I Do (Original Mix)"
     INDEX 01 148:37:90
   TRACK 35 AUDIO
-    TITLE "Chromeo â€“ Needy Girl (Earstrip & Woo2tech Remix)"
+    TITLE "Chromeo – Needy Girl (Earstrip & Woo2tech Remix)"
     INDEX 01 154:22:13
   TRACK 36 AUDIO
-    TITLE "Platinum Doug â€“ Drive Back, Baby (Original Mix)"
+    TITLE "Platinum Doug – Drive Back, Baby (Original Mix)"
     INDEX 01 159:25:30
   TRACK 37 AUDIO
-    TITLE "Loud, Emok & Vice â€“ Om (Extended Mix)"
+    TITLE "Loud, Emok & Vice – Om (Extended Mix)"
     INDEX 01 164:17:41
   TRACK 38 AUDIO
-    TITLE "talk: Alex Wurman â€“ Heâ€™s Not Coming Back"
+    TITLE "talk: Alex Wurman – He’s Not Coming Back"
     INDEX 01 174:52:90
   TRACK 39 AUDIO
-    TITLE "Curtis Salgado â€“ Iâ€™m Not Made That Way"
+    TITLE "Curtis Salgado – I’m Not Made That Way"
     INDEX 01 178:28:48
   TRACK 40 AUDIO
-    TITLE "Chet Faker â€“ Love and Feeling"
+    TITLE "Chet Faker – Love and Feeling"
     INDEX 01 183:09:53
   TRACK 41 AUDIO
-    TITLE "Mac Quayle â€“ 1.3_1-Ichosethis.ogg"
+    TITLE "Mac Quayle – 1.3_1-Ichosethis.ogg"
     INDEX 01 187:37:72
   TRACK 42 AUDIO
-    TITLE "talk: Lincoln Grounds & Randall Breneman â€“ Death Row"
+    TITLE "talk: Lincoln Grounds & Randall Breneman – Death Row"
     INDEX 01 189:18:22
   TRACK 43 AUDIO
-    TITLE "London Grammar â€“ Hey Now"
+    TITLE "London Grammar – Hey Now"
     INDEX 01 192:37:96
   TRACK 44 AUDIO
-    TITLE "Boom Boom Satellites â€“ Flare"
+    TITLE "Boom Boom Satellites – Flare"
     INDEX 01 196:56:23

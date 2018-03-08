@@ -61,7 +61,7 @@ FILE "fnt-176.mp3" MP3
     TITLE "Calum Graham  - The Nomad"
     INDEX 01 88:32:69
   TRACK 20 AUDIO
-    TITLE "RÃ¼fÃ¼s - Like An Animal (Yotto Remix)"
+    TITLE "Rüfüs - Like An Animal (Yotto Remix)"
     INDEX 01 92:36:62
   TRACK 21 AUDIO
     TITLE "Ryan Roth - Vertibrae"

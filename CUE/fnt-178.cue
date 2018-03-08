@@ -7,122 +7,122 @@ FILE "fnt-178.mp3" MP3
     TITLE "fnt-s7-intro-draft6"
     INDEX 01 00:00:00
   TRACK 02 AUDIO
-    TITLE "Cage The Elephant â€“ In One Ear"
+    TITLE "Cage The Elephant – In One Ear"
     INDEX 01 01:42:73
   TRACK 03 AUDIO
-    TITLE "talk: Lettuce â€“ Get Greasy"
+    TITLE "talk: Lettuce – Get Greasy"
     INDEX 01 05:44:44
   TRACK 04 AUDIO
-    TITLE "Alt-J â€“ Left Hand Free"
+    TITLE "Alt-J – Left Hand Free"
     INDEX 01 11:09:07
   TRACK 05 AUDIO
-    TITLE "Loverboy â€“ Working For The Weekend"
+    TITLE "Loverboy – Working For The Weekend"
     INDEX 01 13:58:71
   TRACK 06 AUDIO
-    TITLE "Patrick Carney â€“ BoJackâ€™s Theme (feat. Ralph Carney)"
+    TITLE "Patrick Carney – BoJack’s Theme (feat. Ralph Carney)"
     INDEX 01 17:50:45
   TRACK 07 AUDIO
-    TITLE "C2C Feat Kentaro And Netik And Rafik And Tigerstyle And Vajra â€“ Le Banquet"
+    TITLE "C2C Feat Kentaro And Netik And Rafik And Tigerstyle And Vajra – Le Banquet"
     INDEX 01 23:13:55
   TRACK 08 AUDIO
-    TITLE "Mika â€“ Love Today"
+    TITLE "Mika – Love Today"
     INDEX 01 28:11:59
   TRACK 09 AUDIO
-    TITLE "Aaron Carter â€“ Bounce"
+    TITLE "Aaron Carter – Bounce"
     INDEX 01 33:24:73
   TRACK 10 AUDIO
-    TITLE "Jungle â€“ Busy Earninâ€™"
+    TITLE "Jungle – Busy Earnin’"
     INDEX 01 36:55:41
   TRACK 11 AUDIO
-    TITLE "talk: Stephan Bodzin â€“ Sonnenwind"
+    TITLE "talk: Stephan Bodzin – Sonnenwind"
     INDEX 01 39:57:40
   TRACK 12 AUDIO
-    TITLE "Eric Prydz â€“ Generate (Original Mix)"
+    TITLE "Eric Prydz – Generate (Original Mix)"
     INDEX 01 46:46:69
   TRACK 13 AUDIO
-    TITLE "Fox Stevenson â€“ Turn It Up (Higher)"
+    TITLE "Fox Stevenson – Turn It Up (Higher)"
     INDEX 01 53:54:39
   TRACK 14 AUDIO
-    TITLE "Monsta â€“ Messiah (Feed Me Remix)"
+    TITLE "Monsta – Messiah (Feed Me Remix)"
     INDEX 01 59:04:04
   TRACK 15 AUDIO
-    TITLE "talk: DivKid â€“ Faturator Presets Demo"
+    TITLE "talk: DivKid – Faturator Presets Demo"
     INDEX 01 63:02:51
   TRACK 16 AUDIO
-    TITLE "Milke â€“ Maybe Iâ€™m Crazy (Stay Ali Remix)"
+    TITLE "Milke – Maybe I’m Crazy (Stay Ali Remix)"
     INDEX 01 65:53:17
   TRACK 17 AUDIO
-    TITLE "Ross D â€“ I Need You"
+    TITLE "Ross D – I Need You"
     INDEX 01 70:40:03
   TRACK 18 AUDIO
-    TITLE "Citizens Already â€“ We Make The Music (Oddyâ€™s Wobble Remix)"
+    TITLE "Citizens Already – We Make The Music (Oddy’s Wobble Remix)"
     INDEX 01 78:18:03
   TRACK 19 AUDIO
-    TITLE "Fedde Le Grand â€“ Give Me Some (Fedde le Grand, Merk & Kremont) [Radio Edit]"
+    TITLE "Fedde Le Grand – Give Me Some (Fedde le Grand, Merk & Kremont) [Radio Edit]"
     INDEX 01 85:58:27
   TRACK 20 AUDIO
-    TITLE "Fedde Le Grand, Merk & Kremont â€“ Give Me Some (Extended Mix)"
+    TITLE "Fedde Le Grand, Merk & Kremont – Give Me Some (Extended Mix)"
     INDEX 01 86:33:05
   TRACK 21 AUDIO
-    TITLE "MetroGnome â€“ iPhone (MetroGnome Remix)"
+    TITLE "MetroGnome – iPhone (MetroGnome Remix)"
     INDEX 01 90:44:12
   TRACK 22 AUDIO
-    TITLE "talk: Koop â€“ Waltz for Koop (feat. Cecilia Stalin)"
+    TITLE "talk: Koop – Waltz for Koop (feat. Cecilia Stalin)"
     INDEX 01 94:03:53
   TRACK 23 AUDIO
-    TITLE "Led Zeppelin â€“ Whole Lotta Love (Mukul & MetroGnome Remix)"
+    TITLE "Led Zeppelin – Whole Lotta Love (Mukul & MetroGnome Remix)"
     INDEX 01 97:36:15
   TRACK 24 AUDIO
-    TITLE "The Quick Brown Fox â€“ JUST HESITATION"
+    TITLE "The Quick Brown Fox – JUST HESITATION"
     INDEX 01 101:12:47
   TRACK 25 AUDIO
-    TITLE "Fred V & Grafix â€“ Major Happy (Frederic Robinson Remix)"
+    TITLE "Fred V & Grafix – Major Happy (Frederic Robinson Remix)"
     INDEX 01 104:29:56
   TRACK 26 AUDIO
-    TITLE "Tom Tykwer, Johnny Klimek & Reinhold Heil â€“ The International â€“ End Title"
+    TITLE "Tom Tykwer, Johnny Klimek & Reinhold Heil – The International – End Title"
     INDEX 01 108:55:35
   TRACK 27 AUDIO
-    TITLE "talk: OverDoseD â€“ Ancient Voices"
+    TITLE "talk: OverDoseD – Ancient Voices"
     INDEX 01 117:59:79
   TRACK 28 AUDIO
-    TITLE "Radiohead â€“ Burn The Witch"
+    TITLE "Radiohead – Burn The Witch"
     INDEX 01 125:04:56
   TRACK 29 AUDIO
-    TITLE "Wolfgun â€“ Moon River"
+    TITLE "Wolfgun – Moon River"
     INDEX 01 128:44:53
   TRACK 30 AUDIO
-    TITLE "Koda & Bijou â€“ There"
+    TITLE "Koda & Bijou – There"
     INDEX 01 130:18:81
   TRACK 31 AUDIO
-    TITLE "Mathijs Wiermans â€“ Progression"
+    TITLE "Mathijs Wiermans – Progression"
     INDEX 01 133:47:20
   TRACK 32 AUDIO
-    TITLE "talk: Alex Wurman â€“ Heâ€™s Not Coming Back"
+    TITLE "talk: Alex Wurman – He’s Not Coming Back"
     INDEX 01 138:37:31
   TRACK 33 AUDIO
-    TITLE "Max Sedgley â€“ Slowly [v Z-Star]"
+    TITLE "Max Sedgley – Slowly [v Z-Star]"
     INDEX 01 141:56:29
   TRACK 34 AUDIO
-    TITLE "THE BIG BROTHER & TOM.G â€“ Enigma 140 D#"
+    TITLE "THE BIG BROTHER & TOM.G – Enigma 140 D#"
     INDEX 01 147:11:83
   TRACK 35 AUDIO
-    TITLE "talk: Mathijs Wiermans â€“ Tiny Steps"
+    TITLE "talk: Mathijs Wiermans – Tiny Steps"
     INDEX 01 154:25:76
   TRACK 36 AUDIO
-    TITLE "talk: Geb.el â€“ Spacewaltz"
+    TITLE "talk: Geb.el – Spacewaltz"
     INDEX 01 158:31:23
   TRACK 37 AUDIO
-    TITLE "talk: Badger â€“ Intro"
+    TITLE "talk: Badger – Intro"
     INDEX 01 164:33:75
   TRACK 38 AUDIO
-    TITLE "talk: Telefon Tel Aviv â€“ You Are The Worst Thing In The World"
+    TITLE "talk: Telefon Tel Aviv – You Are The Worst Thing In The World"
     INDEX 01 166:28:79
   TRACK 39 AUDIO
-    TITLE "talk: Medeski Martin & Wood â€“ Mami Gato"
+    TITLE "talk: Medeski Martin & Wood – Mami Gato"
     INDEX 01 167:05:11
   TRACK 40 AUDIO
-    TITLE "talk: Kay Starr â€“ Iâ€™ve Got My Love To Keep Me Warm (STUHR Remix)"
+    TITLE "talk: Kay Starr – I’ve Got My Love To Keep Me Warm (STUHR Remix)"
     INDEX 01 171:18:83
   TRACK 41 AUDIO
-    TITLE "talk: Darius â€“ This is Only Now"
+    TITLE "talk: Darius – This is Only Now"
     INDEX 01 173:39:88

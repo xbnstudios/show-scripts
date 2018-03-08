@@ -64,7 +64,7 @@ FILE "fnt-164.mp3" MP3
     TITLE "Felguk - Monsta Skunk (Original Mix)"
     INDEX 01 86:02:00
   TRACK 21 AUDIO
-    TITLE "Ivy Levan - Biscuit (Dave AudÃ© Remix)"
+    TITLE "Ivy Levan - Biscuit (Dave Audé Remix)"
     INDEX 01 90:25:00
   TRACK 22 AUDIO
     TITLE "F.O.O.L - Knight"

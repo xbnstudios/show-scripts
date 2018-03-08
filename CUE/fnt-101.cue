@@ -49,7 +49,7 @@ FILE "fnt-101.mp3" MP3
     TITLE "Tempesta - Fuck"
     INDEX 01 77:57:75
   TRACK 16 AUDIO
-    TITLE "KÃ¤rtsy Hatakka & Kimmo Kajasto - Max Payne Main Theme"
+    TITLE "Kärtsy Hatakka & Kimmo Kajasto - Max Payne Main Theme"
     INDEX 01 82:23:83
   TRACK 17 AUDIO
     TITLE "Schiller - Dream of You"
@@ -91,7 +91,7 @@ FILE "fnt-101.mp3" MP3
     TITLE "Hatiras - Spaced Invader (Hatira 2010 Vocal Mix)"
     INDEX 01 148:30:07
   TRACK 30 AUDIO
-    TITLE "Partytroopers - Tie On Your Head (MikkasÂ Â Remix) (Dan Veytia Dub Edit)"
+    TITLE "Partytroopers - Tie On Your Head (Mikkas  Remix) (Dan Veytia Dub Edit)"
     INDEX 01 154:26:97
   TRACK 31 AUDIO
     TITLE "talk: Thomas Newman - Any Other Name"

@@ -49,7 +49,7 @@ FILE "fnt-163.mp3" MP3
     TITLE "Khurt - We Want (Original Mix)"
     INDEX 01 68:08:00
   TRACK 16 AUDIO
-    TITLE "Pet Shop Boys - Sodom (TrentemÃ¸ller Mix)"
+    TITLE "Pet Shop Boys - Sodom (Trentemøller Mix)"
     INDEX 01 72:25:00
   TRACK 17 AUDIO
     TITLE "talk: Kodomo - Concept 15"
@@ -70,7 +70,7 @@ FILE "fnt-163.mp3" MP3
     TITLE "talk: BT - Last Moment of Clarity"
     INDEX 01 102:29:00
   TRACK 23 AUDIO
-    TITLE "FunkstÃ¶rung - Laid Out feat. Anothr"
+    TITLE "Funkstörung - Laid Out feat. Anothr"
     INDEX 01 109:00:00
   TRACK 24 AUDIO
     TITLE "Neus - Amanita"
@@ -91,7 +91,7 @@ FILE "fnt-163.mp3" MP3
     TITLE "Renzo Marini - Insane Robot"
     INDEX 01 130:27:00
   TRACK 30 AUDIO
-    TITLE "Deorro - Five Hours (Donâ€™t Hold Me Back) feat. DyCy (Vocal Radio Edit)"
+    TITLE "Deorro - Five Hours (Don’t Hold Me Back) feat. DyCy (Vocal Radio Edit)"
     INDEX 01 138:05:00
   TRACK 31 AUDIO
     TITLE "Andrew Bayer - Counting the Points"
@@ -103,7 +103,7 @@ FILE "fnt-163.mp3" MP3
     TITLE "Nine Inch Nails - 2 Ghosts I"
     INDEX 01 156:31:00
   TRACK 34 AUDIO
-    TITLE "Sordid Affair - RÃ¶yksopp"
+    TITLE "Sordid Affair - Röyksopp"
     INDEX 01 159:46:00
   TRACK 35 AUDIO
     TITLE "Dawes - From a Window Seat"
@@ -124,7 +124,7 @@ FILE "fnt-163.mp3" MP3
     TITLE "Jacob, Durs - Beast"
     INDEX 01 197:55:00
   TRACK 41 AUDIO
-    TITLE "RÃ¶yksopp - Thank You (Original Mix)"
+    TITLE "Röyksopp - Thank You (Original Mix)"
     INDEX 01 204:41:00
   TRACK 42 AUDIO
     TITLE "Joey Fehrenbach - Behold"

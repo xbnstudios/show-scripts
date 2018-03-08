@@ -85,7 +85,7 @@ FILE "fnt-173.mp3" MP3
     TITLE "talk: Yoshihisa Hirano, Hideki Taniuchi and Various - Kitai"
     INDEX 01 122:41:00
   TRACK 28 AUDIO
-    TITLE "FunkstÃ¶rung - Laid Out feat. Anothr"
+    TITLE "Funkstörung - Laid Out feat. Anothr"
     INDEX 01 126:23:00
   TRACK 29 AUDIO
     TITLE "Komatic, Technicolour - The Glow (Original Mix)"
