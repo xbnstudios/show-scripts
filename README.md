@@ -7,7 +7,7 @@
 * **mp3-chapter-scripts** - S0ph0s's scripts to embed chapters into MP3s. Also possible using ffmpeg, refer to script `MarkerGen/AddChapterMarkers-MP3.sh`
 
 ## To-do:
-- [ ] Convert .lrc to .cue
+- [x] Convert .lrc to .cue
 - [ ] Convert MarkerGen metadata to .lrc/.cue
 - [ ] One script to generate them all
 - [ ] Implement drop-down and clickable timestamps on the website
