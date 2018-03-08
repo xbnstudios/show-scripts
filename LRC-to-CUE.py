@@ -5,7 +5,6 @@ import glob
 import os
 import codecs
 
-os.chdir("C:\\Users\\Ray\\Documents\\GitHub\\XBN\\LRC")
 for file in glob.glob("*.lrc"):
     filename = file[0:7]
 
