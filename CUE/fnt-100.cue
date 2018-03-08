@@ -127,7 +127,7 @@ FILE "fnt-100.mp3" MP3
     TITLE "talk: Sage Taylor - Firewalk"
     INDEX 01 207:47:82
   TRACK 42 AUDIO
-    TITLE "Dan Veytia - In And Out Of Phase / Take Me Under Your Skin [Andrew Bayer and Matt Lange vs. TrentemÃ¸ller]"
+    TITLE "Dan Veytia - In And Out Of Phase / Take Me Under Your Skin [Andrew Bayer and Matt Lange vs. Trentemøller]"
     INDEX 01 214:00:10
   TRACK 43 AUDIO
     TITLE "talk: Gui Boratto - Tales From The Lab (Part 2)"

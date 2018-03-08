@@ -85,7 +85,7 @@ FILE "fnt-184.mp3" MP3
     TITLE "deadmau5 - Cat Thruster"
     INDEX 01 111:39:00
   TRACK 28 AUDIO
-    TITLE "Trentemï¿½ller - Vamp"
+    TITLE "Trentem�ller - Vamp"
     INDEX 01 117:30:00
   TRACK 29 AUDIO
     TITLE "The Quick Brown Fox - JUST HESITATION (HES3 Edit)"

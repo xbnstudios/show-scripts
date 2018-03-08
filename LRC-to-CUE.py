@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import pylrc #https://github.com/doakey3/pylrc
 import glob
 import os
@@ -13,8 +11,7 @@ for file in glob.glob("*.lrc"):
     lrc_parse = ''.join(lrc_lines)
     lrc_file.close()
 
-    cue = codecs.open(filename + '.cue','w','utf-8')
-    cue.write(u'\uFEFF') # we're using UTF-8-BOM for compatibility with foobar2000
+    cue = open(filename + '.cue','w')
 
     lrc = pylrc.parse(lrc_parse)
     print(lrc.artist, '-' ,lrc.title)

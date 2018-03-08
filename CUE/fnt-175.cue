@@ -40,7 +40,7 @@ FILE "fnt-175.mp3" MP3
     TITLE "Pylot - A Race Against Time"
     INDEX 01 47:49:00
   TRACK 13 AUDIO
-    TITLE "LemÃ¢itre - Closer (Feat. Jennie A.)"
+    TITLE "Lemâitre - Closer (Feat. Jennie A.)"
     INDEX 01 52:01:00
   TRACK 14 AUDIO
     TITLE "Mr. Rogers - I'll Take You (Jenaux Remix)"

@@ -91,7 +91,7 @@ FILE "fnt-171.mp3" MP3
     TITLE "Kygo - ID (Ultra Music Festival Anthem)"
     INDEX 01 110:18:00
   TRACK 30 AUDIO
-    TITLE "FÃ©vrier - Divine Place"
+    TITLE "Février - Divine Place"
     INDEX 01 116:25:00
   TRACK 31 AUDIO
     TITLE "Principles Of Geometry - Runner"

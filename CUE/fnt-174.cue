@@ -16,7 +16,7 @@ FILE "fnt-174.mp3" MP3
     TITLE "The Pretty Reckless - Fucked Up World"
     INDEX 01 11:48:00
   TRACK 05 AUDIO
-    TITLE "CHICAGOÂ¤lollie - A Message From Our Sponsors (Mayhem Remix)"
+    TITLE "CHICAGO¤lollie - A Message From Our Sponsors (Mayhem Remix)"
     INDEX 01 15:56:00
   TRACK 06 AUDIO
     TITLE "Plump DJs - Rocket Soul (Original Mix)"

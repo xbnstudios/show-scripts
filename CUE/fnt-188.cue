@@ -7,137 +7,137 @@ FILE "fnt-188.mp3" MP3
     TITLE "fnt-s7-intro-draft6"
     INDEX 01 00:00:00
   TRACK 02 AUDIO
-    TITLE "Dusky â€“ Ingrid Is a Hybrid"
+    TITLE "Dusky – Ingrid Is a Hybrid"
     INDEX 01 01:42:61
   TRACK 03 AUDIO
-    TITLE "talk: Jeremy Blake â€“ Hedlok (Original Mix)"
+    TITLE "talk: Jeremy Blake – Hedlok (Original Mix)"
     INDEX 01 06:09:03
   TRACK 04 AUDIO
-    TITLE "Fever The Ghost â€“ Source"
+    TITLE "Fever The Ghost – Source"
     INDEX 01 10:43:80
   TRACK 05 AUDIO
-    TITLE "Jeremy Blake â€“ Frame of Mind"
+    TITLE "Jeremy Blake – Frame of Mind"
     INDEX 01 15:00:68
   TRACK 06 AUDIO
-    TITLE "Sofi Tukker â€“ Awoo"
+    TITLE "Sofi Tukker – Awoo"
     INDEX 01 20:57:02
   TRACK 07 AUDIO
-    TITLE "talk: Tube & Berger, in.deed â€“ Highness (Original Mix)"
+    TITLE "talk: Tube & Berger, in.deed – Highness (Original Mix)"
     INDEX 01 24:12:41
   TRACK 08 AUDIO
-    TITLE "Justice â€“ Tthhee Ppaarrttyy"
+    TITLE "Justice – Tthhee Ppaarrttyy"
     INDEX 01 30:41:33
   TRACK 09 AUDIO
-    TITLE "Thomas Vent, The DropStarz, Mary Tales â€“ Drop-N-Tha House (feat. The DropStarz & Mary Tales) (Original Mix)"
+    TITLE "Thomas Vent, The DropStarz, Mary Tales – Drop-N-Tha House (feat. The DropStarz & Mary Tales) (Original Mix)"
     INDEX 01 34:44:80
   TRACK 10 AUDIO
-    TITLE "Unlike Pluto â€“ Sweet (feat. Mister Blonde)"
+    TITLE "Unlike Pluto – Sweet (feat. Mister Blonde)"
     INDEX 01 39:44:32
   TRACK 11 AUDIO
-    TITLE "U2 â€“ Daddyâ€™s Gonna Pay For Your Crashed Car (JBâ€™s Insurance Bootleg)"
+    TITLE "U2 – Daddy’s Gonna Pay For Your Crashed Car (JB’s Insurance Bootleg)"
     INDEX 01 42:55:70
   TRACK 12 AUDIO
-    TITLE "Kele â€“ Tenderoni"
+    TITLE "Kele – Tenderoni"
     INDEX 01 48:09:31
   TRACK 13 AUDIO
-    TITLE "talk: Bill Brown â€“ Tour Intro Windows XP"
+    TITLE "talk: Bill Brown – Tour Intro Windows XP"
     INDEX 01 52:36:34
   TRACK 14 AUDIO
-    TITLE "talk: Bill Brown â€“ Tour6bed Windows XP"
+    TITLE "talk: Bill Brown – Tour6bed Windows XP"
     INDEX 01 53:19:33
   TRACK 15 AUDIO
-    TITLE "P.A.Y.T.O.N â€“ Interlude"
+    TITLE "P.A.Y.T.O.N – Interlude"
     INDEX 01 57:41:92
   TRACK 16 AUDIO
-    TITLE "Fischerspooner â€“ Just Let Go (Thin White Duke Remix)"
+    TITLE "Fischerspooner – Just Let Go (Thin White Duke Remix)"
     INDEX 01 62:33:00
   TRACK 17 AUDIO
-    TITLE "Monsta â€“ Where Did I Go? [Dillon Francis & Kill Paris Remix]"
+    TITLE "Monsta – Where Did I Go? [Dillon Francis & Kill Paris Remix]"
     INDEX 01 70:38:62
   TRACK 18 AUDIO
-    TITLE "talk: ASA MOTO â€“ Make Me Prada (Original Mix)"
+    TITLE "talk: ASA MOTO – Make Me Prada (Original Mix)"
     INDEX 01 74:36:93
   TRACK 19 AUDIO
-    TITLE "MetroGnome â€“ iPhone (MetroGnome Remix)"
+    TITLE "MetroGnome – iPhone (MetroGnome Remix)"
     INDEX 01 80:29:71
   TRACK 20 AUDIO
-    TITLE "Tokyo Machine â€“ ROCK IT"
+    TITLE "Tokyo Machine – ROCK IT"
     INDEX 01 83:48:18
   TRACK 21 AUDIO
-    TITLE "Jeremy Blake â€“ Donâ€™t Wanna Know"
+    TITLE "Jeremy Blake – Don’t Wanna Know"
     INDEX 01 86:58:04
   TRACK 22 AUDIO
-    TITLE "Lauv â€“ I Like Me Better"
+    TITLE "Lauv – I Like Me Better"
     INDEX 01 91:19:08
   TRACK 23 AUDIO
-    TITLE "Marsh â€“ Find Me (feat. Katherine Amy) (Extended Mix)"
+    TITLE "Marsh – Find Me (feat. Katherine Amy) (Extended Mix)"
     INDEX 01 94:35:23
   TRACK 24 AUDIO
-    TITLE "Professor Kliq â€“ Heild â€“ Night Sky (soundcloud rip)"
+    TITLE "Professor Kliq – Heild – Night Sky (soundcloud rip)"
     INDEX 01 100:10:12
   TRACK 25 AUDIO
-    TITLE "Tom Tykwer & Johnny Klimek â€“ Sense8 Title Theme"
+    TITLE "Tom Tykwer & Johnny Klimek – Sense8 Title Theme"
     INDEX 01 105:32:88
   TRACK 26 AUDIO
-    TITLE "talk: Jeremy Blake â€“ Scope"
+    TITLE "talk: Jeremy Blake – Scope"
     INDEX 01 107:05:34
   TRACK 27 AUDIO
-    TITLE "sneppid â€“ Failure at Point 8"
+    TITLE "sneppid – Failure at Point 8"
     INDEX 01 114:02:50
   TRACK 28 AUDIO
-    TITLE "Renard â€“ Sam"
+    TITLE "Renard – Sam"
     INDEX 01 117:34:94
   TRACK 29 AUDIO
-    TITLE "X-NoiZe, Sonic Species â€“ Euphoria (Original Mix)"
+    TITLE "X-NoiZe, Sonic Species – Euphoria (Original Mix)"
     INDEX 01 118:45:65
   TRACK 30 AUDIO
-    TITLE "Infected Mushroom â€“ Nutmeg"
+    TITLE "Infected Mushroom – Nutmeg"
     INDEX 01 125:34:07
   TRACK 31 AUDIO
-    TITLE "Tezla & Reverence â€“ Swing Thing (Original Mix)"
+    TITLE "Tezla & Reverence – Swing Thing (Original Mix)"
     INDEX 01 132:45:41
   TRACK 32 AUDIO
-    TITLE "talk: Bill Brown â€“ Guilty"
+    TITLE "talk: Bill Brown – Guilty"
     INDEX 01 138:36:69
   TRACK 33 AUDIO
-    TITLE "eleven.five & Arielle Maren â€“ Remember (eleven.five Extended Club Mix)"
+    TITLE "eleven.five & Arielle Maren – Remember (eleven.five Extended Club Mix)"
     INDEX 01 143:36:80
   TRACK 34 AUDIO
-    TITLE "Robert Burian â€“ So in Love (Extended Mix)"
+    TITLE "Robert Burian – So in Love (Extended Mix)"
     INDEX 01 148:27:27
   TRACK 35 AUDIO
-    TITLE "Colour Castle â€“ Love Addict (Miguel Campbell Remix)"
+    TITLE "Colour Castle – Love Addict (Miguel Campbell Remix)"
     INDEX 01 153:17:51
   TRACK 36 AUDIO
-    TITLE "Fleetwood Mac â€“ Gold Dust Woman"
+    TITLE "Fleetwood Mac – Gold Dust Woman"
     INDEX 01 157:54:85
   TRACK 37 AUDIO
-    TITLE "talk: Tom Tykwer & Johnny Klimek â€“ Tick Tock"
+    TITLE "talk: Tom Tykwer & Johnny Klimek – Tick Tock"
     INDEX 01 163:01:45
   TRACK 38 AUDIO
-    TITLE "talk: Abstraction â€“ Surveillance Drone"
+    TITLE "talk: Abstraction – Surveillance Drone"
     INDEX 01 165:02:54
   TRACK 39 AUDIO
-    TITLE "talk: Sega â€“ Sonic Mega Collection Plus Game Selection Menu"
+    TITLE "talk: Sega – Sonic Mega Collection Plus Game Selection Menu"
     INDEX 01 167:03:74
   TRACK 40 AUDIO
-    TITLE "Morcheeba â€“ Ray Payola"
+    TITLE "Morcheeba – Ray Payola"
     INDEX 01 169:03:77
   TRACK 41 AUDIO
-    TITLE "Tycho â€“ Dictaphoneâ€™s Lament"
+    TITLE "Tycho – Dictaphone’s Lament"
     INDEX 01 177:00:73
   TRACK 42 AUDIO
-    TITLE "Trevor Something â€“ Staring at the Sun"
+    TITLE "Trevor Something – Staring at the Sun"
     INDEX 01 182:06:18
   TRACK 43 AUDIO
-    TITLE "Moontricks â€“ Midnight Groove (Original Mix)"
+    TITLE "Moontricks – Midnight Groove (Original Mix)"
     INDEX 01 184:02:41
   TRACK 44 AUDIO
-    TITLE "Carbon Based Lifeforms â€“ Hydroponic Garden"
+    TITLE "Carbon Based Lifeforms – Hydroponic Garden"
     INDEX 01 189:11:88
   TRACK 45 AUDIO
-    TITLE "Yoshihisa Hirano & Hideki Taniuchi â€“ Kyrie for orchestra"
+    TITLE "Yoshihisa Hirano & Hideki Taniuchi – Kyrie for orchestra"
     INDEX 01 198:23:06
   TRACK 46 AUDIO
-    TITLE "London Grammar â€“ Hey Now"
+    TITLE "London Grammar – Hey Now"
     INDEX 01 199:37:58
