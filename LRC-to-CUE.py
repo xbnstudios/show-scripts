@@ -1,10 +1,9 @@
 import pylrc #https://github.com/doakey3/pylrc
 import glob
 import os
-import codecs
 
 for file in glob.glob("*.lrc"):
-    filename = file[0:7]
+    filename = file[0:7] # assume fnt-xxx.lrc file format
 
     lrc_file = open(file)
     lrc_lines = lrc_file.readlines()
