@@ -1,5 +1,5 @@
 # XBN Timestamp Project
-![Project overview](https://github.com/ManualManul/XBN/raw/master/plan.jpg)
+![Project overview](https://github.com/ManualManul/XBN/raw/master/overview-diagram.png)
 
 ## Modules:
 * **PostShow.py** - Audacity Marker Converter, generates CUR, LRC and Simple TXT with embedded chapters from an Audacity marker file.
