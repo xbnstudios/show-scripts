@@ -1,0 +1,44 @@
+0.000000	0.000000	fnt-s7-intro-draft6
+104.140000	104.140000	Royal Blood – Figure It Out
+287.050000	287.050000	talk: Lettuce – Get Greasy
+552.500000	552.500000	Professor Kliq – Vast Veridian (soundcloud rip)
+753.630000	753.630000	Robert DeLong – Long Way Down
+985.390000	985.390000	Meg Myers – Motel
+1256.710000	1256.710000	The Glitch Mob – Starve The Ego, Feed The Soul
+1599.660000	1599.660000	Casey LaLonde – Petrichor
+1847.610000	1847.610000	Baba Brinkman – Spread It
+2020.320000	2020.320000	Klaypex – Together (Original Mix)
+2239.870000	2239.870000	Anna Yvette & Laura Brehm – Summer Never Ends
+2468.100000	2468.100000	Pendulum – The Tempest
+2891.400000	2891.400000	talk: Patrick Carney – BoJack’s Theme (feat. Ralph Carney)
+3151.860000	3151.860000	Andrew Bayer – Need Your Love (Phonat Remix)
+3386.950000	3386.950000	Stephen Walking – Dads In Space
+3591.680000	3591.680000	Sigala – Give Me Your Love (feat. John Newman & Nile Rodgers)
+3792.160000	3792.160000	fRew – Under The Sun [Lazy Rich Remix]
+4208.350000	4208.350000	K-391 – Earth
+4440.460000	4440.460000	Fox Stevenson – Trigger (Original Mix)
+4749.650000	4749.650000	talk: Mac Quayle – 1.0_2-oneincontrol.aiff
+5027.910000	5027.910000	BT – Dreaming
+5364.260000	5364.260000	Ruelle – Until We Go Down
+5653.990000	5653.990000	deadmau5 – Gula redux
+6066.700000	6066.700000	Professor Kliq – Superiority Complex
+6319.130000	6319.130000	RJD2 – Chicken-Bone Circuit
+6550.540000	6550.540000	Adam Freeland – Big Wednesday
+6839.400000	6839.400000	Pendulum – Streamline
+7195.580000	7195.580000	Louis the Child – It’s Strange (feat. K.Flay)
+7443.200000	7443.200000	talk: Huma-Huma – Hydra
+7579.320000	7579.320000	Boom Boom Satellites – Shine
+7871.150000	7871.150000	Kiasmos – Drawn
+8118.300000	8118.300000	Darkside – Paper Trails; Darkside - Heart
+8665.610000	8665.610000	Bakermat Feat. Marie Plassard – Games
+8917.900000	8917.900000	Tapesh, Dayne S – How I Do (Original Mix)
+9262.130000	9262.130000	Chromeo – Needy Girl (Earstrip & Woo2tech Remix)
+9565.300000	9565.300000	Platinum Doug – Drive Back, Baby (Original Mix)
+9857.410000	9857.410000	Loud, Emok & Vice – Om (Extended Mix)
+10492.900000	10492.900000	talk: Alex Wurman – He’s Not Coming Back
+10708.480000	10708.480000	Curtis Salgado – I’m Not Made That Way
+10989.530000	10989.530000	Chet Faker – Love and Feeling
+11257.720000	11257.720000	Mac Quayle – 1.3_1-Ichosethis.ogg
+11358.220000	11358.220000	talk: Lincoln Grounds & Randall Breneman – Death Row
+11557.960000	11557.960000	London Grammar – Hey Now
+11816.230000	11816.230000	Boom Boom Satellites – Flare

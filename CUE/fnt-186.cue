@@ -52,7 +52,7 @@ FILE "fnt-186.mp3" MP3
     TITLE "Dossa & Locuzzed – Stoned Love (Original Mix)"
     INDEX 01 68:24:22
   TRACK 17 AUDIO
-    TITLE ""Aesthetic""
+    TITLE "Aesthetic"
     INDEX 01 73:39:36
   TRACK 18 AUDIO
     TITLE "Muzzy – Spectrum"

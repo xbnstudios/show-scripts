@@ -1,0 +1,50 @@
+0.000000	0.000000	fnt-s7-intro-draft6
+104.850000	104.850000	Alabama Shakes – Sound & Color
+104.850000	104.850000	What.CD Eulogy
+306.110000	306.110000	talk: Le Matos – Kiyoko
+654.360000	654.360000	Justice – Helix
+915.350000	915.350000	The Correspondents – Fear & Delight
+1109.800000	1109.800000	Favored Nations – The Set Up
+1343.580000	1343.580000	C2C – Down The Road
+1548.920000	1548.920000	talk: Gramatik – Swucca Chust
+1875.590000	1875.590000	Black Strobe – Boogie In Zero Gravity (Radio Edit)'
+2082.450000	2082.450000	The Crystal Method – Name Of The Game
+2339.780000	2339.780000	Basement Jaxx – Red Alert
+2604.050000	2604.050000	Tegan And Sara – Closer
+2813.100000	2813.100000	talk: Feed Me – Dazed
+3146.740000	3146.740000	Bleachers – Rollercoaster
+3343.770000	3343.770000	Boom Boom Satellites – All In A Day
+3762.980000	3762.980000	Underground, Boston – Life Is feat. Vanity Jay (Original Mix)
+4081.270000	4081.270000	Ross D – I Need You
+4488.670000	4488.670000	Wolfgun – Road to Jupiter
+4831.700000	4831.700000	I See MONSTAS – Evolution
+5068.340000	5068.340000	talk: Stephan Bodzin – Sonnenwind
+5499.470000	5499.470000	Black Coast – Trndsttr (Lucian Remix) [feat. M. Maggie]
+5678.480000	5678.480000	Neus – Naka O Akan (J.A.C.K Remix)
+5920.430000	5920.430000	Muse – Dead Inside (Moosak Remix)
+6095.100000	6095.100000	Mord Fustang – Milky Way (Original Mix)
+6435.500000	6435.500000	Koven – Breathing Me In (Original Mix)
+6701.050000	6701.050000	Notaker – Gems
+7000.980000	7000.980000	talk: wrath – progressive bullshit
+7416.740000	7416.740000	deadmau5, Grabbitz – Let Go (Original Mix)
+7791.820000	7791.820000	Hybrid – Break My Soul (Original Mix)
+8260.560000	8260.560000	Rudimental – Powerless (feat. Becky Hill)
+8485.420000	8485.420000	Direct, Mr FijiWiji & Holly Drummond – Trust In Me
+8754.780000	8754.780000	talk: Zammuto – Don’t Be A Tool
+9078.790000	9078.790000	Nigel Good feat Sarah Clark – Always Running (Original Mix)
+9483.590000	9483.590000	Ochre – Neoretro
+9785.160000	9785.160000	Frozen OST – Reindeer(s) Are Better Than People
+9831.460000	9831.460000	BOOM BOOM SATELLITES – Porcupine
+9973.020000	9973.020000	talk: Sega – Sonic Mega Collection Plus Game Selection Menu
+10208.280000	10208.280000	Koda & Bijou – There
+10415.640000	10415.640000	Peace Orchestra – Double Drums
+10982.850000	10982.850000	Max Sedgley – Slowly [v Z-Star]
+11302.150000	11302.150000	BOOM BOOM SATELLITES – 40-Forty
+11662.550000	11662.550000	talk: Ochre – Glassmaker
+12026.400000	12026.400000	Jon Gomm – Passionflower
+12441.620000	12441.620000	Peace Orchestra – Who Am I? (Animatrix Edit)
+12800.320000	12800.320000	Jose James – Work Song
+13017.420000	13017.420000	talk: Apstract – As We Fall Silent
+13544.260000	13544.260000	Jerome Isma-Ae, Alastor – Tiger (Extended Mix)
+13976.830000	13976.830000	Redondo, Bolier, She Keeps Bees – Every Single Piece feat. She Keeps Bees (Original Mix)
+14215.810000	14215.810000	The Avener – Fade Out Lines (Original Mix)

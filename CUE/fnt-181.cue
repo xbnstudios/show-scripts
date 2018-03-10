@@ -61,7 +61,7 @@ FILE "fnt-181.mp3" MP3
     TITLE "BT – Circles"
     INDEX 01 73:56:55
   TRACK 20 AUDIO
-    TITLE ""Our love is cyclical / It moves in sergals" - TCFox"
+    TITLE "Our love is cyclical / It moves in sergals - TCFox"
     INDEX 01 74:44:53
   TRACK 21 AUDIO
     TITLE "talk: BT – Last Moment Of Clarity"

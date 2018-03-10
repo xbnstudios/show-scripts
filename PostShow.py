@@ -13,7 +13,7 @@ from mutagen.easyid3 import EasyID3
 try:
   sys.argv[1]
 except IndexError:
-    sys.exit("PostShow v1.\nGenerate CUE, LRC, JSON and SimpleTXT files using Audacity label marker files.\n\nUsage: <path>\nFiles will be saved in the source folder.")
+    sys.exit("PostShow v1.\nGenerate CUE, LRC, JSON and SimpleTXT files using Audacity label marker files.\n\nUsage: <path to label file>\nProcessed files will be saved in the source folder.")
 audacity_path = sys.argv[1]
 if not os.path.isfile(audacity_path):
     sys.exit("Incorrect path. Aborting.")
