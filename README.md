@@ -3,12 +3,12 @@
 
 ## Modules:
 * **PostShow.py** - Audacity Marker Converter, generates CUR, LRC and Simple TXT with embedded chapters from an Audacity marker file.
-* **LRC** - Gaia's repo of LRC (syncronized lyrics) files
-* **MarkerGen** - Tool to extract approximate metadata from [xananp's](https://twitter.com/xananp) tweets. *Inaccuracy up to 1 minute*, might be okay for older episodes?
+* **MarkerGen** - Tool to extract approximate metadata from [xananp's](https://twitter.com/xananp) tweets. *Inaccuracy up to 1 minute*.
 * **mp3-chapter-scripts** - S0ph0s's scripts to embed chapters into MP3s
 
 ## To-do:
-- [x] Convert .lrc to .cue
-- [x] One script to generate them all
-- [ ] Convert MarkerGen metadata to .lrc/.cue
+- [ ] Gelo - During The Show
 - [ ] Implement drop-down and clickable timestamps on the website
+- [x] Convert MarkerGen metadata to .lrc/.cue
+- [x] Convert .lrc to .cue
+- [x] One script to generate them all (PostShow.py) - After The Show
