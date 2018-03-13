@@ -21,11 +21,11 @@ if not os.path.isfile(audacity_path[:-3] + 'mp3'):
     sys.exit("Couldn't find the MP3 file, make sure it's located in the same directory as the label file. Aborting.")
 
 audio = EasyID3(audacity_path[:-3] + 'mp3')
-reader = csv.reader(open(audacity_path), delimiter='	', quoting=csv.QUOTE_NONE)
-json_output = open(audacity_path[:-3] + 'json','w')
-cue_output = open(audacity_path[:-3] + 'cue','w')
-lrc_output = open(audacity_path[:-3] + 'lrc','w')
-simple_output = open(audacity_path[:-4] + '-simple.txt','w')
+reader = csv.reader(open(audacity_path, encoding="utf-8"), delimiter='	', quoting=csv.QUOTE_NONE)
+json_output = open(audacity_path[:-3] + 'json','w', encoding="utf-8")
+cue_output = open(audacity_path[:-3] + 'cue','w', encoding="utf-8")
+lrc_output = open(audacity_path[:-3] + 'lrc','w', encoding="utf-8")
+simple_output = open(audacity_path[:-4] + '-simple.txt','w', encoding="utf-8")
 trackno = 1
 cue_initialized = 0
 bit = []
