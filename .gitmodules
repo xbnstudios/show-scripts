@@ -1,6 +1,3 @@
 [submodule "mp3-chapter-scripts"]
 	path = mp3-chapter-scripts
 	url = https://github.com/s0ph0s-2/mp3-chapter-scripts
-[submodule "metadata"]
-	path = metadata
-	url = https://github.com/Manualmanul/XBN-Metadata
