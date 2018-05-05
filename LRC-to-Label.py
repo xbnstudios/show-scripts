@@ -4,11 +4,11 @@ import os
 for file in glob.glob("*.lrc"):
     filename = file[0:7] # assume fnt-xxx.lrc file format
 
-    lrc_file = open(file)
+    lrc_file = open(file, encoding="utf-8")
     lrc_lines = lrc_file.readlines()
     lrc_file.close()
 
-    label = open(filename + '.txt','w')
+    label = open(filename + '.txt','w', encoding="utf-8")
 
     print(filename)
 
