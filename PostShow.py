@@ -23,7 +23,8 @@ def main(args):
     lrc_output = open(os.path.join(args.output, args.title) + '.lrc', 'w', encoding="utf-8")
     simple_output = open(os.path.join(args.output, args.title) + '-simple.txt', 'w', encoding="utf-8")
     trackno = 1
-    cue_initialized = 0
+    cue_initialized = 0  # write CUE header before loop starts
+    cue_output.write('\ufeff')  # encode CUE file as UTF-8 BOM for compatibility with foobar2000
     bit = []
     json_bit = []
 
@@ -39,7 +40,7 @@ def main(args):
         math_centiseconds = format(float(row[0]) % 1, '.2f')[2:]
 
         # JSON
-        bit.append(row[2])
+        bit.append(row[2].replace('"', '\u201d'))
         bit.append(float(math_milliseconds_total))
         json_bit.append(bit)
         bit = []
@@ -58,7 +59,7 @@ def main(args):
             cue_output.write('FILE "' + args.filename + '" MP3\n')
             cue_initialized = 1
         cue_output.write('  TRACK ' + str(trackno).zfill(2) + ' AUDIO\n')
-        cue_output.write('    TITLE "' + row[2] + '"\n')
+        cue_output.write('    TITLE "' + row[2].replace('"', '\u201d') + '"\n')
         cue_output.write(
             '    INDEX 01 ' + str(math_minutes_total).zfill(2) + ':' + str(math_seconds).zfill(2) + ':' + str(
                 math_centiseconds).zfill(2) + '\n')
@@ -72,7 +73,7 @@ def main(args):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description = 'Generate CUE, LRC, JSON and SimpleTXT files using Audacity label marker files.')
+    parser = argparse.ArgumentParser(description='Generate CUE, LRC, JSON and timestamp files from an Audacity label file')
     parser.add_argument("input", help="path to audacity file")
     parser.add_argument("output", help="output directory (with a leading slash!)")
     parser.add_argument("title", help="episode title")

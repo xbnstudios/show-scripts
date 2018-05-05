@@ -1,19 +1,19 @@
-import pylrc #https://github.com/doakey3/pylrc
+import pylrc  # https://github.com/doakey3/pylrc
 import glob
-import os
 
 for file in glob.glob("*.lrc"):
-    filename = file[0:7] # assume fnt-xxx.lrc file format
+    filename = file[0:7]  # assume fnt-xxx.lrc file format
 
     lrc_file = open(file, encoding="utf-8")
     lrc_lines = lrc_file.readlines()
     lrc_parse = ''.join(lrc_lines)
     lrc_file.close()
 
-    cue = open(filename + '.cue','w', encoding="utf-8")
+    cue = open(filename + '.cue', 'w', encoding="utf-8")
+    cue.write('\ufeff')
 
     lrc = pylrc.parse(lrc_parse)
-    print(lrc.artist, '-' ,lrc.title)
+    print(lrc.artist, '-', lrc.title)
     trackno = 1
 
     cue.write('REM GENRE Podcast\n')
@@ -24,7 +24,7 @@ for file in glob.glob("*.lrc"):
     for line in lrc_lines[3:]:
         tracktime = line[line.find("[")+1:line.find("]")].replace('.', ':')
         cue.write('  TRACK ' + str(trackno).zfill(2) + ' AUDIO\n')
-        cue.write('    TITLE "' + line.split(']',1)[1].rstrip('\n') + '"\n')
+        cue.write('    TITLE "' + line.split(']',1)[1].rstrip('\n').replace('"', '\u201d') + '"\n')
         cue.write('    INDEX 01 ' + tracktime + '\n')
         trackno += 1
     cue.close()
