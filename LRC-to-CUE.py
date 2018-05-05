@@ -10,7 +10,7 @@ for file in glob.glob("*.lrc"):
     lrc_parse = ''.join(lrc_lines)
     lrc_file.close()
 
-    cue = open(filename + '.cue','w')
+    cue = open(filename + '.cue','w', encoding="utf-8")
 
     lrc = pylrc.parse(lrc_parse)
     print(lrc.artist, '-' ,lrc.title)
