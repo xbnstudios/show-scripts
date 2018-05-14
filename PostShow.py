@@ -24,6 +24,7 @@ def main(args):
     simple_output = open(os.path.join(args.output, args.title) + '-simple.txt', 'w', encoding="utf-8")
     trackno = 1
     cue_initialized = 0  # write CUE header before loop starts
+    lrc_initialized = 0  # write LRC header before loop starts
     cue_output.write('\ufeff')  # encode CUE file as UTF-8 BOM for compatibility with foobar2000
     bit = []
     json_bit = []
@@ -46,6 +47,11 @@ def main(args):
         bit = []
 
         # LRC
+        if lrc_initialized is not 1:
+            lrc_output.write('[ti:{}]'.format(args.title))
+            lrc_output.write('[ar:{}]'.format("..::XANA Creations::.."))
+            lrc_output.write('[al:{}]'.format("The Friday Night Tech Podcast"))
+            lrc_initialized = 1
         lrc_output.write('[' + str(math_minutes_total).zfill(2) + ':' + str(math_seconds).zfill(2) + '.' + str(math_centiseconds).zfill(2) + ']' + row[2] + '\n')
 
         # CUE
