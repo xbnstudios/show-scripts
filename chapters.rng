@@ -1,0 +1,42 @@
+<element
+        name="chapters"
+        xmlns="http://relaxng.org/ns/structure/1.0"
+        datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+    <zeroOrMore>
+        <element name="chapter">
+            <attribute name="id">
+                <data type="token">
+                    <param name="pattern">[a-Z0-9]+</param>
+                </data>
+            </attribute>
+            <attribute name="start">
+                <data type="duration"/>
+            </attribute>
+            <optional>
+                <attribute name="duration">
+                    <data type="duration"/>
+                </attribute>
+                <attribute name="indexed">
+                    <data type="boolean"/>
+                </attribute>
+                <element name="title">
+                    <text/>
+                </element>
+                <element name="subtitle">
+                    <text/>
+                </element>
+                <element name="uri">
+                    <data type="anyURI"/>
+                </element>
+                <element name="image">
+                    <choice>
+                        <attribute name="src">
+                            <data type="anyURI"/>
+                        </attribute>
+                        <data type="base64Binary"/>
+                    </choice>
+                </element>
+            </optional>
+        </element>
+    </zeroOrMore>
+</element>
