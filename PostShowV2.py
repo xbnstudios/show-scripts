@@ -5,6 +5,7 @@ import os
 # import urwid
 import signal
 import argparse
+import datetime
 import threading
 import subprocess
 import mutagen.id3
@@ -33,6 +34,14 @@ class MP3Tagger:
         mp3 = mutagen.mp3.MP3(path)
         length = round(mp3.info.length * 1000, 0)
         self.tag.add(mutagen.id3.TLEN(text=str(length)))
+
+    @staticmethod
+    def _no_padding(arg):
+        return 0
+
+    def save(self):
+        """Save the tag."""
+        self.tag.save(self.path, v2_version=3, padding=self._no_padding)
 
     def set_title(self, title: str) -> None:
         """Set the title of the MP3."""
@@ -106,6 +115,7 @@ class MP3Encoder(threading.Thread):
         self.infile = infile
         self.outfile = outfile
         self.bitrate = bitrate
+        self.p = None
 
     def run(self):
         self.p = subprocess.Popen(['lame', '-t', '-b', self.bitrate, '--cbr',
@@ -117,6 +127,55 @@ class MP3Encoder(threading.Thread):
 
     def request_stop(self):
         self.p.terminate()
+
+
+class MCS:
+    """Marker Conversion Space
+
+    Load markers from a file into an internal representation, which can then
+    be output as other formats. Filetype detection for input files is done
+    based on the extension. If the extension is wrong, it may cause issues.
+
+    Supported input formats:
+    * Audacity labels
+
+    Supported output formats:
+    * CUE file
+    * LRC file
+    * Internal representation (for use in other parts of the program)
+
+    Create a new instance and call ``load('path/to/file.ext')`` on it to load
+    the markers, then ``save('path/to/file.ext', TYPE)``, where ``TYPE`` is
+    one of the constants on this class:
+    * LRC
+    * CUE
+    """
+
+    AUDACITY = 0
+    LRC = 1
+    CUE = 2
+    UMR = 3
+
+    def __init__(self):
+        self.load_path = None
+        self.chapters = []
+
+    def load(self, path: str):
+        """Load a file.
+        :param path: The name of the file to load.
+        """
+        type = path.split('.')[:-1][0]
+        if type == "txt":
+            # Decoding Audacity labels
+            self._load_audacity(path)
+        else:
+            raise PostShowError("Unsupported marker file: {}".format(type))
+
+    def _load_audacity(self, path: str):
+        """Load an Audacity labels file."""
+        with open(path, 'r') as fp:
+            for line in fp.readlines():
+                linesplit = line.split('\t')
 
 
 class Chapter(object):
@@ -168,6 +227,18 @@ class EpisodeMetadata(object):
         self.number = number
         self.name = name
         self.comment = comment
+        self.title = None
+        self.album = None
+        self.artist = None
+        self.season = None
+        self.genre = None
+        self.language = None
+        self.composer = None
+        self.accompaniment = None
+        self.date = None
+        self.lyrics = None
+        self.chapters = []
+        self.toc = []
 
 
 class PostShowError(Exception):
@@ -179,13 +250,15 @@ class Main:
 
     def __init__(self):
         """Setup tasks."""
-        self.m = MP3Encoder()
+        self.encoder = MP3Encoder()
 
         def exit_handler(sig, frame):
             m.request_stop()
         signal.signal(signal.SIGINT, exit_handler)
         self.args = self.parse_args()
         self.config = self.check_config(self.args.config)
+        self.metadata = None
+        self.mp3_path = None
 
     def ask_metadata(self) -> EpisodeMetadata:
         """Ask the user for metadata about the episode."""
@@ -235,6 +308,10 @@ class Main:
                             default="default",
                             help="the configuration profile on which to base"
                                  "default values")
+        parser.add_argument("--no-encode",
+                            default=False,
+                            help="the MP3 file already exists, don't encode "
+                                 "the WAV file.")
         args = parser.parse_args()
         errors = []
         if not os.path.exists(args.config):
@@ -289,19 +366,52 @@ class Main:
             raise PostShowError(';\n'.join(errors))
         return config
 
-    def do_encode(self):
+    def confirm_data(self):
+        """Check with the user to make sure that the metadata is correct."""
+        print("Metadata to be written:")
+        print("Title:\t\t{}".format(self.metadata.title))
+        print("Album:\t\t{}".format(self.metadata.album))
+        print("Artist:\t\t{}".format(self.metadata.artist))
+        print("Season:\t\t{}".format(self.metadata.season))
+        print("Genre:\t\t{}".format(self.metadata.genre))
+        print("Language:\t\t{}".format(self.metadata.language))
+        if self.metadata.composer is not None:
+            print("Composer\t\t{}".format(self.metadata.composer))
+        if self.metadata.accompaniment is not None:
+            print("Accompaniment\t{}".format(self.metadata.accompaniment))
+        if self.metadata.date is not None:
+            print("Date:\t\t{}".format(self.metadata.date))
+        if self.metadata.number is not None:
+            print("Number:\t\t{}".format(self.metadata.number))
+        if self.metadata.comment != "":
+            print("Comment:\n{}".format(self.metadata.comment))
+            if self.metadata.lyrics is not None:
+                print("Lyrics will be identical to comment.")
+        while True:
+            i = input("Does this all look OK (y/N)? ")
+            i = i.lower()
+            if i == 'y':
+                return
+            elif i == 'n' or i == '':
+                print("The program will now terminate. LAME will continue "
+                      "encoding in the background. Edit the config file and "
+                      "run me again with --no-encode.")
+                raise SystemExit(0)
+            else:
+                print("Please enter 'y' or 'n'.")
+
+    def build_chapters(self):
+        """Create a chapter"""
         pass
 
-    def main(self):
-        """The primary logic of this program."""
-        # Encoding
-        self.metadata = self.ask_metadata()
+    def do_encode(self):
+        """Set up the encoder."""
         self.mp3_path = self.config.get(self.args.profile, 'filename').format(
             slug=self.config.get(self.args.profile, 'slug').lower(),
             epnum=self.metadata.number,
             ext='mp3'
         )
-        self.m.setup(
+        self.encoder.setup(
             self.args.wav,
             os.path.join(
                 self.args.outdir,
@@ -309,11 +419,68 @@ class Main:
             ),
             self.config.get(self.args.profile, 'bitrate')
         )
-        self.m.start()
-        # Metadata conversion
-        self.m.join()
-        # Tagging
+
+    def do_tag(self):
+        """Tag the file."""
         t = MP3Tagger(self.mp3_path)
+        self.metadata.title = self.config.get(self.args.profile,
+                                              'title').format(
+            slug=self.config.get(self.args.profile, 'slug'),
+            epnum=self.metadata.number,
+            name=self.metadata.name
+        )
+        self.metadata.album = self.config.get(self.args.profile, 'album')
+        self.metadata.artist = self.config.get(self.args.profile, 'artist')
+        self.metadata.season = self.config.get(self.args.profile, 'season')
+        self.metadata.genre = self.config.get(self.args.profile, 'genre')
+        self.metadata.language = self.config.get(self.args.profile, 'language')
+        self.metadata.composer = self.config.get(self.args.profile, 'composer',
+                                                 fallback=None)
+        self.metadata.accompaniment = self.config.get(self.args.profile,
+                                                      'accompaniment',
+                                                      fallback=None)
+        if self.config.getboolean(self.args.profile, 'write_date'):
+            self.metadata.date = datetime.datetime.now().strftime("%Y")
+        if self.config.getboolean(self.args.profile, 'write_trackno'):
+            self.metadata.track = self.metadata.number
+        if self.config.getboolean(self.args.profile, 'lyrics_equals_comment'):
+            self.metadata.lyrics = self.metadata.comment
+
+        self.confirm_data()
+
+        t.set_title(self.metadata.title)
+        t.set_album(self.metadata.album)
+        t.set_artist(self.metadata.artist)
+        t.set_season(self.metadata.season)
+        t.set_genre(self.metadata.genre)
+        t.set_language(self.metadata.language)
+        if self.metadata.composer is not None:
+            t.set_composer(self.metadata.composer)
+        if self.metadata.accompaniment is not None:
+            t.set_accompaniment(self.metadata.accompaniment)
+        if self.metadata.comment != "":
+            t.add_comment(self.metadata.language, 'track list',
+                          self.metadata.comment)
+            if self.metadata.lyrics is not None:
+                t.add_lyrics(self.metadata.language, 'track list',
+                             self.metadata.lyrics)
+        t.save()
+
+    def main(self):
+        """The primary logic of this program."""
+        if not self.args.no_encode:
+            self.do_encode()
+            # Start the encoder on its own thread
+            self.encoder.start()
+        self.metadata = self.ask_metadata()
+        # Metadata conversion
+        if self.args.metadata is not None:
+            self.build_chapters()
+        # Join the encoder thread, since tagging can't occur until it is done
+        if not self.args.no_encode:
+            self.encoder.join()
+        # Tagging
+        self.do_tag()
 
 
 if __name__ == "__main__":
