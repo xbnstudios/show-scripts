@@ -174,8 +174,20 @@ class MCS:
     def _load_audacity(self, path: str):
         """Load an Audacity labels file."""
         with open(path, 'r') as fp:
-            for line in fp.readlines():
+            for line in fp:
                 linesplit = line.split('\t')
+
+    def save(self, path: str, type: int):
+        pass
+
+    def _save_lrc(self, path: str):
+        pass
+
+    def _save_cue(self, path: str):
+        pass
+
+    def get(self):
+        return self.chapters
 
 
 class Chapter(object):
