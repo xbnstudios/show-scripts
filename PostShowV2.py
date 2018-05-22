@@ -2,6 +2,8 @@
 """Run conversion and tagging tasks for XBN shows."""
 
 import os
+import csv
+import math
 # import urwid
 import signal
 import argparse
@@ -11,7 +13,7 @@ import subprocess
 import mutagen.id3
 import mutagen.mp3
 import configparser
-
+import urllib.parse
 
 REQUIRED_TEXT_KEYS = ['slug', 'filename', 'bitrate', 'title', 'album',
                       'artist', 'season', 'language', 'genre']
@@ -20,6 +22,7 @@ REQUIRED_BOOL_KEYS = ['write_date', 'write_trackno', 'lyrics_equals_comment']
 
 class MP3Tagger:
     """Tag an MP3."""
+
     def __init__(self, path: str):
         """Create a new tagger."""
         self.path = path
@@ -119,7 +122,7 @@ class MP3Encoder(threading.Thread):
 
     def run(self):
         self.p = subprocess.Popen(['lame', '-t', '-b', self.bitrate, '--cbr',
-                                  self.infile, self.outfile],
+                                   self.infile, self.outfile],
                                   stdout=subprocess.DEVNULL,
                                   stderr=subprocess.DEVNULL)
         # Do whatever is necessary to watch progress from lame
@@ -152,19 +155,35 @@ class MCS:
     """
 
     AUDACITY = 0
-    LRC = 1
-    CUE = 2
-    UMR = 3
+    LRC = 10
+    CUE = 11
+    UMR = 12
+    SIMPLE = 13
 
     def __init__(self):
         self.load_path = None
         self.chapters = []
 
+    @staticmethod
+    def _get_time(seconds: float):
+        """Convert a number of seconds into the matching datetime.datetime.
+
+        This code accepts a count of seconds from the start of the show and
+        adds that time difference to midnight of the current day, returning a
+        datetime that can be printed as necessary.
+
+        :param seconds: The number of seconds to create a delta for.
+        """
+        return datetime.datetime.combine(
+            datetime.datetime.today().date(),
+            datetime.time(hour=0)
+        ) + datetime.timedelta(seconds=seconds)
+
     def load(self, path: str):
         """Load a file.
         :param path: The name of the file to load.
         """
-        type = path.split('.')[:-1][0]
+        type = path.split('.')[-1:][0]
         if type == "txt":
             # Decoding Audacity labels
             self._load_audacity(path)
@@ -172,10 +191,40 @@ class MCS:
             raise PostShowError("Unsupported marker file: {}".format(type))
 
     def _load_audacity(self, path: str):
-        """Load an Audacity labels file."""
-        with open(path, 'r') as fp:
-            for line in fp:
-                linesplit = line.split('\t')
+        """Load an Audacity labels file.
+
+        This plugin also supports URLs, if they are appended to the end of
+        the marker with a pipe character:
+            Some Marker Name|https://example.com
+        """
+        with open(path, 'r', encoding='utf-8') as fp:
+            reader = csv.reader(fp, delimiter='\t', quoting=csv.QUOTE_NONE)
+            for row in reader:
+                if not row:
+                    break
+                try:
+                    start = float(row[0]) * 1000
+                    end = float(row[1]) * 1000
+                except ValueError:
+                    continue
+                # Round start and end times to integer milliseconds.
+                start = int(round(start, 0))
+                end = int(round(end, 0))
+                mark = row[2]
+                text = row[2]
+                url = None
+                # Identify URLs
+                url_parsed = None
+                if '|' in mark:
+                    url = mark[mark.rindex('|') + 1:]
+                    text = mark[:mark.rindex('|')]
+                    url_parsed = urllib.parse.urlparse(url)
+                if url_parsed is not None and url_parsed.scheme != '' and \
+                        url_parsed.netloc != '':
+                    chap = Chapter(start, end, url=url, text=text)
+                else:
+                    chap = Chapter(start, end, text=text)
+                self.chapters.append(chap)
 
     def save(self, path: str, type: int):
         pass
@@ -184,6 +233,9 @@ class MCS:
         pass
 
     def _save_cue(self, path: str):
+        pass
+
+    def _save_simple(self, path: str):
         pass
 
     def get(self):
@@ -214,6 +266,18 @@ class Chapter(object):
         self.image = image
         self.indexed = indexed
 
+    def __repr__(self):
+        """Turn this Chapter into a string."""
+        return ("Chapter(start={start}, end={end}, url={url}, image={image}, "
+                "text={text}, indexed={indexed})").format(
+            start=self.start,
+            end=self.end,
+            url=self.url if self.url is None else '"' + self.url + '"',
+            image=self.image,
+            text=self.text if self.text is None else '"' + self.text + '"',
+            indexed=self.indexed
+        )
+
     def as_chap(self) -> mutagen.id3.CHAP:
         """Convert this object into a mutagen CHAP object."""
         sub_frames = []
@@ -235,6 +299,7 @@ class Chapter(object):
 
 class EpisodeMetadata(object):
     """Metadata about an episode."""
+
     def __init__(self, number: str, name: str, comment: str):
         self.number = number
         self.name = name
@@ -266,6 +331,7 @@ class Main:
 
         def exit_handler(sig, frame):
             m.request_stop()
+
         signal.signal(signal.SIGINT, exit_handler)
         self.args = self.parse_args()
         self.config = self.check_config(self.args.config)
@@ -300,7 +366,7 @@ class Main:
     def parse_args() -> argparse.Namespace:
         """Parse arguments to this program."""
         parser = argparse.ArgumentParser(description="Convert and tag WAVs and"
-                                         " chapter metadata for podcasts.")
+                                                     " chapter metadata for podcasts.")
         parser.add_argument("wav",
                             help="WAV file to convert/use")
         parser.add_argument("outdir",
@@ -322,6 +388,7 @@ class Main:
                                  "default values")
         parser.add_argument("--no-encode",
                             default=False,
+                            action='store_true',
                             help="the MP3 file already exists, don't encode "
                                  "the WAV file.")
         args = parser.parse_args()
@@ -413,8 +480,10 @@ class Main:
                 print("Please enter 'y' or 'n'.")
 
     def build_chapters(self):
-        """Create a chapter"""
-        pass
+        """Create a chapter list"""
+        mcs = MCS()
+        mcs.load(self.args.markers)
+        print(mcs.get())
 
     def do_encode(self):
         """Set up the encoder."""
@@ -486,7 +555,7 @@ class Main:
             self.encoder.start()
         self.metadata = self.ask_metadata()
         # Metadata conversion
-        if self.args.metadata is not None:
+        if self.args.markers is not None:
             self.build_chapters()
         # Join the encoder thread, since tagging can't occur until it is done
         if not self.args.no_encode:
