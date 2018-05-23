@@ -8,6 +8,7 @@ import math
 import signal
 import argparse
 import datetime
+import tempfile
 import threading
 import subprocess
 import mutagen.id3
@@ -132,6 +133,27 @@ class MP3Encoder(threading.Thread):
         self.p.terminate()
 
 
+class EpisodeMetadata(object):
+    """Metadata about an episode."""
+
+    def __init__(self, number: str, name: str, comment: str):
+        self.number = number
+        self.name = name
+        self.comment = comment
+        self.title = None
+        self.album = None
+        self.artist = None
+        self.season = None
+        self.genre = None
+        self.language = None
+        self.composer = None
+        self.accompaniment = None
+        self.date = None
+        self.lyrics = None
+        self.chapters = []
+        self.toc = []
+
+
 class MCS:
     """Marker Conversion Space
 
@@ -160,8 +182,9 @@ class MCS:
     UMR = 12
     SIMPLE = 13
 
-    def __init__(self):
+    def __init__(self, metadata=None):
         self.load_path = None
+        self.metadata = metadata
         self.chapters = []
 
     @staticmethod
@@ -173,6 +196,9 @@ class MCS:
         datetime that can be printed as necessary.
 
         :param seconds: The number of seconds to create a delta for.
+        :param metadata: The metadata to use in the conversion.  If provided, it
+        will cause the output plugins to write relevant metadata to the head
+        of the file.
         """
         return datetime.datetime.combine(
             datetime.datetime.today().date(),
@@ -227,10 +253,29 @@ class MCS:
                 self.chapters.append(chap)
 
     def save(self, path: str, type: int):
-        pass
+        if type == self.LRC:
+            self._save_lrc(path)
+        elif type == self.CUE:
+            self._save_cue(path)
+        elif type == self.SIMPLE:
+            self._save_simple(path)
 
     def _save_lrc(self, path: str):
-        pass
+        with open(path, 'w') as fp:
+            if self.metadata is not None:
+                fp.write('[ti:{}]\n'.format(self.metadata.title))
+                fp.write('[ar:{}]\n'.format(self.metadata.artist))
+                fp.write('[al:{}]\n'.format(self.metadata.album))
+            for chapter in self.chapters:
+                minutes = chapter.start // (60*1000)
+                seconds = (chapter.start % (60*1000)) // 1000
+                fraction = (chapter.start % 1000) // 10
+                fp.write('[{:02d}:{:02d}.{:02d}]{}\n'.format(
+                    minutes,
+                    seconds,
+                    fraction,
+                    chapter.text
+                ))
 
     def _save_cue(self, path: str):
         pass
@@ -297,27 +342,6 @@ class Chapter(object):
         )
 
 
-class EpisodeMetadata(object):
-    """Metadata about an episode."""
-
-    def __init__(self, number: str, name: str, comment: str):
-        self.number = number
-        self.name = name
-        self.comment = comment
-        self.title = None
-        self.album = None
-        self.artist = None
-        self.season = None
-        self.genre = None
-        self.language = None
-        self.composer = None
-        self.accompaniment = None
-        self.date = None
-        self.lyrics = None
-        self.chapters = []
-        self.toc = []
-
-
 class PostShowError(Exception):
     """Something went wrong, use this to explain."""
 
@@ -360,7 +384,33 @@ class Main:
             if ep_comment != "":
                 ep_comment += "\r\n"
             ep_comment += i
-        return EpisodeMetadata(ep_num, ep_name, ep_comment)
+
+        self.metadata = EpisodeMetadata(ep_num, ep_name, ep_comment)
+        self.metadata.title = self.config.get(self.args.profile,
+                                              'title').format(
+            slug=self.config.get(self.args.profile, 'slug'),
+            epnum=self.metadata.number,
+            name=self.metadata.name
+        )
+        self.metadata.album = self.config.get(self.args.profile, 'album')
+        self.metadata.artist = self.config.get(self.args.profile, 'artist')
+        self.metadata.season = self.config.get(self.args.profile, 'season')
+        self.metadata.genre = self.config.get(self.args.profile, 'genre')
+        self.metadata.language = self.config.get(self.args.profile, 'language')
+        self.metadata.composer = self.config.get(self.args.profile, 'composer',
+                                                 fallback=None)
+        self.metadata.accompaniment = self.config.get(self.args.profile,
+                                                      'accompaniment',
+                                                      fallback=None)
+        if self.config.getboolean(self.args.profile, 'write_date'):
+            self.metadata.date = datetime.datetime.now().strftime("%Y")
+        if self.config.getboolean(self.args.profile, 'write_trackno'):
+            self.metadata.track = self.metadata.number
+        if self.config.getboolean(self.args.profile, 'lyrics_equals_comment'):
+            self.metadata.lyrics = self.metadata.comment
+
+        self.confirm_data()
+        return self.metadata
 
     @staticmethod
     def parse_args() -> argparse.Namespace:
@@ -453,11 +503,11 @@ class Main:
         print("Artist:\t\t{}".format(self.metadata.artist))
         print("Season:\t\t{}".format(self.metadata.season))
         print("Genre:\t\t{}".format(self.metadata.genre))
-        print("Language:\t\t{}".format(self.metadata.language))
+        print("Language:\t{}".format(self.metadata.language))
         if self.metadata.composer is not None:
-            print("Composer\t\t{}".format(self.metadata.composer))
+            print("Composer:\t{}".format(self.metadata.composer))
         if self.metadata.accompaniment is not None:
-            print("Accompaniment\t{}".format(self.metadata.accompaniment))
+            print("Accompaniment:\t{}".format(self.metadata.accompaniment))
         if self.metadata.date is not None:
             print("Date:\t\t{}".format(self.metadata.date))
         if self.metadata.number is not None:
@@ -479,56 +529,36 @@ class Main:
             else:
                 print("Please enter 'y' or 'n'.")
 
+    def build_output_file_path(self, ext: str, parent=None):
+        """Create the path for an output file with the given extension.
+
+        This requires a bunch of code, which would be better in its own
+        function.
+        """
+        if parent is None:
+            return os.path.join(
+                self.args.outdir,
+                self.config.get(self.args.profile, 'filename').format(
+                    slug=self.config.get(self.args.profile, 'slug').lower(),
+                    epnum=self.metadata.number,
+                    ext=ext
+                )
+            )
+        else:
+            return os.path.join(
+                parent,
+                'encoding.' + ext
+            )
+
     def build_chapters(self):
         """Create a chapter list"""
-        mcs = MCS()
+        mcs = MCS(metadata=self.metadata)
         mcs.load(self.args.markers)
-        print(mcs.get())
-
-    def do_encode(self):
-        """Set up the encoder."""
-        self.mp3_path = self.config.get(self.args.profile, 'filename').format(
-            slug=self.config.get(self.args.profile, 'slug').lower(),
-            epnum=self.metadata.number,
-            ext='mp3'
-        )
-        self.encoder.setup(
-            self.args.wav,
-            os.path.join(
-                self.args.outdir,
-                self.mp3_path,
-            ),
-            self.config.get(self.args.profile, 'bitrate')
-        )
+        mcs.save(self.build_output_file_path('lrc'), MCS.LRC)
 
     def do_tag(self):
         """Tag the file."""
         t = MP3Tagger(self.mp3_path)
-        self.metadata.title = self.config.get(self.args.profile,
-                                              'title').format(
-            slug=self.config.get(self.args.profile, 'slug'),
-            epnum=self.metadata.number,
-            name=self.metadata.name
-        )
-        self.metadata.album = self.config.get(self.args.profile, 'album')
-        self.metadata.artist = self.config.get(self.args.profile, 'artist')
-        self.metadata.season = self.config.get(self.args.profile, 'season')
-        self.metadata.genre = self.config.get(self.args.profile, 'genre')
-        self.metadata.language = self.config.get(self.args.profile, 'language')
-        self.metadata.composer = self.config.get(self.args.profile, 'composer',
-                                                 fallback=None)
-        self.metadata.accompaniment = self.config.get(self.args.profile,
-                                                      'accompaniment',
-                                                      fallback=None)
-        if self.config.getboolean(self.args.profile, 'write_date'):
-            self.metadata.date = datetime.datetime.now().strftime("%Y")
-        if self.config.getboolean(self.args.profile, 'write_trackno'):
-            self.metadata.track = self.metadata.number
-        if self.config.getboolean(self.args.profile, 'lyrics_equals_comment'):
-            self.metadata.lyrics = self.metadata.comment
-
-        self.confirm_data()
-
         t.set_title(self.metadata.title)
         t.set_album(self.metadata.album)
         t.set_artist(self.metadata.artist)
@@ -549,17 +579,32 @@ class Main:
 
     def main(self):
         """The primary logic of this program."""
+        # Encode the mp3 to a temp file first, then move it later
+        tmp_path = tempfile.TemporaryDirectory()
         if not self.args.no_encode:
-            self.do_encode()
+            self.mp3_path = self.build_output_file_path('mp3',
+                                                        parent=tmp_path.name)
+            self.encoder.setup(
+                self.args.wav,
+                self.mp3_path,
+                self.config.get(self.args.profile, 'bitrate')
+            )
             # Start the encoder on its own thread
             self.encoder.start()
-        self.metadata = self.ask_metadata()
         # Metadata conversion
+        self.metadata = self.ask_metadata()
         if self.args.markers is not None:
             self.build_chapters()
         # Join the encoder thread, since tagging can't occur until it is done
         if not self.args.no_encode:
+            print("Waiting for encoder to finish...")
             self.encoder.join()
+            self.mp3_path = self.build_output_file_path('mp3')
+            os.rename(
+                self.build_output_file_path('mp3', parent=tmp_path.name),
+                self.mp3_path
+            )
+            tmp_path.cleanup()
         # Tagging
         self.do_tag()
 
