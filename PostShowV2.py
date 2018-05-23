@@ -36,7 +36,7 @@ class MP3Tagger:
             self.tag = broken.ID3()
         # Determine the length of the MP3 and write it to a TLEN frame
         mp3 = mutagen.mp3.MP3(path)
-        length = round(mp3.info.length * 1000, 0)
+        length = int(round(mp3.info.length * 1000, 0))
         self.tag.add(mutagen.id3.TLEN(text=str(length)))
 
     @staticmethod
