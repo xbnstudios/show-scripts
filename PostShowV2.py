@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
-"""Run conversion and tagging tasks for XBN shows."""
+"""Run conversion and tagging tasks for XBN shows.
+
+Written by s0ph0s. https://github.com/vladasbarisas/XBN"""
 
 import os
 import csv
 import math
-# import urwid
+import urwid
+import random
 import signal
 import argparse
 import datetime
@@ -16,11 +19,16 @@ import mutagen.mp3
 import configparser
 import urllib.parse
 
+# These keys must be in the configuration file, with text values
 REQUIRED_TEXT_KEYS = ['slug', 'filename', 'bitrate', 'title', 'album',
                       'artist', 'season', 'language', 'genre']
+# These keys must be in the configuration file, with boolean values
 REQUIRED_BOOL_KEYS = ['write_date', 'write_trackno', 'lyrics_equals_comment']
 
 
+#
+# MODEL CLASSES
+#
 class Chapter(object):
     """A podcast chapter."""
 
@@ -400,46 +408,209 @@ class PostShowError(Exception):
     """Something went wrong, use this to explain."""
 
 
-class Main:
-    """Main object."""
+#
+# VIEW CLASSES
+#
+class ViewUtil:
+    """Utilities for the view classes."""
+    FOOTER_TEXT = "<Up>/<Down> to move between items; <Enter> " \
+                  "selects/activates controls; <F8> quits"
 
-    def __init__(self):
-        """Setup tasks."""
-        self.encoder = MP3Encoder()
+    @staticmethod
+    def window_wrap(func):
+        def f_wrap(*args, **kwargs):
+            footer = urwid.AttrWrap(
+                urwid.Text(ViewUtil.FOOTER_TEXT),
+                'background'
+            )
+            return urwid.Frame(
+                urwid.AttrWrap(
+                    func(*args, **kwargs),
+                    'background'
+                ),
+                footer=footer
+            )
 
-        def exit_handler(sig, frame):
-            m.request_stop()
 
-        signal.signal(signal.SIGINT, exit_handler)
-        self.args = self.parse_args()
-        self.config = self.check_config(self.args.config)
-        self.metadata = None
-        self.mp3_path = None
-        self.chapters = None
+class EncoderProgress:
+    """Display a progress bar while the encoder is running."""
+    UPDATE_INTERVAL_SECONDS = 0.2
+    MSG_TEMPLATE = "Feel free to {} while LAME does its magic."
+    ACTIVITIES = [
+        "hum the Jeopardy! theme",
+        "scroll through Twitter",
+        "mindlessly eject and close your CD tray",
+        "take a walk",
+        "water your desk plants",
+        "notice the bulge",
+        "do something else",
+        "hang a spoon on your nose",
+        "play tiddlywinks",
+        "start reading a new book",
+        "play with the new shiny",
+        "hug someone you love",
+        "put on your favorite song",
+        "go make sure you turned off the oven",
+        "explore rotational inertia with your office chair",
+        "tune up your bicycle",
+        "answer an email",
+        "text them back",
+    ]
+
+    def __init__(self, controller):
+        self.progressbar = None
+        self.controller = controller
+        self.controller.set_alarm_in(
+            EncoderProgress.UPDATE_INTERVAL_SECONDS,
+            self.update_progress
+        )
+
+    def update_progress(self, loop, user_data):
+        if not self.controller.encoding_finished():
+            loop.set_alarm_in(
+                EncoderProgress.UPDATE_INTERVAL_SECONDS,
+                self.update_progress
+            )
+        self.progressbar.set_completion(
+            self.controller.get_encoder_percent()
+        )
+
+    @ViewUtil.window_wrap
+    def get_view(self):
+        """Get the stuff this view will show on screen."""
+        divider = ('pack', urwid.Divider())
+        self.progressbar = urwid.ProgressBar('progress_background',
+                                             'progress_foreground')
+        controls = [
+            divider,
+            ('pack', urwid.Text(EncoderProgress.MSG_TEMPLATE.format(
+                random.choice(EncoderProgress.ACTIVITIES)))),
+            divider,
+            ('pack', self.progressbar),
+            divider,
+        ]
+        contents = urwid.Padding(
+            urwid.Pile(controls, focus_item=0),
+            left=4,
+            width=40
+        )
+        return urwid.Padding(
+            urwid.Filler(
+                urwid.AttrWrap(
+                    urwid.LineBox(contents, 'Encoding'),
+                    'dialog'
+                ),
+                height=8,
+            ),
+            width=50,
+            align='center'
+        )
+
+
+class TaggerProgress:
+    """Display a message while the tagger saves the file."""
+    MESSAGE = "Please wait while the MP3 tagger writes to the file."
+
+    def __init__(self, controller):
+        self.controller = controller
+
+    @ViewUtil.window_wrap
+    def get_view(self):
+        """Get the stuff this view will show on screen."""
+        controls = [
+            ('pack', urwid.Divider()),
+            ('pack', urwid.Text(TaggerProgress.MESSAGE)),
+            ('pack', urwid.Divider()),
+        ]
+        contents = urwid.Padding(
+            urwid.Pile(controls, focus_item=0),
+            left=4,
+            width=40
+        )
+        return urwid.Padding(
+            urwid.Filler(
+                urwid.AttrWrap(
+                    urwid.LineBox(contents, "Tagging"),
+                    'dialog'
+                ),
+                height=8,
+            ),
+            width=50,
+            align='center'
+        )
+
+
+class EnterBasics:
+    """Display a dialog requesting basic episode information."""
+    NUMBER_TEXT = "Show Number:"
+    TITLE_TEXT = "Show Title:"
+    LYRICS_TEXT = "Lyrics:"
+
+    def __init__(self, controller):
+        self.controller = controller
+        self.number_box = urwid.Edit("", "", multiline=False)
+        self.title_box = urwid.Edit("", "", multiline=True)
+        self.lyrics_box = urwid.Edit("", "", multiline=True)
+
+    @ViewUtil.window_wrap
+    def get_view(self):
+        """Get the stuff this view displays on screen."""
+        blank = urwid.Divider()
+        buttons = [
+            urwid.AttrWrap(
+                urwid.Button("OK", self.handle_ok),
+                'btn', 'btn_focus'
+            ),
+            urwid.AttrWrap(
+                urwid.Button("Cancel", self.handle_cancel),
+                'btn', 'btn_focus'
+            ),
+        ]
+        controls = [
+            urwid.Text(EnterBasics.NUMBER_TEXT),
+            urwid.AttrWrap(self.number_box, 'textbox', 'textbox_focused'),
+            blank,
+            urwid.Text(EnterBasics.TITLE_TEXT),
+            urwid.AttrWrap(self.title_box, 'textbox', 'textbox_focused'),
+            blank,
+            urwid.Text(EnterBasics.LYRICS_TEXT),
+            urwid.AttrWrap(self.lyrics_box, 'textbox', 'textbox_focused'),
+            blank,
+            urwid.Padding(urwid.GridFlow(buttons, 10, 3, 1, 'left'),
+                          left=15, right=15, min_width=13, align='center')
+        ]
+
+        contents = urwid.Padding(
+            urwid.ListBox(
+                urwid.SimpleFocusListWalker(controls)
+            ),
+            left=2,
+            width=54
+        )
+        return urwid.Padding(
+            urwid.Filler(
+                urwid.AttrWrap(
+                    urwid.LineBox(contents, 'Basic Metadata'),
+                    'dialog'
+                ), height=13),
+            width=60,
+            align='center'
+        )
+
+    def handle_ok(self):
+        """Give the data from this view to the controller."""
+        self.controller.set_metadata(EpisodeMetadata(
+            self.number_box.edit_text,
+            self.title_box.edit_text,
+            self.lyrics_box.edit_text
+        ))
+
+    def handle_cancel(self):
+        """Tell the controller to exit the program."""
+        self.controller.exit()
 
     def ask_metadata(self) -> EpisodeMetadata:
         """Ask the user for metadata about the episode."""
-        ep_num = None
-        ep_name = None
-        ep_comment = ""
-        while ep_num is None:
-            i = input("Episode number: ")
-            if i != "":
-                ep_num = i
-        while ep_name is None:
-            i = input("Episode name: ")
-            if i != "":
-                ep_name = i
-        print("Episode comment (multiple lines OK, enter empty line to "
-              "finish):")
-        while True:
-            i = input("> ")
-            if i == "":
-                break
-            if ep_comment != "":
-                ep_comment += "\r\n"
-            ep_comment += i
-
         self.metadata = EpisodeMetadata(ep_num, ep_name, ep_comment)
         self.metadata.title = self.config.get(self.args.profile,
                                               'title').format(
@@ -466,6 +637,112 @@ class Main:
 
         self.confirm_data()
         return self.metadata
+
+
+class ConfirmMetadata:
+    """Check with the user to ensure everything is OK before writing."""
+    def __init__(self, controller):
+        self.controller = controller
+        self.metadata = controller.get_metadata()
+
+    @staticmethod
+    def build_row(label: str, width: int, value: str):
+        cols = [
+            ('fixed', width, urwid.Text(label)),
+            ('weight', 1, urwid.AttrWrap(urwid.Edit('', value, multiline=True),
+                                         'textbox', 'textbox_focused'))
+        ]
+        return urwid.Columns(cols, dividechars=1)
+
+    def handle_ok(self):
+        """Set the metadata in the controller."""
+        self.controller.set_metadata(self.metadata)
+
+    def handle_cancel(self):
+        """Tell the controller to exit the program."""
+        self.controller.exit()
+
+    @ViewUtil.window_wrap
+    def get_view(self):
+        buttons = [
+            urwid.AttrWrap(
+                urwid.Button("OK", self.handle_ok),
+                'btn', 'btn_focus'
+            ),
+            urwid.AttrWrap(
+                urwid.Button("Cancel", self.handle_cancel),
+                'btn', 'btn_focus'
+            ),
+        ]
+        controls = [
+            urwid.Divider(),
+            urwid.Text("The metadata below will be written to the file."),
+            urwid.Divider(),
+            self.build_row("Title:", 14, self.metadata.title),
+            self.build_row("Album:", 14, self.metadata.album),
+            self.build_row("Artist:", 14, self.metadata.artist),
+            self.build_row("Season:", 14, self.metadata.season),
+            self.build_row("Genre:", 14, self.metadata.genre),
+            self.build_row("Language:", 14, self.metadata.language),
+        ]
+        if self.metadata.composer is not None:
+            controls.append(self.build_row(
+                "Composer:", 14, self.metadata.composer))
+        if self.metadata.accompaniment is not None:
+            controls.append(self.build_row(
+                "Accompaniment:", 14, self.metadata.accompaniment))
+        if self.metadata.date is not None:
+            controls.append(self.build_row("Year:", 14, self.metadata.year))
+        if self.metadata.number is not None:
+            controls.append(self.build_row("Number:", 14, self.metadata.number))
+        if self.metadata.lyrics is not None:
+            controls.append(self.build_row(
+                "Lyrics:", 14, self.metadata.lyrics))
+        if self.metadata.comment is not None:
+            controls.append(self.build_row(
+                "Comment:", 14, self.metadata.comment))
+        controls.extend([
+            urwid.Divider(),
+            urwid.Padding(urwid.GridFlow(buttons, 10, 4, 1, 'left'),
+                          left=10, right=10, min_width=13, align='center'),
+            urwid.Divider(),
+        ])
+
+        contents = urwid.Padding(
+            urwid.ListBox(urwid.SimpleFocusListWalker(controls)),
+            left=5,
+            width=50
+        )
+        return urwid.Padding(
+            urwid.Filler(
+                urwid.AttrWrap(
+                    urwid.LineBox(contents, 'Confirm Metadata'),
+                    'dialog'
+                ), height=20),
+            width=60,
+            align='center'
+        )
+
+
+#
+# CONTROLLER CLASSES
+#
+class Main:
+    """Main object."""
+
+    def __init__(self):
+        """Setup tasks."""
+        self.encoder = MP3Encoder()
+
+        def exit_handler(sig, frame):
+            m.request_stop()
+
+        signal.signal(signal.SIGINT, exit_handler)
+        self.args = self.parse_args()
+        self.config = self.check_config(self.args.config)
+        self.metadata = None
+        self.mp3_path = None
+        self.chapters = None
 
     @staticmethod
     def parse_args() -> argparse.Namespace:
@@ -549,40 +826,6 @@ class Main:
         if len(errors) > 0:
             raise PostShowError(';\n'.join(errors))
         return config
-
-    def confirm_data(self):
-        """Check with the user to make sure that the metadata is correct."""
-        print("Metadata to be written:")
-        print("Title:\t\t{}".format(self.metadata.title))
-        print("Album:\t\t{}".format(self.metadata.album))
-        print("Artist:\t\t{}".format(self.metadata.artist))
-        print("Season:\t\t{}".format(self.metadata.season))
-        print("Genre:\t\t{}".format(self.metadata.genre))
-        print("Language:\t{}".format(self.metadata.language))
-        if self.metadata.composer is not None:
-            print("Composer:\t{}".format(self.metadata.composer))
-        if self.metadata.accompaniment is not None:
-            print("Accompaniment:\t{}".format(self.metadata.accompaniment))
-        if self.metadata.date is not None:
-            print("Date:\t\t{}".format(self.metadata.date))
-        if self.metadata.number is not None:
-            print("Number:\t\t{}".format(self.metadata.number))
-        if self.metadata.comment != "":
-            print("Comment:\n{}".format(self.metadata.comment))
-            if self.metadata.lyrics is not None:
-                print("Lyrics will be identical to comment.")
-        while True:
-            i = input("Does this all look OK (y/N)? ")
-            i = i.lower()
-            if i == 'y':
-                return
-            elif i == 'n' or i == '':
-                print("The program will now terminate. LAME will continue "
-                      "encoding in the background. Edit the config file and "
-                      "run me again with --no-encode.")
-                raise SystemExit(0)
-            else:
-                print("Please enter 'y' or 'n'.")
 
     def build_output_file_path(self, ext: str, parent=None):
         """Create the path for an output file with the given extension.
