@@ -18,6 +18,7 @@ def get_palette():
         ('progress_foreground', urwid.WHITE, urwid.DARK_RED),
     ]
 
+
 def basic_metadata():
     blank = urwid.Divider()
     controls = [
@@ -63,25 +64,34 @@ def tabular_pad(label, width, value):
     return (label + ":").ljust(width) + value
 
 
+def build_row(label: str, width: int, value: str) -> urwid.Columns:
+    cols = [
+        ('fixed', width, urwid.Text(label)),
+        ('weight', 1, urwid.AttrWrap(urwid.Edit('', value, multiline=True),
+                                     'textbox', 'textbox_focused'))
+    ]
+    return urwid.Columns(cols, dividechars=1)
+
+
 def confirm_basics():
     controls = [
         urwid.Divider(),
         urwid.Text("The metadata below will be written to the file."),
         urwid.Divider(),
-        urwid.Text(tabular_pad("Title", 15, "FNT-196 Analog Checksum")),
-        urwid.Text(tabular_pad("Album", 15, "The Friday Night Tech Podcast")),
-        urwid.Text(tabular_pad("Artist", 15, "..::XANA::.. Creations")),
-        urwid.Text(tabular_pad("Season", 15, "9")),
-        urwid.Text(tabular_pad("Genre", 15, "Podcast")),
-        urwid.Text(tabular_pad("Language", 15, "eng")),
-        urwid.Text(tabular_pad("Composer", 15, "..::XANA::.. Creations")),
-        urwid.Text(tabular_pad("Accompaniment", 15, "..::XANA::.. Creations")),
-        urwid.Text(tabular_pad("Date", 15, "2018")),
-        urwid.Text(tabular_pad("Number", 15, "196")),
-        urwid.Text(tabular_pad("Comment", 15, "This is a lot of text, "
+        build_row("Title:", 14, "FNT-196 Analog Checksum"),
+        build_row("Album:", 14, "The Friday Night Tech Podcast"),
+        build_row("Artist:", 14, "..::XANA::.. Creations"),
+        build_row("Season:", 14, "9"),
+        build_row("Genre:", 14, "Podcast"),
+        build_row("Language:", 14, "eng"),
+        build_row("Composer:", 14, "..::XANA::.. Creations"),
+        build_row("Accompaniment:", 14, "..::XANA::.. Creations"),
+        build_row("Year:", 14, "2018"),
+        build_row("Number:", 14, "196"),
+        build_row("Comment:", 14, "This is a lot of text, "
                                               "which will be too wide for the "
                                               "box, and hopefully reveal how "
-                                              "it handles long messages.")),
+                                              "it handles long messages."),
         urwid.Divider(),
         urwid.Padding(urwid.GridFlow(
             [urwid.AttrWrap(urwid.Button(txt, null_handler), 'btn',
@@ -129,7 +139,7 @@ def encoder_progress():
         "go make sure you turned off the oven",
         "explore rotational inertia with your office chair",
         "tune up your bicycle",
-        "answer an email",
+        "answer some emails",
         "text them back",
     ]
 
@@ -145,41 +155,15 @@ def encoder_progress():
         divider,
     ]
 
-    # list = urwid.Pile(controls)
     list = urwid.Padding(urwid.Pile(controls, focus_item=0), left=4, width=40)
     window = urwid.Padding(
         urwid.Filler(
             urwid.AttrWrap(
                 urwid.LineBox(list, 'Encoding'),
                 'dialog'
-            ), height=8),
+            ), height='flow'),
         width=50,
         align='center',
-    )
-
-    footer = urwid.AttrWrap(urwid.Text("<Tab> moves between items; <Space> "
-                                       "selects; <Enter> activates buttons; "
-                                       "<F8> quits"), 'background')
-    frame = urwid.Frame(urwid.AttrWrap(window, 'background'), footer=footer)
-    palette = get_palette()
-    urwid.MainLoop(frame, palette, urwid.raw_display.Screen(),
-                   unhandled_input=exit_program).run()
-
-
-def confirm_chapters():
-    controls = [
-
-    ]
-    list = urwid.Padding(urwid.ListBox(urwid.SimpleFocusListWalker(controls)),
-                         left=5, width=50)
-    window = urwid.Padding(
-        urwid.Filler(
-            urwid.AttrWrap(
-                urwid.LineBox(list, 'Confirm Chapters'),
-                'dialog'
-            ), height=20),
-        width=60,
-        align='center'
     )
 
     footer = urwid.AttrWrap(urwid.Text("<Tab> moves between items; <Space> "
@@ -197,4 +181,4 @@ def exit_program(button):
 
 
 if __name__ == "__main__":
-    encoder_progress()
+    confirm_basics()
