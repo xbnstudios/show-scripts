@@ -5,26 +5,10 @@ import threading
 import subprocess
 
 
-class PercentObserver(object):
-    def __init__(self, progressbar, loop):
-        self.progressbar = progressbar
-        self.loop = loop
-
-    def notify(self, value: int):
-        self.progressbar.set_completion(value)
-        self.loop.draw_screen()
-
-    def complete(self):
-        # This is raised in the thread, not the main loop.
-        # You'll probably need to rearchitect this.
-        raise urwid.ExitMainLoop()
-
-
 class MP3Encoder(threading.Thread):
     """Shell out to LAME to encode the WAV file as an MP3."""
 
-    def setup(self, infile: str, outfile: str, bitrate: str,
-              observer: PercentObserver):
+    def setup(self, infile: str, outfile: str, bitrate: str):
         """Configure the input and output files, and the encoder bitrate.
 
         :param infile: Path to WAV file.
@@ -36,7 +20,8 @@ class MP3Encoder(threading.Thread):
         self.bitrate = bitrate
         self.matcher = re.compile(r'\(([0-9]?[0-9 ][0-9])%\)')
         self.p = None
-        self.observer = observer
+        self.percent = 0
+        self.finished = False
 
     def run(self):
         self.p = subprocess.Popen(['lame', '-t', '-b', self.bitrate, '--cbr',
@@ -49,10 +34,10 @@ class MP3Encoder(threading.Thread):
             if len(groups) < 1:
                 continue
             percent = int(groups[-1])
-            self.observer.notify(percent)
+            self.percent = percent
             if percent == 100 and self.p.poll() is not None:
                 break
-        self.observer.complete()
+        self.finished = True
         # while self.p.poll() is None:
         #     try:
         #         (stdout, stderr) = self.p.communicate(timeout=1)
@@ -71,6 +56,8 @@ class MP3Encoder(threading.Thread):
 
 
 class TUI:
+    PROGRESS_UPDATE_SECONDS = 0.2
+
     def __init__(self):
         self.progressbar = None
         self.encoder = None
@@ -136,11 +123,23 @@ class TUI:
         self.encoder = MP3Encoder()
         self.encoder.setup('/Users/s0ph0s/Desktop/beep-test/bte.wav',
                            '/Users/s0ph0s/Desktop/beep-test-2/out.mp3',
-                           '64',
-                           PercentObserver(self.progressbar, self.loop))
+                           '64')
+        self.loop.set_alarm_in(
+            TUI.PROGRESS_UPDATE_SECONDS,
+            self.update_progress)
         self.encoder.start()
         self.loop.run()
         self.encoder.join()
+
+    def update_progress(self, loop, user_data):
+        if not self.encoder.finished:
+            self.loop.set_alarm_in(
+                TUI.PROGRESS_UPDATE_SECONDS,
+                self.update_progress)
+        else:
+            # Don't do this in the final version.
+            raise urwid.ExitMainLoop()
+        self.progressbar.set_completion(self.encoder.percent)
 
     @staticmethod
     def exit_program(button):
