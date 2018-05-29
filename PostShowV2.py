@@ -4,6 +4,7 @@
 Written by s0ph0s. https://github.com/vladasbarisas/XBN"""
 
 import os
+import re
 import csv
 import math
 import urwid
@@ -191,15 +192,26 @@ class MP3Encoder(threading.Thread):
         self.infile = infile
         self.outfile = outfile
         self.bitrate = bitrate
+        self.matcher = re.compile(r'\(([0-9]?[0-9 ][0-9])%\)')
         self.p = None
+        self.percent = 0
+        self.finished = False
 
     def run(self):
         self.p = subprocess.Popen(['lame', '-t', '-b', self.bitrate, '--cbr',
                                    self.infile, self.outfile],
                                   stdout=subprocess.DEVNULL,
-                                  stderr=subprocess.DEVNULL)
-        # Do whatever is necessary to watch progress from lame
-        self.p.wait()
+                                  stderr=subprocess.PIPE)
+        for block in iter(lambda: self.p.stderr.read(1024), ''):
+            text = block.decode('utf-8')
+            groups = self.matcher.findall(text)
+            if len(groups) < 1:
+                continue
+            percent = int(groups[-1])
+            self.percent = percent
+            if percent == 100 and self.p.poll() is not None:
+                break
+        self.finished = True
 
     def request_stop(self):
         self.p.terminate()
@@ -208,10 +220,10 @@ class MP3Encoder(threading.Thread):
 class EpisodeMetadata(object):
     """Metadata about an episode."""
 
-    def __init__(self, number: str, name: str, comment: str):
+    def __init__(self, number: str, name: str, lyrics: str):
         self.number = number
         self.name = name
-        self.comment = comment
+        self.lyrics = lyrics
         self.title = None
         self.album = None
         self.artist = None
@@ -221,7 +233,7 @@ class EpisodeMetadata(object):
         self.composer = None
         self.accompaniment = None
         self.date = None
-        self.lyrics = None
+        self.comment = None
         self.chapters = []
         self.toc = []
 
@@ -351,8 +363,8 @@ class MCS:
                 fp.write('[ar:{}]\n'.format(self.metadata.artist))
                 fp.write('[al:{}]\n'.format(self.metadata.album))
             for chapter in self.chapters:
-                minutes = chapter.start // (60*1000)
-                seconds = (chapter.start % (60*1000)) // 1000
+                minutes = chapter.start // (60 * 1000)
+                seconds = (chapter.start % (60 * 1000)) // 1000
                 fraction = (chapter.start % 1000) // 10
                 fp.write('[{:02d}:{:02d}.{:02d}]{}\n'.format(
                     minutes,
@@ -377,8 +389,8 @@ class MCS:
                 fp.write('PERFORMER "{}"\n'.format(self.metadata.artist))
             for i in range(0, len(self.chapters)):
                 chapter = self.chapters[i]
-                minutes = chapter.start // (60*1000)
-                seconds = (chapter.start % (60*1000)) // 1000
+                minutes = chapter.start // (60 * 1000)
+                seconds = (chapter.start % (60 * 1000)) // 1000
                 # Magic constant is 75/1000, or the number of CUE "frames" per
                 # millisecond:
                 # https://en.wikipedia.org/wiki/Cue_sheet_(computing)#Essential_commands
@@ -386,17 +398,17 @@ class MCS:
                 fp.write('  TRACK {0} AUDIO\n'
                          '    TITLE "{1}"\n'
                          '    INDEX 01 {2:02d}:{3:02d}:{4:02d}\n'.format(
-                             i,
-                             chapter.text.replace('"', '_'),
-                             minutes,
-                             seconds,
-                             fraction)
-                         )
+                    i,
+                    chapter.text.replace('"', '_'),
+                    minutes,
+                    seconds,
+                    fraction)
+                )
 
     def _save_simple(self, path: str):
         with open(path, 'w') as fp:
             for chapter in self.chapters:
-                start = self._get_time(chapter.start / 1000)\
+                start = self._get_time(chapter.start / 1000) \
                     .strftime("%H:%M:%S")
                 fp.write('{0} - {1}\n'.format(start, chapter.text))
 
@@ -430,6 +442,7 @@ class ViewUtil:
                 ),
                 footer=footer
             )
+        return f_wrap
 
 
 class EncoderProgress:
@@ -466,7 +479,7 @@ class EncoderProgress:
         )
 
     def update_progress(self, loop, user_data):
-        if not self.controller.encoding_finished():
+        if not self.controller.encoder_finished():
             loop.set_alarm_in(
                 EncoderProgress.UPDATE_INTERVAL_SECONDS,
                 self.update_progress
@@ -533,7 +546,7 @@ class TaggerProgress:
                     urwid.LineBox(contents, "Tagging"),
                     'dialog'
                 ),
-                height=8,
+                height=5,
             ),
             width=50,
             align='center'
@@ -553,7 +566,7 @@ class EnterBasics:
         self.lyrics_box = urwid.Edit("", "", multiline=True)
 
     @ViewUtil.window_wrap
-    def get_view(self):
+    def get_view(self) -> urwid.Widget:
         """Get the stuff this view displays on screen."""
         blank = urwid.Divider()
         buttons = [
@@ -597,7 +610,7 @@ class EnterBasics:
             align='center'
         )
 
-    def handle_ok(self):
+    def handle_ok(self, button):
         """Give the data from this view to the controller."""
         self.controller.set_metadata(EpisodeMetadata(
             self.number_box.edit_text,
@@ -605,45 +618,17 @@ class EnterBasics:
             self.lyrics_box.edit_text
         ))
 
-    def handle_cancel(self):
+    def handle_cancel(self, button):
         """Tell the controller to exit the program."""
         self.controller.exit()
-
-    def ask_metadata(self) -> EpisodeMetadata:
-        """Ask the user for metadata about the episode."""
-        self.metadata = EpisodeMetadata(ep_num, ep_name, ep_comment)
-        self.metadata.title = self.config.get(self.args.profile,
-                                              'title').format(
-            slug=self.config.get(self.args.profile, 'slug'),
-            epnum=self.metadata.number,
-            name=self.metadata.name
-        )
-        self.metadata.album = self.config.get(self.args.profile, 'album')
-        self.metadata.artist = self.config.get(self.args.profile, 'artist')
-        self.metadata.season = self.config.get(self.args.profile, 'season')
-        self.metadata.genre = self.config.get(self.args.profile, 'genre')
-        self.metadata.language = self.config.get(self.args.profile, 'language')
-        self.metadata.composer = self.config.get(self.args.profile, 'composer',
-                                                 fallback=None)
-        self.metadata.accompaniment = self.config.get(self.args.profile,
-                                                      'accompaniment',
-                                                      fallback=None)
-        if self.config.getboolean(self.args.profile, 'write_date'):
-            self.metadata.date = datetime.datetime.now().strftime("%Y")
-        if self.config.getboolean(self.args.profile, 'write_trackno'):
-            self.metadata.track = self.metadata.number
-        if self.config.getboolean(self.args.profile, 'lyrics_equals_comment'):
-            self.metadata.lyrics = self.metadata.comment
-
-        self.confirm_data()
-        return self.metadata
 
 
 class ConfirmMetadata:
     """Check with the user to ensure everything is OK before writing."""
+
     def __init__(self, controller):
         self.controller = controller
-        self.metadata = controller.get_metadata()
+        self.metadata = controller.metadata
 
     @staticmethod
     def build_row(label: str, width: int, value: str):
@@ -654,11 +639,11 @@ class ConfirmMetadata:
         ]
         return urwid.Columns(cols, dividechars=1)
 
-    def handle_ok(self):
+    def handle_ok(self, button):
         """Set the metadata in the controller."""
-        self.controller.set_metadata(self.metadata)
+        self.controller.finalize_metadata(self.metadata)
 
-    def handle_cancel(self):
+    def handle_cancel(self, button):
         """Tell the controller to exit the program."""
         self.controller.exit()
 
@@ -692,7 +677,7 @@ class ConfirmMetadata:
             controls.append(self.build_row(
                 "Accompaniment:", 14, self.metadata.accompaniment))
         if self.metadata.date is not None:
-            controls.append(self.build_row("Year:", 14, self.metadata.year))
+            controls.append(self.build_row("Year:", 14, self.metadata.date))
         if self.metadata.number is not None:
             controls.append(self.build_row("Number:", 14, self.metadata.number))
         if self.metadata.lyrics is not None:
@@ -727,33 +712,229 @@ class ConfirmMetadata:
 #
 # CONTROLLER CLASSES
 #
+class Controller:
+    """Define the control flow of the application as a whole.
+
+    The path is a little confusing, since urwid's event loop doesn't make
+    that part easy:
+    1. Start the encoder in a separate thread
+    2. Display the ``EnterBasics`` view
+    3. Use the data from ``EnterBasics`` to fill out the rest of the metadata
+    4. Display the ``ConfirmMetadata`` view
+    5. Display the ``EncoderProgress`` view
+    6. Display the ``TaggerProgress`` view
+    7. Save the tags to the file, which will lock up the UI ( threading :( )
+    8. Exit
+    """
+    def __init__(self, loop: urwid.MainLoop, args, config):
+        self.encoder = MP3Encoder()
+
+        def exit_handler(sig, frame):
+            self.encoder.request_stop()
+
+        signal.signal(signal.SIGINT, exit_handler)
+        self.args = args
+        self.config = config
+        self.loop = loop
+        self.metadata = None
+        self.mp3_path = None
+        self.chapters = None
+        self.tmp_path = None
+
+    def start(self):
+        """Do steps 1 and 2."""
+        # Encode the mp3 to a temp file first, then move it later
+        self.tmp_path = tempfile.TemporaryDirectory()
+        if not self.args.no_encode:
+            self.mp3_path = self.build_output_file_path(
+                'mp3', parent=self.tmp_path.name)
+            self.encoder.setup(
+                self.args.wav,
+                self.mp3_path,
+                self.config.get(self.args.profile, 'bitrate')
+            )
+            # Start the encoder on its own thread
+            self.encoder.start()
+        basics_view = EnterBasics(self)
+        self.loop.widget = basics_view.get_view()
+
+    def set_metadata(self, metadata: EpisodeMetadata):
+        """Do steps 3 and 4."""
+        self.metadata = metadata
+        self.complete_metadata()
+        # Metadata conversion
+        if self.args.markers is not None:
+            self.build_chapters()
+        confirm_view = ConfirmMetadata(self)
+        self.loop.widget = confirm_view.get_view()
+
+    def finalize_metadata(self, metadata: EpisodeMetadata):
+        """Do step 5."""
+        self.metadata = metadata
+        progress_view = EncoderProgress(self)
+        self.loop.widget = progress_view.get_view()
+
+    def old_main(self):
+        """The main function from an earlier version, which I'm keeping
+        around for reference."""
+
+    def exit(self):
+        print("Waiting for the encoder to stop...")
+        self.encoder.request_stop()
+        self.encoder.join()
+        raise urwid.ExitMainLoop()
+
+    def build_output_file_path(self, ext: str, parent=None):
+        """Create the path for an output file with the given extension.
+
+        This requires a bunch of code, which would be better in its own
+        function.
+        """
+        if parent is None:
+            return os.path.join(
+                self.args.outdir,
+                self.config.get(self.args.profile, 'filename').format(
+                    slug=self.config.get(self.args.profile, 'slug').lower(),
+                    epnum=self.metadata.number,
+                    ext=ext
+                )
+            )
+        else:
+            return os.path.join(
+                parent,
+                'encoding.' + ext
+            )
+
+    def build_chapters(self):
+        """Create a chapter list"""
+        mcs = MCS(metadata=self.metadata,
+                  media_filename=self.build_output_file_path('mp3'))
+        mcs.load(self.args.markers)
+        self.chapters = mcs.get()
+        mcs.save(self.build_output_file_path('lrc'), MCS.LRC)
+        mcs.save(self.build_output_file_path('cue'), MCS.CUE)
+        mcs.save(self.build_output_file_path('txt'), MCS.SIMPLE)
+
+    def do_tag(self, loop, user_data):
+        """Tag the file, and do step 8."""
+        t = MP3Tagger(self.mp3_path)
+        t.set_title(self.metadata.title)
+        t.set_album(self.metadata.album)
+        t.set_artist(self.metadata.artist)
+        t.set_season(self.metadata.season)
+        t.set_genre(self.metadata.genre)
+        t.set_language(self.metadata.language)
+        if self.metadata.composer is not None:
+            t.set_composer(self.metadata.composer)
+        if self.metadata.accompaniment is not None:
+            t.set_accompaniment(self.metadata.accompaniment)
+        if self.metadata.lyrics != "":
+            t.add_comment(self.metadata.language, 'track list',
+                          self.metadata.comment)
+            if self.metadata.comment is not None:
+                t.add_lyrics(self.metadata.language, 'track list',
+                             self.metadata.lyrics)
+        if self.chapters is not None:
+            t.add_chapters(self.chapters)
+        t.save()
+        raise urwid.ExitMainLoop()
+
+    def set_alarm_in(self, *args, **kwargs):
+        """Pass the call to the event loop."""
+        self.loop.set_alarm_in(*args, **kwargs)
+
+    def encoder_finished(self) -> bool:
+        """Do steps 6 and 7."""
+        if self.encoder.finished:
+            # This isn't inside the if so that do_tag doesn't fail
+            self.mp3_path = self.build_output_file_path('mp3')
+            # Join the encoder thread, since tagging can't occur until it is
+            # done
+            if not self.args.no_encode:
+                self.encoder.join()
+                os.rename(
+                    self.build_output_file_path(
+                        'mp3', parent=self.tmp_path.name),
+                    self.mp3_path
+                )
+                self.tmp_path.cleanup()
+            tag_progress_view = TaggerProgress(self)
+            self.loop.widget = tag_progress_view.get_view()
+            # Do async so that this function returns immediately
+            self.loop.set_alarm_in(0.1, self.do_tag)
+        return self.encoder.finished
+
+    def get_encoder_percent(self) -> int:
+        return self.encoder.percent
+
+    def complete_metadata(self) -> None:
+        """Complete the metadata using the config file.
+
+        Take the information from the config file and the information entered by
+        the user and combine them into the complete information for this
+        episode.
+        """
+        self.metadata.title = self.config.get(self.args.profile,
+                                              'title').format(
+            slug=self.config.get(self.args.profile, 'slug'),
+            epnum=self.metadata.number,
+            name=self.metadata.name
+        )
+        self.metadata.album = self.config.get(self.args.profile, 'album')
+        self.metadata.artist = self.config.get(self.args.profile, 'artist')
+        self.metadata.season = self.config.get(self.args.profile, 'season')
+        self.metadata.genre = self.config.get(self.args.profile, 'genre')
+        self.metadata.language = self.config.get(self.args.profile, 'language')
+        self.metadata.composer = self.config.get(
+            self.args.profile, 'composer', fallback=None)
+        self.metadata.accompaniment = self.config.get(
+            self.args.profile, 'accompaniment', fallback=None)
+        if self.config.getboolean(self.args.profile, 'write_date'):
+            self.metadata.date = datetime.datetime.now().strftime("%Y")
+        if self.config.getboolean(self.args.profile, 'write_trackno'):
+            self.metadata.track = self.metadata.number
+        if self.config.getboolean(self.args.profile, 'lyrics_equals_comment'):
+            self.metadata.comment = self.metadata.lyrics
+
+
 class Main:
     """Main object."""
 
     def __init__(self):
         """Setup tasks."""
-        self.encoder = MP3Encoder()
-
-        def exit_handler(sig, frame):
-            m.request_stop()
-
-        signal.signal(signal.SIGINT, exit_handler)
         self.args = self.parse_args()
         self.config = self.check_config(self.args.config)
-        self.metadata = None
-        self.mp3_path = None
-        self.chapters = None
+        self.loop = None
+
+    @staticmethod
+    def unhandled_input(button):
+        if button == 'f8':
+            raise urwid.ExitMainLoop()
+
+    @staticmethod
+    def get_palette():
+        return [
+            ('background', urwid.WHITE, urwid.DARK_BLUE),
+            ('dialog', urwid.BLACK, urwid.WHITE),
+            ('textbox', urwid.LIGHT_GRAY, urwid.DARK_BLUE),
+            ('textbox_focused', urwid.WHITE, urwid.DARK_BLUE, 'bold'),
+            ('btn', urwid.BLACK, urwid.LIGHT_GRAY),
+            ('btn_focus', urwid.WHITE, urwid.DARK_RED, 'bold'),
+            ('progress_background', urwid.BLACK, urwid.LIGHT_GRAY),
+            ('progress_foreground', urwid.WHITE, urwid.DARK_RED),
+        ]
 
     @staticmethod
     def parse_args() -> argparse.Namespace:
         """Parse arguments to this program."""
         parser = argparse.ArgumentParser(description="Convert and tag WAVs and"
-                                                     " chapter metadata for podcasts.")
+                                                     " chapter metadata for"
+                                                     "podcasts.")
         parser.add_argument("wav",
                             help="WAV file to convert/use")
         parser.add_argument("outdir",
                             help="directory in which to write output files. "
-                                 "Will be created if nonexistant.")
+                                 "Will be created if nonexistent.")
         parser.add_argument("-c",
                             "--config",
                             help="configuration file to use",
@@ -827,91 +1008,14 @@ class Main:
             raise PostShowError(';\n'.join(errors))
         return config
 
-    def build_output_file_path(self, ext: str, parent=None):
-        """Create the path for an output file with the given extension.
-
-        This requires a bunch of code, which would be better in its own
-        function.
-        """
-        if parent is None:
-            return os.path.join(
-                self.args.outdir,
-                self.config.get(self.args.profile, 'filename').format(
-                    slug=self.config.get(self.args.profile, 'slug').lower(),
-                    epnum=self.metadata.number,
-                    ext=ext
-                )
-            )
-        else:
-            return os.path.join(
-                parent,
-                'encoding.' + ext
-            )
-
-    def build_chapters(self):
-        """Create a chapter list"""
-        mcs = MCS(metadata=self.metadata,
-                  media_filename=self.build_output_file_path('mp3'))
-        mcs.load(self.args.markers)
-        self.chapters = mcs.get()
-        mcs.save(self.build_output_file_path('lrc'), MCS.LRC)
-        mcs.save(self.build_output_file_path('cue'), MCS.CUE)
-        mcs.save(self.build_output_file_path('txt'), MCS.SIMPLE)
-
-    def do_tag(self):
-        """Tag the file."""
-        t = MP3Tagger(self.mp3_path)
-        t.set_title(self.metadata.title)
-        t.set_album(self.metadata.album)
-        t.set_artist(self.metadata.artist)
-        t.set_season(self.metadata.season)
-        t.set_genre(self.metadata.genre)
-        t.set_language(self.metadata.language)
-        if self.metadata.composer is not None:
-            t.set_composer(self.metadata.composer)
-        if self.metadata.accompaniment is not None:
-            t.set_accompaniment(self.metadata.accompaniment)
-        if self.metadata.comment != "":
-            t.add_comment(self.metadata.language, 'track list',
-                          self.metadata.comment)
-            if self.metadata.lyrics is not None:
-                t.add_lyrics(self.metadata.language, 'track list',
-                             self.metadata.lyrics)
-        if self.chapters is not None:
-            t.add_chapters(self.chapters)
-        t.save()
-
     def main(self):
-        """The primary logic of this program."""
-        # Encode the mp3 to a temp file first, then move it later
-        tmp_path = tempfile.TemporaryDirectory()
-        if not self.args.no_encode:
-            self.mp3_path = self.build_output_file_path('mp3',
-                                                        parent=tmp_path.name)
-            self.encoder.setup(
-                self.args.wav,
-                self.mp3_path,
-                self.config.get(self.args.profile, 'bitrate')
-            )
-            # Start the encoder on its own thread
-            self.encoder.start()
-        # Metadata conversion
-        self.metadata = self.ask_metadata()
-        if self.args.markers is not None:
-            self.build_chapters()
-        # This isn't inside the if so that do_tag doesn't fail
-        self.mp3_path = self.build_output_file_path('mp3')
-        # Join the encoder thread, since tagging can't occur until it is done
-        if not self.args.no_encode:
-            print("Waiting for encoder to finish...")
-            self.encoder.join()
-            os.rename(
-                self.build_output_file_path('mp3', parent=tmp_path.name),
-                self.mp3_path
-            )
-            tmp_path.cleanup()
-        # Tagging
-        self.do_tag()
+        """Kickstart the application."""
+        self.loop = urwid.MainLoop(None, palette=self.get_palette(),
+                                   screen=urwid.raw_display.Screen(),
+                                   unhandled_input=self.unhandled_input)
+        c = Controller(self.loop, self.args, self.config)
+        c.start()
+        self.loop.run()
 
 
 if __name__ == "__main__":
