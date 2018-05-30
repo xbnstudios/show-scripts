@@ -17,7 +17,9 @@ found.
 
 * **PostShow.py** - Audacity Marker Converter on the graph, generate CUE, LRC
   and simple timestamp files from an Audacity marker file
-* **PostShowV2.py** - new and improved version of PostShow developed by [s0ph0s](https://github.com/s0ph0s-2). Changelog can be found [here](https://github.com/vladasbarisas/XBN/pull/2)
+* **PostShowV2.py** - new and improved version of PostShow developed by
+[s0ph0s](https://github.com/s0ph0s-2). Changelog can be found
+[here](https://github.com/vladasbarisas/XBN/pull/2)
 * **Gelo** - Podcast chapter metadata gathering tool
 * **mp3-chapter-scripts** - S0ph0s's scripts to embed chapters into MP3s. Use
   `chaptagger4.py` in production
