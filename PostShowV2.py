@@ -203,6 +203,9 @@ class MP3Encoder(threading.Thread):
                                   stdout=subprocess.DEVNULL,
                                   stderr=subprocess.PIPE)
         for block in iter(lambda: self.p.stderr.read(1024), ''):
+            # Stop when the process terminates.
+            if self.p.poll() is not None:
+                break
             text = block.decode('utf-8')
             groups = self.matcher.findall(text)
             if len(groups) < 1:
@@ -484,6 +487,8 @@ class EncoderProgress:
                 EncoderProgress.UPDATE_INTERVAL_SECONDS,
                 self.update_progress
             )
+        else:
+            self.controller.progress_view_finished()
         self.progressbar.set_completion(
             self.controller.get_encoder_percent()
         )
@@ -594,7 +599,7 @@ class EnterBasics:
         ]
 
         contents = urwid.Padding(
-            urwid.ListBox(
+            TabbableListBox(
                 urwid.SimpleFocusListWalker(controls)
             ),
             left=2,
@@ -694,7 +699,7 @@ class ConfirmMetadata:
         ])
 
         contents = urwid.Padding(
-            urwid.ListBox(urwid.SimpleFocusListWalker(controls)),
+            TabbableListBox(urwid.SimpleFocusListWalker(controls)),
             left=5,
             width=50
         )
@@ -707,6 +712,63 @@ class ConfirmMetadata:
             width=60,
             align='center'
         )
+
+
+class TabbableListBox(urwid.ListBox):
+    """Wrap urwid's ListBox and let the user tab and shift-tab between widgets.
+    """
+
+    def keypress(self, size, key):
+        """Move selection through the list elements scrolling when
+        necessary. Keystrokes are first passed to widget in focus
+        in case that widget can handle them.
+        Keystrokes handled by this widget are:
+         'up'        up one line (or widget)
+         'down'      down one line (or widget)
+         'tab'       down one line (or widget)
+         'shift tab' up one line (or widget)
+         'page up'   move cursor up one listbox length (or widget)
+         'page down' move cursor down one listbox length (or widget)
+        """
+        (maxcol, maxrow) = size
+
+        if self.set_focus_pending or self.set_focus_valign_pending:
+            self._set_focus_complete((maxcol, maxrow), focus=True)
+
+        focus_widget, pos = self._body.get_focus()
+        if focus_widget is None:  # empty listbox, can't do anything
+            return key
+
+        if focus_widget.selectable():
+            key = focus_widget.keypress((maxcol,), key)
+            if key is None:
+                self.make_cursor_visible((maxcol, maxrow))
+                return None
+
+        def actual_key(unhandled):
+            if unhandled:
+                return key
+
+        # pass off the heavy lifting
+        if self._command_map[key] == urwid.CURSOR_UP or key == 'shift tab':
+            return actual_key(self._keypress_up((maxcol, maxrow)))
+
+        if self._command_map[key] == urwid.CURSOR_DOWN or key == 'tab':
+            return actual_key(self._keypress_down((maxcol, maxrow)))
+
+        if self._command_map[key] == urwid.CURSOR_PAGE_UP:
+            return actual_key(self._keypress_page_up((maxcol, maxrow)))
+
+        if self._command_map[key] == urwid.CURSOR_PAGE_DOWN:
+            return actual_key(self._keypress_page_down((maxcol, maxrow)))
+
+        if self._command_map[key] == urwid.CURSOR_MAX_LEFT:
+            return actual_key(self._keypress_max_left())
+
+        if self._command_map[key] == urwid.CURSOR_MAX_RIGHT:
+            return actual_key(self._keypress_max_right())
+
+        return key
 
 
 #
@@ -726,7 +788,10 @@ class Controller:
     7. Save the tags to the file, which will lock up the UI ( threading :( )
     8. Exit
     """
-    def __init__(self, loop: urwid.MainLoop, args, config):
+    def __init__(self, args, config):
+        self.loop = urwid.MainLoop(None, palette=self.get_palette(),
+                                   screen=urwid.raw_display.Screen(),
+                                   unhandled_input=self.unhandled_input)
         self.encoder = MP3Encoder()
 
         def exit_handler(sig, frame):
@@ -735,14 +800,34 @@ class Controller:
         signal.signal(signal.SIGINT, exit_handler)
         self.args = args
         self.config = config
-        self.loop = loop
         self.metadata = None
         self.mp3_path = None
         self.chapters = None
         self.tmp_path = None
 
+    @staticmethod
+    def get_palette():
+        return [
+            ('background', urwid.WHITE, urwid.DARK_BLUE),
+            ('dialog', urwid.BLACK, urwid.WHITE),
+            ('textbox', urwid.LIGHT_GRAY, urwid.DARK_BLUE),
+            ('textbox_focused', urwid.WHITE, urwid.DARK_BLUE, 'bold'),
+            ('btn', urwid.BLACK, urwid.LIGHT_GRAY),
+            ('btn_focus', urwid.WHITE, urwid.DARK_RED, 'bold'),
+            ('progress_background', urwid.BLACK, urwid.LIGHT_GRAY),
+            ('progress_foreground', urwid.WHITE, urwid.DARK_RED),
+        ]
+
+    def unhandled_input(self, button):
+        if button == 'f8':
+            self.exit()
+
     def start(self):
-        """Do steps 1 and 2."""
+        """Do steps 1 and 2.
+
+        1. Start the encoder in a separate thread
+        2. Display the ``EnterBasics`` view
+        """
         # Encode the mp3 to a temp file first, then move it later
         self.tmp_path = tempfile.TemporaryDirectory()
         if not self.args.no_encode:
@@ -759,7 +844,12 @@ class Controller:
         self.loop.widget = basics_view.get_view()
 
     def set_metadata(self, metadata: EpisodeMetadata):
-        """Do steps 3 and 4."""
+        """Do steps 3 and 4.
+
+        3. Use the data from ``EnterBasics`` to fill out the rest of the
+           metadata
+        4. Display the ``ConfirmMetadata`` view
+        """
         self.metadata = metadata
         self.complete_metadata()
         # Metadata conversion
@@ -769,14 +859,16 @@ class Controller:
         self.loop.widget = confirm_view.get_view()
 
     def finalize_metadata(self, metadata: EpisodeMetadata):
-        """Do step 5."""
-        self.metadata = metadata
-        progress_view = EncoderProgress(self)
-        self.loop.widget = progress_view.get_view()
+        """Do step 5.
 
-    def old_main(self):
-        """The main function from an earlier version, which I'm keeping
-        around for reference."""
+        5. Display the ``EncoderProgress`` view
+        """
+        self.metadata = metadata
+        if not self.args.no_encode:
+            progress_view = EncoderProgress(self)
+            self.loop.widget = progress_view.get_view()
+        else:
+            self.progress_view_finished()
 
     def exit(self):
         print("Waiting for the encoder to stop...")
@@ -816,7 +908,10 @@ class Controller:
         mcs.save(self.build_output_file_path('txt'), MCS.SIMPLE)
 
     def do_tag(self, loop, user_data):
-        """Tag the file, and do step 8."""
+        """Tag the file, and do step 8.
+
+        8. Exit
+        """
         t = MP3Tagger(self.mp3_path)
         t.set_title(self.metadata.title)
         t.set_album(self.metadata.album)
@@ -843,25 +938,34 @@ class Controller:
         """Pass the call to the event loop."""
         self.loop.set_alarm_in(*args, **kwargs)
 
+    def progress_view_finished(self):
+        """Do steps 6 and 7.
+
+        6. Display the ``TaggerProgress`` view
+        7. Save the tags to the file, which will lock up the UI ( threading :( )
+
+        This method is supposed to be called by the EncoderProgress view
+        after it finishes.
+        """
+        # This isn't inside the if so that do_tag doesn't fail
+        self.mp3_path = self.build_output_file_path('mp3')
+        # Join the encoder thread, since tagging can't occur until it is
+        # done
+        if not self.args.no_encode:
+            self.encoder.join()
+            os.rename(
+                self.build_output_file_path(
+                    'mp3', parent=self.tmp_path.name),
+                self.mp3_path
+            )
+            self.tmp_path.cleanup()
+        tag_progress_view = TaggerProgress(self)
+        self.loop.widget = tag_progress_view.get_view()
+        # Do async so that this function returns immediately
+        self.loop.set_alarm_in(0.1, self.do_tag)
+
     def encoder_finished(self) -> bool:
-        """Do steps 6 and 7."""
-        if self.encoder.finished:
-            # This isn't inside the if so that do_tag doesn't fail
-            self.mp3_path = self.build_output_file_path('mp3')
-            # Join the encoder thread, since tagging can't occur until it is
-            # done
-            if not self.args.no_encode:
-                self.encoder.join()
-                os.rename(
-                    self.build_output_file_path(
-                        'mp3', parent=self.tmp_path.name),
-                    self.mp3_path
-                )
-                self.tmp_path.cleanup()
-            tag_progress_view = TaggerProgress(self)
-            self.loop.widget = tag_progress_view.get_view()
-            # Do async so that this function returns immediately
-            self.loop.set_alarm_in(0.1, self.do_tag)
+        """Return true if the encoder is finished."""
         return self.encoder.finished
 
     def get_encoder_percent(self) -> int:
@@ -904,25 +1008,6 @@ class Main:
         """Setup tasks."""
         self.args = self.parse_args()
         self.config = self.check_config(self.args.config)
-        self.loop = None
-
-    @staticmethod
-    def unhandled_input(button):
-        if button == 'f8':
-            raise urwid.ExitMainLoop()
-
-    @staticmethod
-    def get_palette():
-        return [
-            ('background', urwid.WHITE, urwid.DARK_BLUE),
-            ('dialog', urwid.BLACK, urwid.WHITE),
-            ('textbox', urwid.LIGHT_GRAY, urwid.DARK_BLUE),
-            ('textbox_focused', urwid.WHITE, urwid.DARK_BLUE, 'bold'),
-            ('btn', urwid.BLACK, urwid.LIGHT_GRAY),
-            ('btn_focus', urwid.WHITE, urwid.DARK_RED, 'bold'),
-            ('progress_background', urwid.BLACK, urwid.LIGHT_GRAY),
-            ('progress_foreground', urwid.WHITE, urwid.DARK_RED),
-        ]
 
     @staticmethod
     def parse_args() -> argparse.Namespace:
@@ -1010,12 +1095,9 @@ class Main:
 
     def main(self):
         """Kickstart the application."""
-        self.loop = urwid.MainLoop(None, palette=self.get_palette(),
-                                   screen=urwid.raw_display.Screen(),
-                                   unhandled_input=self.unhandled_input)
-        c = Controller(self.loop, self.args, self.config)
+        c = Controller(self.args, self.config)
         c.start()
-        self.loop.run()
+        c.loop.run()
 
 
 if __name__ == "__main__":
