@@ -13,12 +13,14 @@ import signal
 import argparse
 import datetime
 import tempfile
+import mimetypes
 import threading
 import subprocess
 import mutagen.id3
 import mutagen.mp3
 import configparser
 import urllib.parse
+
 
 # These keys must be in the configuration file, with text values
 REQUIRED_TEXT_KEYS = ['slug', 'filename', 'bitrate', 'title', 'album',
@@ -146,6 +148,26 @@ class MP3Tagger:
         self.tag.delall('TPE2')
         self.tag.add(mutagen.id3.TPE2(text=accompaniment))
 
+    def set_cover_art(self, path: str):
+        """Set the cover art of the MP3."""
+        self.tag.delall('APIC')
+        mime, ignored = mimetypes.guess_type(path)
+        if mime is None:
+            raise PostShowError("Unable to guess MIME type of cover image.")
+        data = None
+        try:
+            with open(path, 'rb') as fp:
+                data = fp.read()
+        except IOError:
+            raise PostShowError("Unable to read cover image file.")
+        apic = mutagen.id3.APIC(
+            mime=mime,
+            type=mutagen.id3.PictureType.COVER_FRONT,
+            desc='podcast cover art',
+            data=data
+        )
+        self.tag.add(apic)
+
     def set_date(self, year: str) -> None:
         """Set the date of recording of the MP3."""
         self.tag.delall('TDRC')
@@ -175,8 +197,20 @@ class MP3Tagger:
 
     def add_chapters(self, chapters: list):
         """Add a whole list of chapters to the MP3."""
+        child_element_ids = []
         for chapter in chapters:
             self.add_chapter(chapter)
+            if chapter.indexed:
+                child_element_ids.append(chapter.elem_id)
+        self.tag.add(mutagen.id3.CTOC(
+            element_id="toc",
+            flags=
+                mutagen.id3.CTOCFlags.TOP_LEVEL | mutagen.id3.CTOCFlags.ORDERED,
+            child_element_ids=child_element_ids,
+            sub_frames=[
+                mutagen.id3.TIT2(text="Primary Chapter List"),
+            ]
+        ))
 
 
 class MP3Encoder(threading.Thread):
@@ -223,10 +257,10 @@ class MP3Encoder(threading.Thread):
 class EpisodeMetadata(object):
     """Metadata about an episode."""
 
-    def __init__(self, number: str, name: str, lyrics: str):
+    def __init__(self, number: str, name: str):
         self.number = number
         self.name = name
-        self.lyrics = lyrics
+        self.lyrics = None
         self.title = None
         self.album = None
         self.artist = None
@@ -445,6 +479,7 @@ class ViewUtil:
                 ),
                 footer=footer
             )
+
         return f_wrap
 
 
@@ -568,7 +603,6 @@ class EnterBasics:
         self.controller = controller
         self.number_box = urwid.Edit("", "", multiline=False)
         self.title_box = urwid.Edit("", "", multiline=True)
-        self.lyrics_box = urwid.Edit("", "", multiline=True)
 
     @ViewUtil.window_wrap
     def get_view(self) -> urwid.Widget:
@@ -591,9 +625,6 @@ class EnterBasics:
             urwid.Text(EnterBasics.TITLE_TEXT),
             urwid.AttrWrap(self.title_box, 'textbox', 'textbox_focused'),
             blank,
-            urwid.Text(EnterBasics.LYRICS_TEXT),
-            urwid.AttrWrap(self.lyrics_box, 'textbox', 'textbox_focused'),
-            blank,
             urwid.Padding(urwid.GridFlow(buttons, 10, 3, 1, 'left'),
                           left=15, right=15, min_width=13, align='center')
         ]
@@ -610,7 +641,7 @@ class EnterBasics:
                 urwid.AttrWrap(
                     urwid.LineBox(contents, 'Basic Metadata'),
                     'dialog'
-                ), height=13),
+                ), height=10),
             width=60,
             align='center'
         )
@@ -620,7 +651,6 @@ class EnterBasics:
         self.controller.set_metadata(EpisodeMetadata(
             self.number_box.edit_text,
             self.title_box.edit_text,
-            self.lyrics_box.edit_text
         ))
 
     def handle_cancel(self, button):
@@ -788,6 +818,7 @@ class Controller:
     7. Save the tags to the file, which will lock up the UI ( threading :( )
     8. Exit
     """
+
     def __init__(self, args, config):
         self.loop = urwid.MainLoop(None, palette=self.get_palette(),
                                    screen=urwid.raw_display.Screen(),
@@ -851,10 +882,10 @@ class Controller:
         4. Display the ``ConfirmMetadata`` view
         """
         self.metadata = metadata
-        self.complete_metadata()
         # Metadata conversion
         if self.args.markers is not None:
             self.build_chapters()
+        self.complete_metadata()
         confirm_view = ConfirmMetadata(self)
         self.loop.widget = confirm_view.get_view()
 
@@ -906,6 +937,9 @@ class Controller:
         mcs.save(self.build_output_file_path('lrc'), MCS.LRC)
         mcs.save(self.build_output_file_path('cue'), MCS.CUE)
         mcs.save(self.build_output_file_path('txt'), MCS.SIMPLE)
+        self.metadata.lyrics = "\n".join([
+            chapter.text for chapter in self.chapters
+        ])
 
     def do_tag(self, loop, user_data):
         """Tag the file, and do step 8.
@@ -923,7 +957,7 @@ class Controller:
             t.set_composer(self.metadata.composer)
         if self.metadata.accompaniment is not None:
             t.set_accompaniment(self.metadata.accompaniment)
-        if self.metadata.lyrics != "":
+        if self.metadata.lyrics is not None and self.metadata.lyrics != "":
             t.add_comment(self.metadata.language, 'track list',
                           self.metadata.comment)
             if self.metadata.comment is not None:
@@ -931,6 +965,8 @@ class Controller:
                              self.metadata.lyrics)
         if self.chapters is not None:
             t.add_chapters(self.chapters)
+        if 'cover_art' in self.config[self.args.profile].keys():
+            t.set_cover_art(self.config.get(self.args.profile, 'cover_art'))
         t.save()
         raise urwid.ExitMainLoop()
 
@@ -1089,6 +1125,8 @@ class Main:
                                       'values ("True" or "False") for the key '
                                       '"{key}"'.format(section=section,
                                                        key=key))
+            if 'cover_art' in so.keys():
+                so['cover_art'] = os.path.expandvars(so['cover_art'])
         if len(errors) > 0:
             raise PostShowError(';\n'.join(errors))
         return config
