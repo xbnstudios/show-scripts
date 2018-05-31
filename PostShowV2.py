@@ -963,6 +963,10 @@ class Controller:
             if self.metadata.comment is not None:
                 t.add_lyrics(self.metadata.language, 'track list',
                              self.metadata.lyrics)
+        if self.config.getboolean(self.args.profile, 'write_date'):
+            t.set_date(datetime.datetime.now().strftime('%Y'))
+        if self.config.getboolean(self.args.profile, 'write_trackno'):
+            t.set_trackno(self.metadata.track)
         if self.chapters is not None:
             t.add_chapters(self.chapters)
         if 'cover_art' in self.config[self.args.profile].keys():
