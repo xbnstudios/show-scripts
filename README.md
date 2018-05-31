@@ -17,31 +17,48 @@ found.
 
 * **PostShow.py** - Audacity Marker Converter on the graph, generate CUE, LRC
   and simple timestamp files from an Audacity marker file
+* **PostShowV2.py** - new and improved version of PostShow developed by
+  [s0ph0s](https://github.com/s0ph0s-2). Changelog can be found
+  [here](https://github.com/vladasbarisas/XBN/pull/2)
 * **Gelo** - Podcast chapter metadata gathering tool
 * **mp3-chapter-scripts** - S0ph0s's scripts to embed chapters into MP3s. Use
-  `chaptagger4.py` in production.
+  `chaptagger4.py` in production
 * **auxiliary-scripts** - various scripts that aren't part of the main package
 * **MarkerGen** - Script that was used to extract approximate metadata from
-  [xananp's](https://twitter.com/xananp) tweets. Kept for posterity reasons.
+  [xananp's](https://twitter.com/xananp) tweets. Kept for posterity reasons
 * **old-reference-livescript.js** - script that was previously used in
   production, now superseded by Gelo
-
 
 ## Usage:
 
 **Please refer to Gelo documentation for Gelo-specific usage instructions.**
 
 ```
-usage: PostShow.py [-h] input output title filename
+usage: PostShowV2.py [-h] [-c CONFIG] [-m MARKERS] [-p PROFILE] [--no-encode]
+                     wav outdir
+
+Convert and tag WAVs and chapter metadata for podcasts.
 
 positional arguments:
-  input       path to audacity file (MyEpisode.txt)
-  output      output directory with a leading slash (C:\MyEpisode\)
-  title       episode title (001 - My First Podcast)
-  filename    episode file name (episode1.mp3)
+  wav                   WAV file to convert/use
+  outdir                directory in which to write output files. Will be
+                        created if nonexistent.
 
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help            show this help message and exit
+  -c CONFIG, --config CONFIG
+                        configuration file to use, defaults to $HOME/.config/
+                        postshow.ini
+  -m MARKERS, --markers MARKERS
+                        marker file to convert/use. Only Audacity labels are
+                        currently supported
+  -p PROFILE, --profile PROFILE
+                        the configuration profile on which to base default
+                        values
+  --no-encode           the MP3 file already exists, don't encode the WAV
+                        file.
+
+example: PostShowV2.py -m fnt-200.txt fnt-200.wav output/folder/
 ```
 
 ## I'm only here for the metadata files
