@@ -1062,7 +1062,8 @@ class Main:
                                  "Will be created if nonexistent.")
         parser.add_argument("-c",
                             "--config",
-                            help="configuration file to use",
+                            help="configuration file to use, defaults to "
+                                 "$HOME/.config/postshow.ini",
                             default=os.path.expandvars(
                                 "$HOME/.config/postshow.ini"))
         parser.add_argument("-m",
@@ -1073,7 +1074,7 @@ class Main:
                             "--profile",
                             default="default",
                             help="the configuration profile on which to base"
-                                 "default values")
+                                 " default values")
         parser.add_argument("--no-encode",
                             default=False,
                             action='store_true',
