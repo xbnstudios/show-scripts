@@ -18,8 +18,8 @@ found.
 * **PostShow.py** - Audacity Marker Converter on the graph, generate CUE, LRC
   and simple timestamp files from an Audacity marker file
 * **PostShowV2.py** - new and improved version of PostShow developed by
-[s0ph0s](https://github.com/s0ph0s-2). Changelog can be found
-[here](https://github.com/vladasbarisas/XBN/pull/2)
+  [s0ph0s](https://github.com/s0ph0s-2). Changelog can be found
+  [here](https://github.com/vladasbarisas/XBN/pull/2)
 * **Gelo** - Podcast chapter metadata gathering tool
 * **mp3-chapter-scripts** - S0ph0s's scripts to embed chapters into MP3s. Use
   `chaptagger4.py` in production
@@ -47,17 +47,18 @@ positional arguments:
 optional arguments:
   -h, --help            show this help message and exit
   -c CONFIG, --config CONFIG
-                        configuration file to use
+                        configuration file to use, defaults to $HOME/.config/
+                        postshow.ini
   -m MARKERS, --markers MARKERS
                         marker file to convert/use. Only Audacity labels are
                         currently supported
   -p PROFILE, --profile PROFILE
-                        the configuration profile on which to basedefault
+                        the configuration profile on which to base default
                         values
   --no-encode           the MP3 file already exists, don't encode the WAV
                         file.
 
-example: PostShowV2.py -c postshow.ini -m fnt-200.txt fnt-200.wav output/folder/
+example: PostShowV2.py -m fnt-200.txt fnt-200.wav output/folder/
 ```
 
 ## I'm only here for the metadata files
