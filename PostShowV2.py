@@ -171,7 +171,7 @@ class MP3Tagger:
     def set_date(self, year: str) -> None:
         """Set the date of recording of the MP3."""
         self.tag.delall('TDRC')
-        self.tag.add(mutagen.id3.TDRC(text=year))
+        self.tag.add(mutagen.id3.TDRC(text=[mutagen.id3.ID3TimeStamp(year), ]))
 
     def set_trackno(self, trackno: str) -> None:
         """Set the track number of the MP3."""
