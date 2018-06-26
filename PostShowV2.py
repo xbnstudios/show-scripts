@@ -185,7 +185,7 @@ class MP3Tagger:
 
     def add_comment(self, lang: str, desc: str, comment: str) -> None:
         """Add a comment to the MP3."""
-        self.tag.add(mutagen.id3.COMM(lang=lang, desc=desc, text=comment))
+        self.tag.add(mutagen.id3.COMM(lang=lang, desc=desc, text=[comment, ]))
 
     def add_lyrics(self, lang: str, desc: str, lyrics: str) -> None:
         """Add lyrics to the MP3."""
