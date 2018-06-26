@@ -385,6 +385,27 @@ class MCS:
                     chap = Chapter(start, end, text=text)
                 self.chapters.append(chap)
 
+    def _load_lrc(self, path: str):
+        """Load an LRC file.
+
+        This plugin also supports URLs, if they are appended to the end of the
+        marker with a pipe character:
+            Some Marker Name|https://example.com
+        """
+        with open(path, 'r', encoding='utf-8-sig') as fp:
+            for line in fp:
+                if re.match(r"^\[(ti|ar|al):.*\]$", line) is not None:
+                    continue
+                else:
+                    result = re.match(r"^\[(\d+):(\d\d)\.(\d+)\](.*)$", line)
+                    if result is None:
+                        continue
+                    else:
+                        minutes = int(result.group(1))
+                        seconds = int(result.group(2))
+                        fraction = int(result.group(3))
+                        label = int(result.group(4))
+
     def save(self, path: str, type: int):
         if type == self.LRC:
             self._save_lrc(path)
