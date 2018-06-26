@@ -356,7 +356,7 @@ class MCS:
         the marker with a pipe character:
             Some Marker Name|https://example.com
         """
-        with open(path, 'r', encoding='utf-8') as fp:
+        with open(path, 'r', encoding='utf-8-sig') as fp:
             reader = csv.reader(fp, delimiter='\t', quoting=csv.QUOTE_NONE)
             for row in reader:
                 if not row:
