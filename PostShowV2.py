@@ -883,9 +883,9 @@ class Controller:
         """
         self.metadata = metadata
         # Metadata conversion
+        self.complete_metadata()
         if self.args.markers is not None:
             self.build_chapters()
-        self.complete_metadata()
         confirm_view = ConfirmMetadata(self)
         self.loop.widget = confirm_view.get_view()
 
