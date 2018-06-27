@@ -21,7 +21,6 @@ import mutagen.mp3
 import configparser
 import urllib.parse
 
-
 # These keys must be in the configuration file, with text values
 REQUIRED_TEXT_KEYS = ['slug', 'filename', 'bitrate', 'title', 'album',
                       'artist', 'season', 'language', 'genre']
@@ -205,7 +204,7 @@ class MP3Tagger:
         self.tag.add(mutagen.id3.CTOC(
             element_id="toc",
             flags=
-                mutagen.id3.CTOCFlags.TOP_LEVEL | mutagen.id3.CTOCFlags.ORDERED,
+            mutagen.id3.CTOCFlags.TOP_LEVEL | mutagen.id3.CTOCFlags.ORDERED,
             child_element_ids=child_element_ids,
             sub_frames=[
                 mutagen.id3.TIT2(text="Primary Chapter List"),
@@ -333,6 +332,20 @@ class MCS:
             datetime.time(hour=0)
         ) + datetime.timedelta(seconds=seconds)
 
+    @staticmethod
+    def _split_url(text: str):
+        """Split text into a label and a URL. Return a (text, url) tuple.
+
+        The URL part of the tuple is None if there isn't a URL in the text.
+        """
+        url = None
+        url_parsed = None
+        if '|' in text:
+            url = text[text.rindex('|') + 1:]
+            text = text[:text.rindex('|')]
+            url_parsed = urllib.parse.urlparse(url)
+        return text, url
+
     def load(self, path: str):
         """Load a file.
 
@@ -345,6 +358,9 @@ class MCS:
         if type == "txt":
             # Decoding Audacity labels
             self._load_audacity(path)
+        elif type == "lrc":
+            # Decoding an LRC file
+            self._load_lrc(path)
         else:
             raise PostShowError("Unsupported marker file: {}".format(type))
         self._canonicalize()
@@ -371,18 +387,8 @@ class MCS:
                 end = int(round(end, 0))
                 mark = row[2]
                 text = row[2]
-                url = None
-                # Identify URLs
-                url_parsed = None
-                if '|' in mark:
-                    url = mark[mark.rindex('|') + 1:]
-                    text = mark[:mark.rindex('|')]
-                    url_parsed = urllib.parse.urlparse(url)
-                if url_parsed is not None and url_parsed.scheme != '' and \
-                        url_parsed.netloc != '':
-                    chap = Chapter(start, end, url=url, text=text)
-                else:
-                    chap = Chapter(start, end, text=text)
+                text, url = _split_url(text)
+                chap = Chapter(start, end, text=text, url=url)
                 self.chapters.append(chap)
 
     def _load_lrc(self, path: str):
@@ -393,18 +399,28 @@ class MCS:
             Some Marker Name|https://example.com
         """
         with open(path, 'r', encoding='utf-8-sig') as fp:
+            previous = None
             for line in fp:
                 if re.match(r"^\[(ti|ar|al):.*\]$", line) is not None:
                     continue
-                else:
-                    result = re.match(r"^\[(\d+):(\d\d)\.(\d+)\](.*)$", line)
-                    if result is None:
-                        continue
-                    else:
-                        minutes = int(result.group(1))
-                        seconds = int(result.group(2))
-                        fraction = int(result.group(3))
-                        label = int(result.group(4))
+                result = re.match(r"^\[(\d+):(\d\d\.\d+)\](.*)$", line)
+                if result is None:
+                    continue
+                minutes = int(result.group(1))
+                seconds = float(result.group(2))
+                label = result.group(3)
+                millisec = (minutes * 60 * 1000) + int(round(seconds * 1000))
+                if previous is not None:
+                    self.chapters.append(
+                        Chapter(previous[0], millisec, text=previous[1],
+                                url=previous[2])
+                    )
+                text, url = self._split_url(label)
+                previous = (millisec, text, url)
+            self.chapters.append(
+                Chapter(previous[0], previous[0], text=previous[1],
+                        url=previous[2])
+            )
 
     def save(self, path: str, type: int):
         if type == self.LRC:
