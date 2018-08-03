@@ -401,7 +401,7 @@ class MCS:
         with open(path, 'r', encoding='utf-8-sig') as fp:
             previous = None
             for line in fp:
-                if re.match(r"^\[(ti|ar|al):.*\]$", line) is not None:
+                if re.match(r"^\[(ti|ar|al):(.*)\]$", line) is not None:
                     continue
                 result = re.match(r"^\[(\d+):(\d\d\.\d+)\](.*)$", line)
                 if result is None:
@@ -469,10 +469,10 @@ class MCS:
                 # millisecond:
                 # https://en.wikipedia.org/wiki/Cue_sheet_(computing)#Essential_commands
                 fraction = int(math.floor((chapter.start % 1000) * 0.075))
-                fp.write('  TRACK {0} AUDIO\n'
+                fp.write('  TRACK {0:02d} AUDIO\n'
                          '    TITLE "{1}"\n'
                          '    INDEX 01 {2:02d}:{3:02d}:{4:02d}\n'.format(
-                    i,
+                    i + 1,
                     chapter.text.replace('"', '_'),
                     minutes,
                     seconds,

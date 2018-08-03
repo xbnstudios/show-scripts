@@ -3,7 +3,7 @@
 Convert markers between types.
 """
 
-from PostShowV2 import MCS
+from PostShowV2 import MCS, EpisodeMetadata
 import argparse
 import sys
 
