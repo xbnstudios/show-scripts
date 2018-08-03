@@ -387,7 +387,7 @@ class MCS:
                 end = int(round(end, 0))
                 mark = row[2]
                 text = row[2]
-                text, url = _split_url(text)
+                text, url = self._split_url(text)
                 chap = Chapter(start, end, text=text, url=url)
                 self.chapters.append(chap)
 
