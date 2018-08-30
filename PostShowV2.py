@@ -474,12 +474,12 @@ class MCS:
                 fp.write('  TRACK {0:02d} AUDIO\n'
                          '    TITLE "{1}"\n'
                          '    INDEX 01 {2:02d}:{3:02d}:{4:02d}\n'.format(
-                    i + 1,
-                    chapter.text.replace('"', '_'),
-                    minutes,
-                    seconds,
-                    fraction)
-                )
+                            i + 1,
+                            chapter.text.replace('"', '_'),
+                            minutes,
+                            seconds,
+                            fraction)
+                         )
 
     def _save_simple(self, path: str):
         with open(path, 'w') as fp:
@@ -489,18 +489,17 @@ class MCS:
                 fp.write('{0} - {1}\n'.format(start, chapter.text))
 
     def _save_audacity(self, path: str):
-        with open(path, 'w', newline='') as fp:
-            writer = csv.writer(fp, delimiter='\t', quoting=csv.QUOTE_NONE)
+        with open(path, 'w') as fp:
             last_chap = None
             for chapter in self.chapters:
                 text = chapter.text
                 if chapter.url is not None:
                     text += "|" + chapter.url
-                writer.writerow([
+                fp.write("{0}\t{1}\t{2}".format(
                     chapter.start / 1000,
                     chapter.end / 1000,
                     text
-                ])
+                ))
 
     def get(self):
         return self.chapters
