@@ -429,6 +429,8 @@ class MCS:
             self._save_cue(path)
         elif type == self.SIMPLE:
             self._save_simple(path)
+        elif type == self.AUDACITY:
+            self._save_audacity(path)
 
     def _save_lrc(self, path: str):
         with open(path, 'w') as fp:
@@ -485,6 +487,20 @@ class MCS:
                 start = self._get_time(chapter.start / 1000) \
                     .strftime("%H:%M:%S")
                 fp.write('{0} - {1}\n'.format(start, chapter.text))
+
+    def _save_audacity(self, path: str):
+        with open(path, 'w', newline='') as fp:
+            writer = csv.writer(fp, delimiter='\t', quoting=csv.QUOTE_NONE)
+            last_chap = None
+            for chapter in self.chapters:
+                text = chapter.text
+                if chapter.url is not None:
+                    text += "|" + chapter.url
+                writer.writerow([
+                    chapter.start / 1000,
+                    chapter.end / 1000,
+                    text
+                ])
 
     def get(self):
         return self.chapters
