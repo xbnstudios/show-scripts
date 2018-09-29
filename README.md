@@ -1,6 +1,6 @@
 # XBN Timestamp Project
 ![Project
-overview](https://github.com/vladasbarisas/XBN/raw/master/overview-diagram.png)
+overview](https://git.xbn.fm/s0ph0s/show-scripts/raw/master/overview-diagram.png)
 
 
 ## About this repository
