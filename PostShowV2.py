@@ -71,7 +71,9 @@ class Chapter(object):
         """Convert this object into a mutagen CHAP object."""
         sub_frames = []
         if self.text is not None:
-            sub_frames.append(mutagen.id3.TIT2(text=self.text))
+            # Fix issue #1 by replacing em-dashes with regular hyphen-minuses
+            cleaned_text = self.text.replace('—', '-')
+            sub_frames.append(mutagen.id3.TIT2(text=cleaned_text))
         if self.url is not None:
             sub_frames.append(mutagen.id3.WXXX(
                 desc='chapter url',
