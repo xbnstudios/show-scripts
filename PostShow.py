@@ -3,7 +3,7 @@
 """PostShow v1.2 (https://github.com/vladasbarisas/XBN)
 
 Python script to generate JSON MP3 chapters, LRC, CUE and simple timestamp files from an Audacity label file.
-Written by Manual (@CatVsHumanity on Twitter)
+Written by Vladas (@vladasbarysas on Twitter)
 """
 
 import csv
