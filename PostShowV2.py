@@ -314,6 +314,7 @@ class MCS:
     CUE = 11
     UMR = 12
     SIMPLE = 13
+    FFMETADATA1 = 14
 
     def __init__(self, metadata=None, media_filename=None):
         self.load_path = None
@@ -446,6 +447,8 @@ class MCS:
             self._save_simple(path)
         elif type == self.AUDACITY:
             self._save_audacity(path)
+        elif type == self.FFMETADATA1:
+            self._save_ffmetadata1(path)
 
     def _save_lrc(self, path: str):
         with open(path, "w") as fp:
@@ -518,6 +521,24 @@ class MCS:
                         chapter.start / 1000, chapter.end / 1000, text
                     )
                 )
+
+    def _save_ffmetadata1(self, path: str):
+        """This function doesn't support chapters with URLs, because I don't know how to
+        make `FFMPEG` write them"""
+        with open(path, "w") as fp:
+            fp.write(";FFMETADATA1\n")
+            if self.metadata is not None:
+                fp.write("title={}\n".format(self.metadata.title))
+                fp.write("artist={}\n".format(self.metadata.artist))
+            for chapter in self.chapters:
+                fp.write(
+                    "\n[CHAPTER]\nTIMEBASE=1/1000\n"
+                    "START={start}\nEND={end}\ntitle={text}\n".format(
+                        start=chapter.start, end=chapter.end, text=chapter.text
+                    )
+                )
+            if self.metadata is not None:
+                fp.write("\n[STREAM]\ntitle={}".format(self.metadata.title))
 
     def get(self):
         return self.chapters
