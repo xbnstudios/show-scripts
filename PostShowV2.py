@@ -227,6 +227,17 @@ class MP3Tagger:
 class MP3Encoder(threading.Thread):
     """Shell out to LAME to encode the WAV file as an MP3."""
 
+    def __init__(self):
+        super().__init__()
+        self.infile = None
+        self.outfile = None
+        self.bitrate = None
+        self.matcher = None
+        self.p = None
+        self.percent = 0
+        self.started = False
+        self.finished = False
+
     def setup(self, infile: str, outfile: str, bitrate: str):
         """Configure the input and output files, and the encoder bitrate.
 
@@ -238,11 +249,9 @@ class MP3Encoder(threading.Thread):
         self.outfile = outfile
         self.bitrate = bitrate
         self.matcher = re.compile(r"\(([0-9]?[0-9 ][0-9])%\)")
-        self.p = None
-        self.percent = 0
-        self.finished = False
 
     def run(self):
+        self.started = True
         self.p = subprocess.Popen(
             ["lame", "-t", "-b", self.bitrate, "--cbr", self.infile, self.outfile],
             stdout=subprocess.DEVNULL,
@@ -263,7 +272,8 @@ class MP3Encoder(threading.Thread):
         self.finished = True
 
     def request_stop(self):
-        self.p.terminate()
+        if self.started and self.p is not None:
+            self.p.terminate()
 
 
 class EpisodeMetadata(object):
@@ -594,6 +604,12 @@ class EncoderProgress:
         "tune up your bicycle",
         "answer an email",
         "text them back",
+        "study differential calculus",
+        "automate a (different) boring task",
+        "construct additional plyons",
+        "watch your firewall bandwidth graphs",
+        "frustrate your friends with bad puns",
+        "check the weather",
     ]
 
     def __init__(self, controller):
@@ -981,9 +997,10 @@ class Controller:
             self.progress_view_finished()
 
     def exit(self):
-        print("Waiting for the encoder to stop...")
-        self.encoder.request_stop()
-        self.encoder.join()
+        if self.encoder is not None and self.encoder.started:
+            print("Waiting for the encoder to stop...")
+            self.encoder.request_stop()
+            self.encoder.join()
         raise urwid.ExitMainLoop()
 
     def build_output_file_path(self, ext: str, parent=None):
@@ -1168,9 +1185,11 @@ class Main:
             errors.append("Markers file ({}) does not exist".format(args.markers))
         try:
             os.mkdir(args.outdir)
+        except FileExistsError:
+            # We don't care, that's fine
+            pass
         except OSError as e:
-            if e.errno != os.errno.EEXIST:
-                errors.append(str(e))
+            errors.append(str(e))
         if len(errors) > 0:
             raise PostShowError(";\n".join(errors))
         return args
