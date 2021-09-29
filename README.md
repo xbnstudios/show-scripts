@@ -19,7 +19,7 @@ found.
   and simple timestamp files from an Audacity marker file
 * **PostShowV2.py** - new and improved version of PostShow developed by
   [s0ph0s](https://github.com/s0ph0s-2). Changelog can be found
-  [here](https://github.com/vladasbarisas/XBN/pull/2)
+  [here](https://github.com/xbnstudios/show-scripts/pull/2)
 * **Gelo** - Podcast chapter metadata gathering tool
 * **mp3-chapter-scripts** - S0ph0s's scripts to embed chapters into MP3s. Use
   `chaptagger4.py` in production
@@ -60,8 +60,3 @@ optional arguments:
 
 example: PostShowV2.py -m fnt-200.txt fnt-200.wav output/folder/
 ```
-
-## I'm only here for the metadata files
-
-Pre-generated metadata files can be found
-[here](https://github.com/vladasbarisas/XBN-Metadata).
