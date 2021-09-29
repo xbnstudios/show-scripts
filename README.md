@@ -60,8 +60,3 @@ optional arguments:
 
 example: PostShowV2.py -m fnt-200.txt fnt-200.wav output/folder/
 ```
-
-## I'm only here for the metadata files
-
-Pre-generated metadata files can be found
-[here](https://github.com/xbnstudios/show-scripts-Metadata).
